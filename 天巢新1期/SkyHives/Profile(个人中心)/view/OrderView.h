@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OrderView : UIView
+@interface OrderView : UITableViewCell
 /**订单图片*/
 @property (weak, nonatomic) IBOutlet UIImageView *ImageView;
 /**产品名字*/

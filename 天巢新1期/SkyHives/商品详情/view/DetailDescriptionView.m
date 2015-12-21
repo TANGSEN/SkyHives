@@ -7,9 +7,11 @@
 //
 
 #import "DetailDescriptionView.h"
+#import "ShareView.h"
 @interface DetailDescriptionView ()
 @property (nonatomic ,strong) UIButton *titleBtn;
 @property (nonatomic ,strong) UIButton *btn;
+
 @end
 
 /** 私有变量 视图自身的高度值 */
@@ -62,13 +64,14 @@ static CGFloat _height;
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self addSubview:btn];
     self.btn = btn;
+    [btn addTarget:self action:@selector(shareView) forControlEvents:UIControlEventTouchUpInside];
 //    [btn bk_addEventHandler:^(id sender) {
 //
 //        ShareView *view = [[ShareView alloc] initWithFrame:CGRectMake(0, ApplicationframeValue.height - 160, ApplicationframeValue.width, 160)];
 //        view.content = @"天巢网";
 //        view.message = @"快来挑选一下属于你的家具吧";
-//        view.shareUrl = @"https://www.baidu.com/";
-//        view.pictureName = @"76-76";
+//        view.shareUrl = @"https://www.skyhives.com/";
+//        view.pictureName = @"512";
 //        
 //        [view show];
 //        
@@ -113,6 +116,18 @@ static CGFloat _height;
 
 - (void)click{
     NSLog(@"hahahahhah");
+}
+
+-(void)shareView{
+
+    ShareView *view = [[ShareView alloc] initWithFrame:CGRectMake(0, ApplicationframeValue.height - 160, ApplicationframeValue.width, 160)];
+    view.content = @"天巢网";
+    view.message = @"快来挑选一下属于你的家具吧";
+    view.shareUrl = @"https://www.skyhives.com/";
+    view.pictureName = @"512";
+    
+    [view show];
+
 }
 
 /**

@@ -13,11 +13,13 @@
 #import "AddressViewController.h"
 #define HeaderViewWidth 100
 
-@interface PersonalViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface PersonalViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 /**头像*/
 @property (nonatomic,strong)UIImageView *headerView;
 @property (nonatomic,strong)NSArray *titles;
 @property (nonatomic,strong)UITableView *tableView;
+/**头像图片*/
+@property (nonatomic,strong)UIImage *headerImage;
 @end
 
 @implementation PersonalViewController
@@ -35,6 +37,19 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
+    UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData:imageData];
+    self.headerView.image = image;
+        
+   
+    
+    
+    
+//    UIImage *image = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
+//    self.headerView.image = image;
+//    CGPoint center = self.headerView.center;
+    self.headerView.layer.cornerRadius = HeaderViewWidth/2/2;
+    [self.headerView.layer setBorderWidth:0.0f];
     [self.tableView reloadData];
 
 }
@@ -43,10 +58,26 @@
 {
     UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, ApplicationframeValue.width, HeaderViewWidth)];
     [self.view addSubview:topView];
-#warning 修改头像暂时未做
-    self.headerView =[[UIImageView alloc]initWithImage:[UIImage imageNamed: @"homePage_1.png"]];
+//    self.headerView = [[UIImageView alloc] init];
+//#warning 修改头像暂时未做
+//    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
+//    if (imageData != nil) {
+//        UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData:imageData];
+//        self.headerView.image = image;
+//
+//    }
+    
+    self.headerView =[[UIImageView alloc]init];
+    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
+    UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData:imageData];
+    self.headerView.image = image;
+    
     CGPoint center = self.headerView.center;
     center.x  = topView.bounds.size.width/2-HeaderViewWidth/2/2;
+    
+    UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeHeaderView)];
+    [topView addGestureRecognizer:tap];
+    
     
     center.y  = topView.height/2-30;
     self.headerView.center = center;
@@ -82,6 +113,66 @@
 
 }
 
+
+
+-(void)changeHeaderView{
+    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"相机" otherButtonTitles:@"相册", nil];
+    sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    
+    [sheet showInView:self.view];
+    
+}
+
+#pragma mark - ActionSheet Delegate
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    [picker setEditing:YES];
+    /**调用相机*/
+    if (buttonIndex==0) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+        else{
+            AlertLog(nil, @"无法调用相机!", @"确定", nil);
+        
+        }
+    }
+    /**调用相册*/
+    else if(buttonIndex == 1){
+    
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:picker animated:YES completion:nil];
+    
+    }
+
+
+}
+#pragma mark - imagePickerController Delegate
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject:image];
+    [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"headerImage"];
+    
+    [self dismissViewControllerAnimated:YES completion:^{}];
+//    [self.navigationController popViewControllerAnimated:YES];
+
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+
+
+#pragma mark -  tableView Delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 

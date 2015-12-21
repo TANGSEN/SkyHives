@@ -44,7 +44,8 @@
     
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = [UIColor blackColor];
-    
+    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
+
     
     [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     
