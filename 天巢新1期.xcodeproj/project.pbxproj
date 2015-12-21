@@ -54,7 +54,6 @@
 		87A3BD191C284B6800A20A68 /* WeChatConnection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BCFE1C284B6800A20A68 /* WeChatConnection.framework */; };
 		87A3BD1A1C284B6800A20A68 /* AGCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BD001C284B6800A20A68 /* AGCommon.framework */; };
 		87A3BD1B1C284B6800A20A68 /* ShareSDKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87A3BD011C284B6800A20A68 /* ShareSDKLocalizable.strings */; };
-		87A3BD1C1C284B6800A20A68 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BD031C284B6800A20A68 /* MOBFoundation.framework */; };
 		87A3BD1D1C284B6800A20A68 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 87A3BD041C284B6800A20A68 /* Resource.bundle */; };
 		87A3BD1E1C284B6800A20A68 /* ShareSDKCoreService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BD051C284B6800A20A68 /* ShareSDKCoreService.framework */; };
 		87A3BD1F1C284B6800A20A68 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BD091C284B6800A20A68 /* TencentOpenAPI.framework */; };
@@ -228,7 +227,6 @@
 		87A3BCFE1C284B6800A20A68 /* WeChatConnection.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WeChatConnection.framework; sourceTree = "<group>"; };
 		87A3BD001C284B6800A20A68 /* AGCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AGCommon.framework; sourceTree = "<group>"; };
 		87A3BD021C284B6800A20A68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShareSDKLocalizable.strings; sourceTree = "<group>"; };
-		87A3BD031C284B6800A20A68 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
 		87A3BD041C284B6800A20A68 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		87A3BD051C284B6800A20A68 /* ShareSDKCoreService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKCoreService.framework; sourceTree = "<group>"; };
 		87A3BD061C284B6800A20A68 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ShareSDKLocalizable.strings"; sourceTree = "<group>"; };
@@ -385,6 +383,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA8279AA1C1C14E800C99D9A /* SystemConfiguration.framework in Frameworks */,
 				AA8279BC1C1C157200C99D9A /* libsqlite3.tbd in Frameworks */,
 				AA8279BA1C1C154800C99D9A /* CoreText.framework in Frameworks */,
 				AA8279B81C1C153E00C99D9A /* libstdc++.tbd in Frameworks */,
@@ -393,7 +392,6 @@
 				AA8279B01C1C150F00C99D9A /* libicucore.tbd in Frameworks */,
 				AA8279AE1C1C14FE00C99D9A /* CoreTelephony.framework in Frameworks */,
 				AA8279AC1C1C14F300C99D9A /* QuartzCore.framework in Frameworks */,
-				AA8279AA1C1C14E800C99D9A /* SystemConfiguration.framework in Frameworks */,
 				AA8279B61C1C152E00C99D9A /* JavaScriptCore.framework in Frameworks */,
 				AA8279BE1C1C1AF500C99D9A /* MessageUI.framework in Frameworks */,
 				AA8279B21C1C151900C99D9A /* libz.tbd in Frameworks */,
@@ -406,7 +404,6 @@
 				AA937B6C1C279A0300F61304 /* libpingpp.a in Frameworks */,
 				87A3BD1A1C284B6800A20A68 /* AGCommon.framework in Frameworks */,
 				87A3BD191C284B6800A20A68 /* WeChatConnection.framework in Frameworks */,
-				87A3BD1C1C284B6800A20A68 /* MOBFoundation.framework in Frameworks */,
 				87A3BD231C284B6800A20A68 /* ShareSDK.framework in Frameworks */,
 				87A3BD211C284B6800A20A68 /* libWeChatSDK.a in Frameworks */,
 				AA937B691C279A0300F61304 /* AlipaySDK.framework in Frameworks */,
@@ -631,7 +628,6 @@
 			children = (
 				87A3BD001C284B6800A20A68 /* AGCommon.framework */,
 				87A3BD011C284B6800A20A68 /* ShareSDKLocalizable.strings */,
-				87A3BD031C284B6800A20A68 /* MOBFoundation.framework */,
 				87A3BD041C284B6800A20A68 /* Resource.bundle */,
 				87A3BD051C284B6800A20A68 /* ShareSDKCoreService.framework */,
 			);

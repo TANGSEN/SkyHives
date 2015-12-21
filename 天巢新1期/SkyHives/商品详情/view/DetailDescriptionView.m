@@ -120,7 +120,7 @@ static CGFloat _height;
 
 -(void)shareView{
 
-    ShareView *view = [[ShareView alloc] initWithFrame:CGRectMake(0, ApplicationframeValue.height - 160, ApplicationframeValue.width, 160)];
+    ShareView *view = [[ShareView alloc] initWithFrame:CGRectMake(20, 200, ApplicationframeValue.width-40, 200)];
     view.content = @"天巢网";
     view.message = @"快来挑选一下属于你的家具吧";
     view.shareUrl = @"https://www.skyhives.com/";
