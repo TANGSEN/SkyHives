@@ -1,0 +1,138 @@
+//
+//  tcpch.pch
+//  天巢新1期
+//
+//  Created by tangjp on 15/12/11.
+//  Copyright © 2015年 tangjp. All rights reserved.
+//
+
+#ifndef tcpch_pch
+#define tcpch_pch
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+//RGB
+#define Color(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+// 随机色
+#define RandomColor Color(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+
+
+
+#import "Factory.h"
+// 41DCB280
+#define WXAppID @"wx25d9ec509a6dbfca"//WXAppID
+#define WXAppSecret @"d4624c36b6795d1d99dcf0547af5443d"//WXAppSecret
+#define ShareAppKey @"564e7ea267e58ee2b0005052" //ShareSdk  appkey
+
+
+#define QQAppID @"1104982656"//QQAppID 41DCB280  十六进制
+//1104911525   41DB9CA5
+//1104982656    41DCB280（网页）
+
+#define QQAppKEY @"97ZPixmld9P8N4EB"//QQAppKey
+#import <SMS_SDK/SMSSDK.h>
+
+//短信验证*/
+#define SMSAppKey @"cc385203ac0a"
+#define SMSAppSecret @"21fc8f851674ccf6091fb078d850a751"
+
+//YeZhERCRGkkZABhh
+//97ZPixmld9P8N4EB（网页）
+// 间距
+#define JPMargin 10
+
+//RGB
+#define Color(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+// 随机色
+#define RandomColor Color(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+
+// 屏幕的宽
+#define JPScreenW [UIScreen mainScreen].bounds.size.width
+// 屏幕的高
+#define JPScreenH [UIScreen mainScreen].bounds.size.height
+
+// 是否为iOS7
+#define iOS7 ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+
+// 是否为4inch
+#define FourInch ([UIScreen mainScreen].bounds.size.height == 568.0)
+
+#define KeyWindow [UIApplication sharedApplication].keyWindow
+
+#import "Color_Process.h"      //颜色工具
+#define  Color_Hex16(C_String) [Color_Process colorWithHexString:C_String]
+#define View_BgColor Color_Hex16(@"#f2f2f2")//全局背景色
+/**浅色*/
+#define  Color_LightGray Color_Hex16(@"9a9f92")//浅色
+/**普通色*/
+#define  Color_Common Color_Hex16(@"555555")//普通色
+
+#define  AppFont(c_font) [UIFont systemFontOfSize:c_font]
+
+/**屏幕大小*/
+#define ApplicationframeValue [[UIScreen mainScreen]bounds].size
+
+/*   <!-- 应用规范字体大小 -->*/
+#define  text_size_big_1    21
+#define  text_size_big_2    20
+#define  text_size_big_3    19
+#define  text_size_middle_1 18
+#define  text_size_middle_2 17
+#define  text_size_middle_3 15
+#define  text_size_little_1 14
+#define  text_size_little_2 13
+#define  text_size_little_3 12
+#define  text_size_little_4 10
+#define  text_size_other    16
+
+// 自定义的头部标签视图
+#import "CustomerView.h"
+
+#import "UIView+Extnesion.h"
+//#import "MJExtension.h"
+#import "NSString+Extension.h"
+
+#import "TYCollectionView.h"
+#import "TYTableView.h"
+#import "TCDetailController.h"
+#import "AutoScrollView.h"
+
+// 第三方支付
+#import "Pingpp.h"
+
+// 第三方类库
+#import "AFNetworking.h"
+#import <MBProgressHUD.h>
+
+#import <AFNetworking.h>
+
+#import <BlocksKit.h>
+#import <BlocksKit+UIKit.h>
+
+#import "SharedInstance.h"
+
+//**提示框宏定义
+CG_INLINE void AlertLog (NSString *titleStr,NSString *message,NSString *button1,NSString *button2)
+{
+    if(!titleStr)
+        titleStr = @"";
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle: titleStr
+                                                        message: message
+                                                       delegate: nil
+                                              cancelButtonTitle: button1
+                                              otherButtonTitles: button2,
+                              nil];
+    [alertView show];
+    
+}
+/**个人中心顶部视图高度*/
+#define TopHeight 180
+
+#define FooterView [[UIView alloc] init];
+/**全局颜色*/
+#define AppColor  Color(245, 58, 64)
+
+#endif /* tcpch_pch */
