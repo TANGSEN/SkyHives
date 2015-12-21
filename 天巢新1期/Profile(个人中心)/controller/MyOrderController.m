@@ -83,59 +83,28 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return 10;
 
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     static NSString *identifier = @"cell";
+    OrderView *cell  = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"OrderView" owner:self options:nil]lastObject];
+    }
     
-#warning     如果单元格复用  猛拽 视图乱
-
-    OrderView *view  = [[[NSBundle mainBundle]loadNibNamed:@"OrderView" owner:self options:nil]lastObject];
-    UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
-   
-
-
-//    if (!cell) {
-    
-        
-         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        
-
-        if (indexPath.row%2==0) {
-            /**立即购买*/
-            [view.BuyNow addTarget:self action:@selector(BuyNow:) forControlEvents:UIControlEventTouchUpInside];
-            
-            view.frame = cell.frame;
-            view.BuyNow.tag = indexPath.row;
-            [cell.contentView addSubview:view];
-        }
-        else
-        {
-        
-            UIView *imageCell = [[UIView alloc] initWithFrame:CGRectZero];
-            imageCell.backgroundColor = View_BgColor;
-            cell.backgroundView = imageCell;
-        
-        }
-        
-       
-       
-        
-//    }
-    
-    
+    for (UIView *subview in cell.contentView.subviews) {
+        [subview removeFromSuperview];
+    }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    /**立即购买*/
+    [cell.BuyNow addTarget:self action:@selector(BuyNow:) forControlEvents:UIControlEventTouchUpInside];
+    cell.BuyNow.tag = indexPath.row;
     
     return cell;
-    
-    
-
 }
 
 -(void)BuyNow:(UIButton *)sender
@@ -147,21 +116,11 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.row%2==0) {
-        return 138.0f;
-    }
-    return 20.0f;
 
-//    return 138.0f;
+    return 148.0f;
 }
 
-//
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//
-//    return 20;
-//}
+
 
 
 
