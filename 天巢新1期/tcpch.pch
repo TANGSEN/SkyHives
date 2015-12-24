@@ -100,7 +100,6 @@
 #import "Pingpp.h"
 
 // 第三方类库
-#import "AFNetworking.h"
 #import <MBProgressHUD.h>
 
 #import <AFNetworking.h>
