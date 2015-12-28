@@ -27,53 +27,33 @@
 
 -(NSArray *)titles
 {
-
+    
     if (!_titles) {
         _titles = @[@"用户名",@"绑定手机号码",@"修改密码",@"我的收货地址"];
     }
     return _titles;
-
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
-    UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData:imageData];
-    self.headerView.image = image;
-        
-   
-    
-    
-    
-//    UIImage *image = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
-//    self.headerView.image = image;
-//    CGPoint center = self.headerView.center;
-    self.headerView.layer.cornerRadius = HeaderViewWidth/2/2;
-    [self.headerView.layer setBorderWidth:0.0f];
+    self.headerView.image = [[SharedInstance sharedInstance] getUserImage];
     [self.tableView reloadData];
-
+    
 }
 
 -(void)viewDidLoad
 {
     UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, ApplicationframeValue.width, HeaderViewWidth)];
     [self.view addSubview:topView];
-//    self.headerView = [[UIImageView alloc] init];
-//#warning 修改头像暂时未做
-//    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
-//    if (imageData != nil) {
-//        UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData:imageData];
-//        self.headerView.image = image;
-//
-//    }
+    
     
     self.headerView =[[UIImageView alloc]init];
-    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
-    UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData:imageData];
-    self.headerView.image = image;
+    
+    self.headerView.image = [[SharedInstance sharedInstance] getUserImage];
     
     CGPoint center = self.headerView.center;
-    center.x  = topView.bounds.size.width/2-HeaderViewWidth/2/2;
+    center.x = topView.bounds.size.width/2-HeaderViewWidth/2/2;
     
     UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeHeaderView)];
     [topView addGestureRecognizer:tap];
@@ -82,12 +62,9 @@
     center.y  = topView.height/2-30;
     self.headerView.center = center;
     self.headerView.size = CGSizeMake(HeaderViewWidth/2, HeaderViewWidth/2);
-    self.headerView.backgroundColor = Color(245, 58, 64);
-    self.headerView.layer.cornerRadius = HeaderViewWidth/2/2;
-    [self.headerView.layer setBorderWidth:0.0f];
     [topView addSubview:self.headerView];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.headerView.origin.x, CGRectGetMaxY(self.headerView.frame), self.headerView.width, 20)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(self.headerView.origin.x, CGRectGetMaxY(self.headerView.frame)+8, self.headerView.width, 20)];
     
     [topView addSubview:label];
     label.text = @"修改头像";
@@ -98,7 +75,7 @@
     topView.layer.borderColor = [[UIColor lightGrayColor]colorWithAlphaComponent:0.3f].CGColor;
     topView.layer.borderWidth = 0.5f;
     
-
+    
     
     
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 130+64, ApplicationframeValue.width, 200)];
@@ -109,11 +86,13 @@
     tableView.bounces = NO;
     self.tableView = tableView;
     [self.view addSubview:tableView];
-
-
+    
+    
 }
 
+#pragma mark - private
 
+#pragma mark - 修改头像
 
 -(void)changeHeaderView{
     UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"相机" otherButtonTitles:@"相册", nil];
@@ -126,10 +105,10 @@
 #pragma mark - ActionSheet Delegate
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-
+    
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
-    [picker setEditing:YES];
+    picker.allowsEditing = YES;
     /**调用相机*/
     if (buttonIndex==0) {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -138,31 +117,29 @@
         }
         else{
             AlertLog(nil, @"无法调用相机!", @"确定", nil);
-        
+            
         }
     }
     /**调用相册*/
     else if(buttonIndex == 1){
-    
+        
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:picker animated:YES completion:nil];
-    
+        
     }
-
-
+    
 }
 #pragma mark - imagePickerController Delegate
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject:image];
-    [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"headerImage"];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    /**存储头像*/
+    [[SharedInstance sharedInstance] setUserImage:image];
     
     [self dismissViewControllerAnimated:YES completion:^{}];
-//    [self.navigationController popViewControllerAnimated:YES];
-
+    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -175,13 +152,13 @@
 #pragma mark -  tableView Delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    
     return 4;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     UITableViewCell * cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     
     cell.textLabel.text = self.titles[indexPath.row];
@@ -195,18 +172,17 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-
-
+    
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     UIViewController *obj = nil;
     
     switch (indexPath.row) {
         case 0:
-            NSLog(@"点击了%@",self.titles[indexPath.row]);
             
             obj = [[ChangeUserNameController alloc] init];
             break;
@@ -228,7 +204,7 @@
     
     
     [self.navigationController pushViewController:obj animated:YES];
-
+    
 }
 
 

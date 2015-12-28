@@ -7,6 +7,8 @@
 //
 
 #import "SharedInstance.h"
+#import "UIImage+Extension.h"
+
 static SharedInstance *shared = nil;
 @implementation SharedInstance
 /**单例*/
@@ -25,33 +27,33 @@ static SharedInstance *shared = nil;
 
 /**设置密码*/
 -(void)setPassword:(NSString *)password{
-
+    
     [[NSUserDefaults standardUserDefaults]setObject:password forKey:@"password"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-
-
-
+    
+    
+    
 }
 /**获取密码*/
 -(NSString *)getPassword{
-
+    
     NSString *apppassword=[[NSUserDefaults standardUserDefaults]objectForKey:@"password"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     return apppassword;
-
+    
 }
 /**设置用户名*/
 -(void)setUserName:(NSString *)userName{
-
+    
     [[NSUserDefaults standardUserDefaults]setObject:userName forKey:@"userName"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-
-
+    
+    
 }
 /**获取用户名*/
 -(NSString *)getUserName{
-
-
+    
+    
     NSString *username=[[NSUserDefaults standardUserDefaults]objectForKey:@"userName"];
     
     if ([username isEqualToString:@""]||!username) {
@@ -59,9 +61,9 @@ static SharedInstance *shared = nil;
     }
     
     return username;
-
-
-
+    
+    
+    
 }
 
 /**设置用户账号*/
@@ -69,21 +71,50 @@ static SharedInstance *shared = nil;
 {
     [[NSUserDefaults standardUserDefaults]setObject:phoneNumber forKey:@"phoneNumber"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-
-
-
+    
+    
+    
 }
 /**获取用户账号*/
 -(NSString *)getPhoneNumber
 {
-
+    
     NSString *username=[[NSUserDefaults standardUserDefaults]objectForKey:@"phoneNumber"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     return username;
-
+    
 }
 
-
-
+/**设置用户头像*/
+-(void)setUserImage:(UIImage *)image{
+    
+    
+    NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject:image];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"headerImage"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+/**获取用户头像*/
+-(UIImage *)getUserImage{
+    
+    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
+    if (imageData != nil) {
+        UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData:imageData];
+        UIImage *roundImage = [UIImage roundImageWith:image];
+        return roundImage;
+    }else
+        return nil;
+    
+    
+}
+-(void)clearAllData{
+    [SharedInstance sharedInstance].alreadyLanded = NO;
+    [[SharedInstance sharedInstance] setPhoneNumber:@""];
+    [[SharedInstance sharedInstance] setPassword:@""];
+    [[SharedInstance sharedInstance] setUserName:@""];
+    [[SharedInstance sharedInstance] setUserImage:nil];
+    
+}
 
 @end

@@ -42,11 +42,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-
+    
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
-
+    
 }
 
 -(void)viewDidLoad
@@ -54,15 +54,8 @@
     
     
     
-
-//    self.tableView= [[UITableView alloc] initWithFrame: CGRectMake(0, 0, ApplicationframeValue.width, ApplicationframeValue.height-49)];
-//    
-//    self.tableView.delegate = self;
-//    self.tableView.dataSource = self;
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.tableFooterView = FooterView;
-
-//    [self.view addSubview:self.tableView];
 }
 
 -(NSArray *)ImageArr
@@ -173,28 +166,28 @@
     
     else {
         if (indexPath.row == 0) {
-        
+            
             if (indexPath.section == 1) {
                 
                 cell.detailTextLabel.text = @"查看全部订单";
                 cell.detailTextLabel.font = AppFont(13);
                 
             }
-
-        cell.imageView.image = [[UIImage imageNamed:self.ImageArr[indexPath.section]]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        cell.textLabel.text = self.TitleArr[indexPath.section];
-        
             
-        if (indexPath.section!=3) {
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.imageView.image = [[UIImage imageNamed:self.ImageArr[indexPath.section]]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            cell.textLabel.text = self.TitleArr[indexPath.section];
+            
+            
+            if (indexPath.section!=3) {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            
+            
+            
         }
-        
-        
-        
-    }
     }
     /**我的订单 四个小标*/
-     if (indexPath.row==1&&indexPath.section == 1) {
+    if (indexPath.row==1&&indexPath.section == 1) {
         
         for (int i = 0; i<self.OrderImages.count; i++) {
             ImageTitleButton *button = [ImageTitleButton buttonWithType:UIButtonTypeCustom];
@@ -252,7 +245,7 @@
         
     }
     
-   
+    
     
     return cell;
     
@@ -274,7 +267,7 @@
 #warning 完善个人资料 暂未
 -(void)tapGR{
     SettingViewController *setting = [[SettingViewController alloc] init];
-    setting.title = @"完善";
+    setting.title = @"设置";
     [self.navigationController pushViewController:setting animated:YES];
     
 }
@@ -338,7 +331,7 @@
         MyFavoriteController *favorite = [[MyFavoriteController alloc] init];
         favorite.title = @"我的收藏";
         [self.navigationController pushViewController:favorite animated:YES];
-     
+        
     }
     if (indexPath.section == 6) {
         FeedbackController *feedback  = [[FeedbackController alloc] init];

@@ -69,4 +69,22 @@
     return newImage;
 }
 
+
+
+
++(instancetype)roundImageWith:(UIImage *)image{
+
+    CGSize size = CGSizeMake(image.size.width, image.size.height);
+    
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextAddEllipseInRect(context, CGRectMake(0, 0, size.width, size.height));
+    CGContextClip(context);
+    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+    UIImage *roundImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    return roundImage;
+
+}
+
 @end

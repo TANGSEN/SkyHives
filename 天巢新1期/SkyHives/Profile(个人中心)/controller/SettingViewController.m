@@ -24,30 +24,29 @@
 
 -(void)viewDidLoad
 {
-
+    
     self.tableView.tableFooterView = FooterView;
-
-
+    
+    
 }
--(NSArray *)Titles
-{
 
-    if (!_Titles) {
-        _Titles  = [SharedInstance sharedInstance].alreadyLanded? @[@"个人资料",@"收货地址管理",@"关于天巢",@"退出账号"]:@[@"个人资料",@"收货地址管理",@"关于天巢"];
-    }
-    return _Titles;
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.Titles  = [SharedInstance sharedInstance].alreadyLanded? @[@"个人资料",@"收货地址管理",@"关于天巢",@"退出账号"]:@[@"个人资料",@"收货地址管理",@"关于天巢"];
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark - tableView dataSoucre
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    
     return self.Titles.count;
-
+    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     UITableViewCell *cell  = [[UITableViewCell alloc] init];
     cell.textLabel.text = self.Titles[indexPath.row];
     
@@ -56,8 +55,8 @@
     }
     else if (indexPath.row!=self.Titles.count-1) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            
-        }
+        
+    }
     
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -69,13 +68,13 @@
 #pragma mark - tableView delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-
+    
     return 15.0f;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 45.0f;
-
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -92,16 +91,16 @@
         case 0:
             NSLog(@"点击了%@",self.Titles[indexPath.row]);
             if (![[SharedInstance  sharedInstance] alreadyLanded]) {
-
-            obj = [[LoginViewController alloc] init];
+                
+                obj = [[LoginViewController alloc] init];
                 [self.navigationController pushViewController:obj animated:YES];
-
+                
                 
             }else{
-            
-            obj = [[PersonalViewController alloc] init];
+                
+                obj = [[PersonalViewController alloc] init];
                 [self.navigationController pushViewController:obj animated:YES];
-
+                
             }
             break;
         case 1:
@@ -109,23 +108,23 @@
                 
                 obj = [[LoginViewController alloc] init];
                 [self.navigationController pushViewController:obj animated:YES];
-
+                
                 
             }else{
                 
                 obj = [[AddressViewController alloc] init];
                 [self.navigationController pushViewController:obj animated:YES];
-
+                
             }
             break;
         case 2:
             NSLog(@"点击了%@",self.Titles[indexPath.row]);
-
+            
             break;
         case 3:
             
             [alertView show];
-        
+            
             break;
             
         default:
@@ -134,23 +133,19 @@
             
     }
     
- 
+    
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-
+    
     if (buttonIndex==0) {
         
         [UIView  animateWithDuration:0.2 animations:^{
             
-            [SharedInstance sharedInstance].alreadyLanded = NO;
-//            [[SharedInstance sharedInstance] setPhoneNumber:@""];
-//            [[SharedInstance sharedInstance] setPassword:@""];
-//            [[SharedInstance sharedInstance] setUserName:@""];
-#warning 在sharedInstance  增加 设置头像
-//            1、在这清除账号信息 应该删除所有信息
-            
+            //            1、每次注销应该清除账号信息
+            //            2、每次登录应该与服务器验证（防止在其他客户端登录 修改信息）
+            [[SharedInstance sharedInstance] clearAllData];
             
             
             [self.navigationController popToRootViewControllerAnimated:YES];
@@ -159,7 +154,7 @@
         
     }
     
-
+    
 }
 
 @end

@@ -90,7 +90,7 @@
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
         
-        
+        viewController.view.backgroundColor = View_BgColor;
         viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithBg:@"icon_return" title:@"返回" target:self action:@selector(back)];
     }
     

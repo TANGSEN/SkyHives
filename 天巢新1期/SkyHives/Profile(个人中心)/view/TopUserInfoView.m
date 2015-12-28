@@ -8,7 +8,8 @@
 
 //个人中心顶部视图
 #import "TopUserInfoView.h"
-
+#import "UIImage+ColorToBackImage.h"
+#import "UIImage+Extension.h"
 #define HeaderViewWidth ApplicationframeValue.width/4
 
 @interface TopUserInfoView ()
@@ -25,53 +26,37 @@
 {
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor lightGrayColor];
-    /**顶部背景图*/
+    
+#warning     /**顶部背景图*/
+    
     UIImageView *aboveView = [[UIImageView alloc]initWithImage:[UIImage imageNamed: @"homePage_1.png"]];
     aboveView.frame = self.frame;
     [self addSubview:aboveView];
-
     
-//**如果已经登录
     
+    
+    self.headerView =[[UIImageView alloc]init];
+    //**如果已经登录
     if ([SharedInstance sharedInstance].alreadyLanded) {
-    
-    //**头像
-        /*
-        self.headerView =[[UIImageView alloc]init];
-        NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
-        if (imageData != nil) {
-            UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData:imageData];
-            self.headerView.image = image;
-            
-        }
-         */
-        self.headerView =[[UIImageView alloc]init];
-        NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"headerImage"];
-        UIImage *image = [NSKeyedUnarchiver unarchiveObjectWithData:imageData];
-        self.headerView.image = image;
-            
         
-    
-    self.headerView.frame = CGRectMake(10, TopHeight-HeaderViewWidth-5-35, HeaderViewWidth, HeaderViewWidth);
-
-    self.headerView.backgroundColor = Color(245, 58, 64);
-    self.headerView.layer.cornerRadius = HeaderViewWidth/2;
-    [self.headerView.layer setBorderWidth:0.0f];
-    [self addSubview:self.headerView];
-
-    
-    //**用户名
-    self.nameL = [[UILabel alloc]initWithFrame:CGRectMake(self.headerView.frame.size.width, self.headerView.centerY-30, 200, 35)];
-    self.nameL.textAlignment = NSTextAlignmentCenter;
-    self.nameL.textColor = Color(245, 58, 64);
-    self.nameL.font = AppFont(14.0f);
+        //**头像
+        self.headerView.frame = CGRectMake(10, TopHeight-HeaderViewWidth-5-35, HeaderViewWidth, HeaderViewWidth);
+        self.headerView.image = [[SharedInstance sharedInstance] getUserImage];
+        [self addSubview:self.headerView];
         
         
-    self.nameL.text = [[SharedInstance sharedInstance] getUserName];
-    [self addSubview:self.nameL];
+        //**用户名
+        self.nameL = [[UILabel alloc]initWithFrame:CGRectMake(self.headerView.frame.size.width, self.headerView.centerY-30, 200, 35)];
+        self.nameL.textAlignment = NSTextAlignmentCenter;
+        self.nameL.textColor = Color(245, 58, 64);
+        self.nameL.font = AppFont(14.0f);
         
         
-   /**完善个人资料*/
+        self.nameL.text = [[SharedInstance sharedInstance] getUserName];
+        [self addSubview:self.nameL];
+        
+        
+        /**完善个人资料*/
         
         UIView *detailView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headerView.origin.y+self.headerView.height+5, ApplicationframeValue.width, 35)];
         
@@ -82,40 +67,35 @@
         personalLabel.textColor = [UIColor whiteColor];
         personalLabel.text = @"完善个人资料";
         personalLabel.font = AppFont(14.0f);
-
+        
         [detailView addSubview:personalLabel];
         
-
-        
-        
-        
-    
     }
     
     /**如果没有登录   显示登录和注册选项*/
+    
     else{
-        [self.headerView removeFromSuperview];
-        [self.nameL removeFromSuperview];
         
-        self.headerView =[[UIImageView alloc]initWithImage:[UIImage imageNamed: @"homePage_1.png"]];
         CGPoint center = self.headerView.center;
         center.x  = self.bounds.size.width/2-HeaderViewWidth/2;
         
         center.y  = self.height/2-50;
         self.headerView.center = center;
         self.headerView.size = CGSizeMake(HeaderViewWidth, HeaderViewWidth);
-        self.headerView.backgroundColor = Color(245, 58, 64);
-        self.headerView.layer.cornerRadius = HeaderViewWidth/2;
-        [self.headerView.layer setBorderWidth:0.0f];
+        
+        //没有登录返回的是
+        
+        UIImage *image = [UIImage imageWithColor:AppColor size:self.headerView.size];
+        self.headerView.image = [UIImage roundImageWith:image];
+        
         [self addSubview:self.headerView];
-    
+        
         /**登录按钮*/
-    
+        
         UIButton *loginBtn  = [[UIButton alloc] initWithFrame:CGRectMake(ApplicationframeValue.width/2-41, self.headerView.origin.y+self.headerView.height+10, 40, 20)];
         self.loginBtn = loginBtn;
         [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         [loginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        loginBtn.backgroundColor = AppColor;
         loginBtn.titleLabel.font = AppFont(12);
         [self addSubview:loginBtn];
         
@@ -129,12 +109,11 @@
         /**注册按钮*/
         UIButton *registerBtn  = [[UIButton alloc] initWithFrame:CGRectMake(ApplicationframeValue.width/2+1, loginBtn.origin.y, 40, 20)];
         self.registerBtn = registerBtn;
-//        registerBtn.backgroundColor = AppColor;
         [registerBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
         registerBtn.titleLabel.font = AppFont(12);
         [self addSubview:registerBtn];
- 
+        
     }
     
     /**设置按钮*/
@@ -146,7 +125,7 @@
     self.settingButton.titleLabel.font = AppFont(12.0f);
     self.settingButton.backgroundColor = Color(245, 58, 64);
     [self.settingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-
+    
     [self addSubview:self.settingButton];
     
     

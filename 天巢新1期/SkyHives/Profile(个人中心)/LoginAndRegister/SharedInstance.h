@@ -26,6 +26,15 @@
 /**获取用户账号*/
 -(NSString *)getPhoneNumber;
 
+/**设置用户头像*/
+-(void)setUserImage:(UIImage *)image;
+/**获取用户头像*/
+-(UIImage *)getUserImage;
+
+
+/**清楚所有信息*/
+-(void)clearAllData;
+
 
 /**标记用户是否已经登陆*/
 @property (nonatomic,assign)  BOOL alreadyLanded;
