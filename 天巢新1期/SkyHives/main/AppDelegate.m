@@ -39,8 +39,7 @@
 //    //3.QQ
     [ShareSDK connectQQWithAppId:QQAppID qqApiCls:[QQApiInterface class]];
 
-#warning 先注掉 短信验证码  未知错误
-//    [SMSSDK registerApp:SMSAppKey withSecret:SMSAppSecret];
+    [SMSSDK registerApp:SMSAppKey withSecret:SMSAppSecret];
     
     [self.window makeKeyAndVisible];
     

@@ -33,6 +33,9 @@
 		872A5CA81C20632700AF221D /* profile_icon_yijianfankui.png in Resources */ = {isa = PBXBuildFile; fileRef = 872A5C901C20632700AF221D /* profile_icon_yijianfankui.png */; };
 		872A5CA91C20632700AF221D /* profile_icon_yijianfankui@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872A5C911C20632700AF221D /* profile_icon_yijianfankui@2x.png */; };
 		872A5CAA1C20632700AF221D /* profile_icon_yijianfankui@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872A5C921C20632700AF221D /* profile_icon_yijianfankui@3x.png */; };
+		877D5A351C31619400A63947 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 877D5A301C31619400A63947 /* AppDelegate.m */; };
+		877D5A361C31619400A63947 /* TCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877D5A321C31619400A63947 /* TCNavigationController.m */; };
+		877D5A371C31619400A63947 /* TCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 877D5A341C31619400A63947 /* TCTabBarController.m */; };
 		878032DE1C205ADA005BF2A9 /* ImageTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 878032DD1C205ADA005BF2A9 /* ImageTitleButton.m */; };
 		878032FB1C205F37005BF2A9 /* TCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878032F21C205F37005BF2A9 /* TCHomeViewController.m */; };
 		878032FC1C205F37005BF2A9 /* TYCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878032F61C205F37005BF2A9 /* TYCollectionView.m */; };
@@ -40,7 +43,6 @@
 		878032FE1C205F37005BF2A9 /* TYTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878032FA1C205F37005BF2A9 /* TYTableView.m */; };
 		878033051C205F98005BF2A9 /* TCCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878033021C205F98005BF2A9 /* TCCategoryController.m */; };
 		8780330C1C206043005BF2A9 /* TCShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878033091C206043005BF2A9 /* TCShoppingViewController.m */; };
-		8780330F1C206089005BF2A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8780330E1C206089005BF2A9 /* AppDelegate.m */; };
 		878033231C2060C3005BF2A9 /* Color_Process.m in Sources */ = {isa = PBXBuildFile; fileRef = 878033121C2060C3005BF2A9 /* Color_Process.m */; };
 		878033241C2060C3005BF2A9 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 878033141C2060C3005BF2A9 /* Factory.m */; };
 		878033251C2060C3005BF2A9 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 878033161C2060C3005BF2A9 /* NSDate+Extension.m */; };
@@ -103,8 +105,6 @@
 		AA397E391C1ADBCA00843044 /* ___1_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA397E381C1ADBCA00843044 /* ___1_Tests.m */; };
 		AA397E441C1ADBCA00843044 /* ___1_UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA397E431C1ADBCA00843044 /* ___1_UITests.m */; };
 		AA397EB61C1ADC0700843044 /* ChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA397E6C1C1ADC0700843044 /* ChannelView.m */; };
-		AA397ECA1C1ADC0800843044 /* TCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA397E9B1C1ADC0700843044 /* TCNavigationController.m */; };
-		AA397ECB1C1ADC0800843044 /* TCTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA397E9D1C1ADC0700843044 /* TCTabBarController.m */; };
 		AA42886D1C23EE6800C88B11 /* MyShoppingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA42886A1C23EE6800C88B11 /* MyShoppingController.xib */; };
 		AA4288771C23EE7300C88B11 /* MyShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4288731C23EE7300C88B11 /* MyShoppingCell.m */; };
 		AA4288781C23EE7300C88B11 /* MyShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4288741C23EE7300C88B11 /* MyShoppingCell.xib */; };
@@ -189,6 +189,12 @@
 		872A5C901C20632700AF221D /* profile_icon_yijianfankui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_icon_yijianfankui.png; sourceTree = "<group>"; };
 		872A5C911C20632700AF221D /* profile_icon_yijianfankui@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_icon_yijianfankui@2x.png"; sourceTree = "<group>"; };
 		872A5C921C20632700AF221D /* profile_icon_yijianfankui@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_icon_yijianfankui@3x.png"; sourceTree = "<group>"; };
+		877D5A2F1C31619400A63947 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		877D5A301C31619400A63947 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		877D5A311C31619400A63947 /* TCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNavigationController.h; sourceTree = "<group>"; };
+		877D5A321C31619400A63947 /* TCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNavigationController.m; sourceTree = "<group>"; };
+		877D5A331C31619400A63947 /* TCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTabBarController.h; sourceTree = "<group>"; };
+		877D5A341C31619400A63947 /* TCTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTabBarController.m; sourceTree = "<group>"; };
 		878032DC1C205ADA005BF2A9 /* ImageTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTitleButton.h; sourceTree = "<group>"; };
 		878032DD1C205ADA005BF2A9 /* ImageTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTitleButton.m; sourceTree = "<group>"; };
 		878032F11C205F37005BF2A9 /* TCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCHomeViewController.h; sourceTree = "<group>"; };
@@ -203,8 +209,6 @@
 		878033021C205F98005BF2A9 /* TCCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCategoryController.m; sourceTree = "<group>"; };
 		878033081C206043005BF2A9 /* TCShoppingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCShoppingViewController.h; sourceTree = "<group>"; };
 		878033091C206043005BF2A9 /* TCShoppingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCShoppingViewController.m; sourceTree = "<group>"; };
-		8780330D1C206089005BF2A9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "天巢新1期/SkyHives/Main/AppDelegate.h"; sourceTree = SOURCE_ROOT; };
-		8780330E1C206089005BF2A9 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = "天巢新1期/SkyHives/Main/AppDelegate.m"; sourceTree = SOURCE_ROOT; };
 		878033111C2060C3005BF2A9 /* Color_Process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color_Process.h; sourceTree = "<group>"; };
 		878033121C2060C3005BF2A9 /* Color_Process.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Color_Process.m; sourceTree = "<group>"; };
 		878033131C2060C3005BF2A9 /* Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Factory.h; sourceTree = "<group>"; };
@@ -316,10 +320,6 @@
 		AA397E451C1ADBCA00843044 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA397E6B1C1ADC0700843044 /* ChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelView.h; sourceTree = "<group>"; };
 		AA397E6C1C1ADC0700843044 /* ChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelView.m; sourceTree = "<group>"; };
-		AA397E9A1C1ADC0700843044 /* TCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNavigationController.h; sourceTree = "<group>"; };
-		AA397E9B1C1ADC0700843044 /* TCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNavigationController.m; sourceTree = "<group>"; };
-		AA397E9C1C1ADC0700843044 /* TCTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCTabBarController.h; sourceTree = "<group>"; };
-		AA397E9D1C1ADC0700843044 /* TCTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCTabBarController.m; sourceTree = "<group>"; };
 		AA397ECF1C1AE25500843044 /* tcpch.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcpch.pch; sourceTree = "<group>"; };
 		AA42886A1C23EE6800C88B11 /* MyShoppingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyShoppingController.xib; sourceTree = "<group>"; };
 		AA4288721C23EE7300C88B11 /* MyShoppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyShoppingCell.h; sourceTree = "<group>"; };
@@ -469,6 +469,19 @@
 				872A5C921C20632700AF221D /* profile_icon_yijianfankui@3x.png */,
 			);
 			path = "个人中心";
+			sourceTree = "<group>";
+		};
+		877D5A2E1C31619400A63947 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				877D5A2F1C31619400A63947 /* AppDelegate.h */,
+				877D5A301C31619400A63947 /* AppDelegate.m */,
+				877D5A311C31619400A63947 /* TCNavigationController.h */,
+				877D5A321C31619400A63947 /* TCNavigationController.m */,
+				877D5A331C31619400A63947 /* TCTabBarController.h */,
+				877D5A341C31619400A63947 /* TCTabBarController.m */,
+			);
+			path = main;
 			sourceTree = "<group>";
 		};
 		878032EF1C205F37005BF2A9 /* Home（首页） */ = {
@@ -870,6 +883,7 @@
 		AA397E511C1ADC0700843044 /* SkyHives */ = {
 			isa = PBXGroup;
 			children = (
+				877D5A2E1C31619400A63947 /* main */,
 				87A3BD2C1C284DAF00A20A68 /* Profile(个人中心) */,
 				878033101C2060C3005BF2A9 /* Util */,
 				878033061C206043005BF2A9 /* Shopping(购物车) */,
@@ -879,7 +893,6 @@
 				AA82796A1C1C0E6100C99D9A /* 商品详情 */,
 				AA397E6A1C1ADC0700843044 /* GeneralView */,
 				AA0AC50F1C254666009EA9AC /* Lib */,
-				AA397E951C1ADC0700843044 /* Main */,
 			);
 			path = SkyHives;
 			sourceTree = "<group>";
@@ -899,28 +912,6 @@
 				AA8279811C1C11AD00C99D9A /* CustomerView.m */,
 			);
 			path = GeneralView;
-			sourceTree = "<group>";
-		};
-		AA397E951C1ADC0700843044 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				8780330D1C206089005BF2A9 /* AppDelegate.h */,
-				8780330E1C206089005BF2A9 /* AppDelegate.m */,
-				AA397E9A1C1ADC0700843044 /* TCNavigationController.h */,
-				AA397E9B1C1ADC0700843044 /* TCNavigationController.m */,
-				AA397E9C1C1ADC0700843044 /* TCTabBarController.h */,
-				AA397E9D1C1ADC0700843044 /* TCTabBarController.m */,
-				AA397E9E1C1ADC0700843044 /* view */,
-			);
-			name = Main;
-			path = main;
-			sourceTree = "<group>";
-		};
-		AA397E9E1C1ADC0700843044 /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		AA4288701C23EE7300C88B11 /* network */ = {
@@ -1309,6 +1300,7 @@
 				878033251C2060C3005BF2A9 /* NSDate+Extension.m in Sources */,
 				AA9667421C1E9D16002FDA48 /* GoodsTableView.m in Sources */,
 				878032FC1C205F37005BF2A9 /* TYCollectionView.m in Sources */,
+				877D5A371C31619400A63947 /* TCTabBarController.m in Sources */,
 				AA8279741C1C0E6100C99D9A /* TCDetailController.m in Sources */,
 				87A3BD291C284C1400A20A68 /* ShareView.m in Sources */,
 				AA8279761C1C0E6100C99D9A /* TWXQView.m in Sources */,
@@ -1325,6 +1317,7 @@
 				AA0AC5271C254666009EA9AC /* SDWebImageManager+MJ.m in Sources */,
 				AA42887C1C23EEB200C88B11 /* MyShoppingController.m in Sources */,
 				87A3BD651C284DAF00A20A68 /* CountDownButton.m in Sources */,
+				877D5A351C31619400A63947 /* AppDelegate.m in Sources */,
 				AA96673D1C1E9CE6002FDA48 /* CategoryDetailController.m in Sources */,
 				87A3BD5D1C284DAF00A20A68 /* MyOrderController.m in Sources */,
 				AA0AC5251C254666009EA9AC /* MJPhotoToolbar.m in Sources */,
@@ -1332,7 +1325,6 @@
 				AA0AC53C1C254B87009EA9AC /* MBProgressHUD+MJ.m in Sources */,
 				AA0AC5221C254666009EA9AC /* MJPhotoBrowser.m in Sources */,
 				878032FE1C205F37005BF2A9 /* TYTableView.m in Sources */,
-				8780330F1C206089005BF2A9 /* AppDelegate.m in Sources */,
 				878033281C2060C3005BF2A9 /* UIBarButtonItem+Extension.m in Sources */,
 				AA0AC5241C254666009EA9AC /* MJPhotoProgressView.m in Sources */,
 				87A3BD5B1C284DAF00A20A68 /* FeedbackController.m in Sources */,
@@ -1347,7 +1339,6 @@
 				8780332A1C2060C3005BF2A9 /* UIView+Extnesion.m in Sources */,
 				86C395B61C215697002050CE /* UIImage+ColorToBackImage.m in Sources */,
 				AA58579E1C1FF7EF00A0CD29 /* AttributeView.m in Sources */,
-				AA397ECB1C1ADC0800843044 /* TCTabBarController.m in Sources */,
 				AA82797E1C1C104B00C99D9A /* DetailScrollView.m in Sources */,
 				87A3BD5A1C284DAF00A20A68 /* ChangeUserNameController.m in Sources */,
 				878033291C2060C3005BF2A9 /* UIImage+Extension.m in Sources */,
@@ -1363,12 +1354,12 @@
 				87A3BD5E1C284DAF00A20A68 /* PersonalViewController.m in Sources */,
 				AA82797D1C1C104B00C99D9A /* DetailDescriptionView.m in Sources */,
 				87A3BD5F1C284DAF00A20A68 /* PhoneBindingController.m in Sources */,
-				AA397ECA1C1ADC0800843044 /* TCNavigationController.m in Sources */,
 				AA0AC5201C254666009EA9AC /* MJPhoto.m in Sources */,
 				87A3BD621C284DAF00A20A68 /* LoginViewController.m in Sources */,
 				87A3BD5C1C284DAF00A20A68 /* MyFavoriteController.m in Sources */,
 				AA82797F1C1C104B00C99D9A /* DetailViewController.m in Sources */,
 				87A3BD6B1C284DAF00A20A68 /* TCTextView.m in Sources */,
+				877D5A361C31619400A63947 /* TCNavigationController.m in Sources */,
 				8780330C1C206043005BF2A9 /* TCShoppingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

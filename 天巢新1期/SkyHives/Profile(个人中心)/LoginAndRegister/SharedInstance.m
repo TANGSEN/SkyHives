@@ -104,7 +104,13 @@ static SharedInstance *shared = nil;
         UIImage *roundImage = [UIImage roundImageWith:image];
         return roundImage;
     }else
-        return nil;
+        
+    {
+    
+        return [UIImage roundImageWith:nil];
+    
+    }
+    
     
     
 }
