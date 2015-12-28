@@ -31,6 +31,7 @@
 #import "TCShoppingTable.h"
 #import "MyShoppingCell.h"
 #import "ShoppingModel.h"
+#import "TCTabBarController.h"
 //#import "Pingpp.h"
 
 #define CELLH 100.0f
@@ -372,6 +373,60 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     
     
 }
+
+/*******************新增代码********************/
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+//定义编辑样式
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    [tableView setEditing:YES animated:YES];
+    return UITableViewCellEditingStyleDelete;
+}
+
+//进入编辑模式，按下出现的编辑按钮后
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [self.arr removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            CGRect rect = CGRectMake(0, 0, ApplicationframeValue.width, CELLH * self.arr.count);
+            tableView.frame = rect;
+        });
+    }
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, JPScreenW, 60)];
+    label.text = @"购物车是空的, 去逛逛吧";
+    label.textAlignment = NSTextAlignmentCenter;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+    [label addGestureRecognizer:tap];
+    label.userInteractionEnabled = YES;
+    [self.scrollView addSubview:label];
+    if (self.arr.count == 0) {
+        label.hidden = NO;
+        self.BottomView.hidden = YES;
+    }else{
+        label.hidden = YES;
+        self.BottomView.hidden = NO;
+    }
+}
+
+- (void)tap{
+    TCTabBarController *tabbarVc = (TCTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+    tabbarVc.selectedIndex = 0;
+}
+
+//修改编辑按钮文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+/*******************新增代码END********************/
 -(UIView *)getRoundCorner:(UIView *)vView
 {
     
