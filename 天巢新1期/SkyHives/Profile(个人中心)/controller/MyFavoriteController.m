@@ -12,6 +12,8 @@
 
 -(void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor whiteColor];
+
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, ApplicationframeValue.width, 45)];
     [self.view addSubview:titleLabel];
     titleLabel.text = @"收藏商品";

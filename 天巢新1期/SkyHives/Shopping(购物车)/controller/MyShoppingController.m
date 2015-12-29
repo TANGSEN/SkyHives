@@ -125,6 +125,10 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     return _collectionView;
 }
 
+
+
+
+
 #pragma mark - TYCollectionDelegate
 - (void)TY_collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     TCDetailController *detailVc = [[TCDetailController alloc]init];
@@ -158,7 +162,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+
 }
 
 - (void)viewDidLoad {
@@ -397,6 +401,8 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             CGRect rect = CGRectMake(0, 0, ApplicationframeValue.width, CELLH * self.arr.count);
             tableView.frame = rect;
+            self.table.frame = rect;
+            [self.table reloadData];
         });
     }
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, JPScreenW, 60)];

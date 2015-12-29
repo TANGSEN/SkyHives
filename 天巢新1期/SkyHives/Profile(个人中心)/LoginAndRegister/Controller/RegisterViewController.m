@@ -25,6 +25,7 @@
 -(void)viewDidLoad
 {
 
+    self.view.backgroundColor = [UIColor whiteColor];
     UIView *registerView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, ApplicationframeValue.width, ApplicationframeValue.height-64)];
     [self.view addSubview:registerView];
     
