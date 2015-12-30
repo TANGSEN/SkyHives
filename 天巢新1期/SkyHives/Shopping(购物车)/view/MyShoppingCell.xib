@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -18,6 +18,7 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="木业法式双人床" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TqB-v2-wqc">
                         <rect key="frame" x="156" y="15" width="105" height="18"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="LoH-Pr-YY8"/>
                             <constraint firstAttribute="height" constant="18" id="k3o-hV-eIf"/>
@@ -46,6 +47,7 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥4999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AD4-L5-3eL">
                         <rect key="frame" x="156" y="41" width="42" height="16"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="Chl-lp-IJO"/>
                             <constraint firstAttribute="width" constant="42" id="OKp-wh-sYq"/>
@@ -81,6 +83,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAQ-Dh-Jjl">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="eZo-If-FBS"/>
                                 </constraints>
@@ -106,6 +109,7 @@
                             </button>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zff-M8-1eN">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="hBq-Kp-pe7"/>
                                     <constraint firstAttribute="width" constant="1" id="kvb-2U-YxI"/>
@@ -130,6 +134,7 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ivN-8I-XZo">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="Iwr-TB-Xxt"/>
                                     <constraint firstAttribute="width" constant="1" id="ScG-Yd-G4U"/>
@@ -154,12 +159,14 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6v-mo-7bM">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Dl-nB-X78">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="Wqi-KD-uym"/>
                                     <constraint firstAttribute="width" constant="20" id="dhx-Sh-Qzp"/>
@@ -187,6 +194,7 @@
                                 </variation>
                             </button>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="05g-lb-Ay1"/>
@@ -342,6 +350,7 @@
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="dachuang" translatesAutoresizingMaskIntoConstraints="NO" id="X0Z-kd-YZ2">
                         <rect key="frame" x="48" y="15" width="91" height="70"/>
+                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="Oec-w8-Y0M"/>
                             <constraint firstAttribute="width" constant="90" id="sZT-lK-Zwc"/>
@@ -366,6 +375,7 @@
                         </variation>
                     </imageView>
                 </subviews>
+                <animations/>
                 <constraints>
                     <constraint firstItem="X0Z-kd-YZ2" firstAttribute="leading" secondItem="qqd-bt-Dde" secondAttribute="leadingMargin" constant="40" id="0OW-ll-p8Y"/>
                     <constraint firstItem="TqB-v2-wqc" firstAttribute="top" secondItem="qqd-bt-Dde" secondAttribute="topMargin" constant="22" id="3P3-na-7pd"/>
@@ -490,6 +500,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="Count" destination="H6v-mo-7bM" id="sTa-hd-Xqq"/>
                 <outlet property="DecreaseButton" destination="1Dl-nB-X78" id="ViG-Rs-VCP"/>

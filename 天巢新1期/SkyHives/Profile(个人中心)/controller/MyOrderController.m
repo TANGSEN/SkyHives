@@ -12,6 +12,7 @@
 
 @interface MyOrderController ()<CustomerDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)NSArray *Titles;
+@property (nonatomic,strong)UITableView *tableView ;
 @end
 
 
@@ -27,7 +28,7 @@
 -(void)viewDidLoad
 {
     self.title = @"我的订单";
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     
     CustomerView *topView = [[CustomerView alloc] initWithFrame:CGRectMake(0, 64, ApplicationframeValue.width, 47) initButWithArray:self.Titles butFont:15];
     topView.delegate = self;
@@ -35,11 +36,10 @@
     
     
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(topView.frame)+10, ApplicationframeValue.width, ApplicationframeValue.height-47-64)];
-    
+    self.tableView = tableView;
     tableView.delegate = self;
     tableView.dataSource = self;
-//    tableView.tableFooterView = FooterView;
-//    tableView.tableFooterView.backgroundColor = View_BgColor;
+
     tableView.backgroundColor = View_BgColor;
     tableView.showsVerticalScrollIndicator = NO;
     tableView.bounces = YES;
@@ -79,12 +79,12 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 
-    return 1;
+    return 10;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 1;
 
 }
 
@@ -94,18 +94,19 @@
     static NSString *identifier = @"cell";
     OrderView *cell  = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"OrderView" owner:self options:nil]lastObject];
+            cell = [[[NSBundle mainBundle]loadNibNamed:@"OrderView" owner:self options:nil]lastObject];
+       
     }
     
     for (UIView *subview in cell.contentView.subviews) {
         [subview removeFromSuperview];
     }
-    
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     /**立即购买*/
     [cell.BuyNow addTarget:self action:@selector(BuyNow:) forControlEvents:UIControlEventTouchUpInside];
     cell.BuyNow.tag = indexPath.row;
-    
+
     return cell;
     
     
@@ -117,14 +118,17 @@
 
     NSLog(@"点击了%ld",(long)sender.tag);
 
-
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return 148.0f;
+    return 138.0f;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
 
+    return 15.0f;
+}
 
 @end

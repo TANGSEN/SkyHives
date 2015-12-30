@@ -134,6 +134,10 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     return _collectionView;
 }
 
+
+
+
+
 #pragma mark - TYCollectionDelegate
 - (void)TY_collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     TCDetailController *detailVc = [[TCDetailController alloc]init];
@@ -167,7 +171,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+
 }
 
 - (void)viewDidLoad {
