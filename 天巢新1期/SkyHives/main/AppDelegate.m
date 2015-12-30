@@ -27,19 +27,19 @@
     
     /**社会化分享*/
     [ShareSDK registerApp:ShareAppKey];
-//
-//    //1.添加微信应用
+    //
+    //    //1.添加微信应用
     [ShareSDK connectWeChatWithAppId:WXAppID
                            appSecret:WXAppSecret
                            wechatCls:[WXApi class]];
-//
-//    //2.微信朋友圈
+    //
+    //    //2.微信朋友圈
     [ShareSDK connectWeChatTimelineWithAppId:WXAppID appSecret:WXAppSecret wechatCls:[WXApi class]];
-//
-//    //3.QQ
+    //
+    //    //3.QQ
     [ShareSDK connectQQWithAppId:QQAppID qqApiCls:[QQApiInterface class]];
-
-    [SMSSDK registerApp:SMSAppKey withSecret:SMSAppSecret];
+    
+//    [SMSSDK registerApp:SMSAppKey withSecret:SMSAppSecret];
     
     [self.window makeKeyAndVisible];
     

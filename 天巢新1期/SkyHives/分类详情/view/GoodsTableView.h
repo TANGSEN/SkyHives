@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FurnitureModel.h"
 
 @protocol TYGoodsTableDelegate<NSObject>
 @optional
@@ -15,6 +16,7 @@
 
 @interface GoodsTableView : UITableView <UITableViewDataSource , UITableViewDelegate>
 
+@property (nonatomic ,strong) NSArray<FurnitureModel *> *furnitures;
 @property(nonatomic,assign)id <TYGoodsTableDelegate>TYGoods_delegate;
 @property (nonatomic ,assign) NSInteger cellCount;
 @property (nonatomic ,strong) NSArray *images;

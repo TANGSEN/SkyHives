@@ -8,6 +8,8 @@
 
 #import "CategoryDetailController.h"
 #import "GoodsTableView.h"
+#import "FurnituresNetWork.h"
+#import "FurnitureModel.h"
 
 @interface CategoryDetailController () <TYGoodsTableDelegate , TYCollectionDelegate>
 @property (nonatomic ,strong) NSArray *images;
@@ -15,6 +17,8 @@
 @property (nonatomic ,weak) AutoScrollView *autoScrollView;
 @property (nonatomic ,weak) GoodsTableView *goodsTabelView;
 @property (nonatomic ,weak) TYCollectionView *collectionView;
+@property (nonatomic ,strong) NSArray *furnitureArray;
+@property (nonatomic ,strong) FurnitureModel *furniture;
 @property (nonatomic ,strong) NSArray *titles;
 @end
 
@@ -43,16 +47,31 @@
     }return _images;
 }
 
+- (instancetype)initWithType:(FurnitureType)type{
+    if (self = [super init]) {
+        _type = type;
+    }
+    return self;
+}
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     [self.view addSubview:self.scrollView];
     [self setupAutoScrollView];
     [self setupGoodsTable];
-    [self setupMoreWonderful];
-    self.scrollView.contentSize = CGSizeMake(JPScreenW, CGRectGetMaxY(self.collectionView.frame));
+    
+    
 }
+
+
+
+
 
 - (void)setupAutoScrollView{
     AutoScrollView *scrollView = [[AutoScrollView alloc]initWithFrame:CGRectMake(0, 0, JPScreenW, JPScreenH / 4)];
@@ -63,34 +82,61 @@
 
 
 - (void)setupGoodsTable{
-    GoodsTableView *goodsTabelView = [[GoodsTableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.autoScrollView.frame) + 10, JPScreenW, 0)];
-    goodsTabelView.TYGoods_delegate = self;
-    goodsTabelView.cellCount = 10;
-    goodsTabelView.height = [goodsTabelView height];
-//    goodsTabelView.images = self.tmImages;
-    self.goodsTabelView = goodsTabelView;
-    [self.scrollView addSubview:goodsTabelView];
+    
+    [FurnituresNetWork getFurnituresWithFurnitureType:(FurnitureType)_type block:^(NSArray *models, NSError *error) {
+//        UIActivity *activity = [[UIActivity alloc]init];
+        
+        [self.goodsTabelView reloadData];
+        GoodsTableView *goodsTabelView = [[GoodsTableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.autoScrollView.frame) + 10, JPScreenW, 0)];
+        goodsTabelView.TYGoods_delegate = self;
+        goodsTabelView.furnitures = models;
+        goodsTabelView.cellCount = models.count;
+        goodsTabelView.height = [goodsTabelView height];
+        self.goodsTabelView = goodsTabelView;
+        [self.scrollView addSubview:goodsTabelView];
+        [self setupMoreWonderful];
+    }];
+    
+    
+    
+    
 }
 
 - (void)setupMoreWonderful{
-    // 添加看了又看标题
-    UILabel *seeTitleL = [[UILabel alloc]init];
-    seeTitleL.backgroundColor = [UIColor whiteColor];
     
-    seeTitleL.text = @"  更多精彩";
-    seeTitleL.frame = CGRectMake(0, CGRectGetMaxY(self.goodsTabelView.frame) + 10, JPScreenW, 30);
-    seeTitleL.textColor = Color(255, 65, 67);
-    seeTitleL.backgroundColor = RandomColor;
-    seeTitleL.font = [UIFont boldSystemFontOfSize:20];
-    seeTitleL.textAlignment = NSTextAlignmentCenter;
-    [self.scrollView addSubview:seeTitleL];
+    [FurnituresNetWork getSeeAgainWithFurnitureType:_type block:^(NSArray *models, NSError *error) {
+        
+        [models enumerateObjectsUsingBlock:^(FurnitureModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSLog(@"%@",obj.thumb);
+        }];
+        
+        if (models.count != 0) {
+            // 添加看了又看标题
+            UILabel *seeTitleL = [[UILabel alloc]init];
+            seeTitleL.backgroundColor = [UIColor whiteColor];
+            
+            seeTitleL.text = @"  更多精彩";
+            seeTitleL.frame = CGRectMake(0, CGRectGetMaxY(self.goodsTabelView.frame) + 10, JPScreenW, 30);
+            seeTitleL.textColor = Color(255, 65, 67);
+            seeTitleL.font = [UIFont boldSystemFontOfSize:20];
+            seeTitleL.textAlignment = NSTextAlignmentCenter;
+            [self.scrollView addSubview:seeTitleL];
+            
+            // 添加看了又看模块
+            TYCollectionView *collectionView = [[TYCollectionView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(seeTitleL.frame), JPScreenW, [TYCollectionView height])];
+            collectionView.furnitures = models;
+            collectionView.itemCount = (int)models.count;
+            collectionView.height = [collectionView height];
+            collectionView.TY_delegate = self;
+            self.collectionView = collectionView;
+            [self.scrollView addSubview:collectionView];
+            
+            self.scrollView.contentSize = CGSizeMake(JPScreenW, CGRectGetMaxY(self.collectionView.frame));
+        }
+        
+    }];
     
-    // 添加看了又看模块
-    TYCollectionView *collectionView = [[TYCollectionView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(seeTitleL.frame), JPScreenW, [TYCollectionView height])];
-    collectionView.titles = self.titles;
-    collectionView.TY_delegate = self;
-    self.collectionView = collectionView;
-    [self.scrollView addSubview:collectionView];
+    
 
 }
 

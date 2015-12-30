@@ -19,4 +19,6 @@
 @interface AutoScrollView : UICollectionView <UICollectionViewDataSource , UICollectionViewDelegate>
 @property (nonatomic ,strong) NSArray *images;
 @property(nonatomic,assign)id <AutoScrollViewDelegate>Auto_delegate;
+
+- (instancetype)initWithFrame:(CGRect)frame images:(NSArray *)images;
 @end

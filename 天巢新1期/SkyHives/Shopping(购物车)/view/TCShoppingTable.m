@@ -10,7 +10,6 @@
 #import "MyShoppingCell.h"
 #import "ShoppingModel.h"
 @interface TCShoppingTable ()
-//@property (nonatomic,strong)UIButton *chooseButton;
 @property (nonatomic,strong)MyShoppingCell *cell;
 @property (nonatomic,strong)NSArray *arr;
 @end
@@ -31,7 +30,6 @@
     self.delegate = self;
     self.dataSource = self;
     self.showsVerticalScrollIndicator = NO;
-    
     
     return self;
     
@@ -70,6 +68,7 @@
 //    NSInteger thisTag  = 100 *indexPath.section + indexPath.row;
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"MyShoppingCell" owner:self options:nil] lastObject];
+//        cell = [[MyShoppingCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
         UIButton *ChooseButton = [UIButton buttonWithType:UIButtonTypeCustom];
          ChooseButton.frame = CGRectMake(8, 15, 25, 25);

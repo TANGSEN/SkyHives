@@ -9,6 +9,8 @@
 #import "TCHomeViewController.h"
 #import "CategoryDetailController.h"
 #import "ChannelView.h"
+#import "HomeNetWork.h"
+//#import "JXMainViewController.h"
 
 
 
@@ -24,23 +26,11 @@
 @property (nonatomic ,strong) NSArray *tmImages;
 @property (nonatomic ,strong) NSArray *tzImages;
 
+@property (nonatomic ,strong) NSMutableArray *array;
+
 @end
 
 @implementation TCHomeViewController
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-- (BOOL)shouldAutorotate
-{
-    return YES;
-}
-
--(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationPortrait;
-}
 
 #pragma mark - 懒加载
 
@@ -80,6 +70,7 @@
 - (NSArray *)tmImages{
     if (!_tmImages){
         _tmImages = [[NSArray alloc]initWithObjects:@"baoju",@"chaji",@"dachuang",@"ertong",@"guilei",@"shipin",@"zhuolei",@"zuoju",@"baoju",@"chaji", nil];
+    
     }
     return _tmImages;
 }
@@ -94,15 +85,28 @@
 #pragma mark - 系统方法
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 添加顶部广告
-//    CGRect frame = CGRectMake(0, 64, JPScreenW, 150);
-//    [Factory addTopAdvertisementImageViewToView:self.scrollView imageName:@"banner123" frame:frame];
+    
+    // 设置导航栏右边的按钮
+    [self setupRightBarBtn];
+    
+    // 设置导航栏左边的按钮
+    [self setupLeftBarBtn];
+    
     // 添加顶部自动滚动广告
     AutoScrollView *scrollView = [[AutoScrollView alloc]initWithFrame:CGRectMake(0, 0, JPScreenW, JPScreenH / 4)];
+    self.array = [[NSMutableArray alloc]init];
+    [HomeNetWork getAdcertisementWithBlock:^(NSArray *model, NSError *error) {
+        [model enumerateObjectsUsingBlock:^(AdvertisementModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSLog(@"obj---%@",obj.thumb);
+            [self.array addObject:obj.thumb];
+        }];
+        scrollView.images = self.array;
+        [scrollView reloadData];
+    }];
     [self.scrollView addSubview:scrollView];
-    scrollView.images = self.tmImages;
-    
+//    scrollView.images = self.tmImages;
     ChannelView *channelView = [[ChannelView  alloc]init];
+    channelView.userInteractionEnabled = YES;
     channelView.backgroundColor = [UIColor whiteColor];
     CGRect rect = CGRectMake(0, CGRectGetMaxY(scrollView.frame) + 10, JPScreenW, 70);
     channelView.frame = rect;
@@ -110,6 +114,15 @@
     channelView.rows = 1;
     channelView.channelImagesAndNames = @[self.channelImages,self.names];
     [self.scrollView addSubview:channelView];
+    
+    for (UIView *subview  in channelView.subviews) {
+        
+        if (subview.tag == 2) {
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(btnClick)];
+            [subview addGestureRecognizer:tap];
+
+        }
+    }
     self.channelView = channelView;
     
     // 添加今日特卖标题
@@ -125,7 +138,7 @@
     // 添加今日特卖模块
     TYTableView *tmTableView = [[TYTableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(tmTitleL.frame), JPScreenW, 0) style:UITableViewStylePlain];
     tmTableView.TY_delegate = self;
-    tmTableView.cellCount = 10;
+    tmTableView.cellCount = 8;
     tmTableView.height = [tmTableView height];
     tmTableView.images = self.tmImages;
     self.tmTableView = tmTableView;
@@ -157,7 +170,6 @@
     seeTitleL.text = @"  看了又看";
     seeTitleL.frame = CGRectMake(0, CGRectGetMaxY(tzTableView.frame) + 10, JPScreenW, 30);
     seeTitleL.textColor = Color(255, 65, 67);
-    seeTitleL.backgroundColor = RandomColor;
     seeTitleL.font = [UIFont boldSystemFontOfSize:15];
     [self.scrollView addSubview:seeTitleL];
     
@@ -177,7 +189,10 @@
     
 }
 
-
+- (void)btnClick{
+//    JXMainViewController *mainVC = [[JXMainViewController alloc]initWithNibName:@"JXMainViewController" bundle:nil];
+//    [self presentViewController:mainVC animated:YES completion:nil];
+}
 
 /**
  *  屏幕点击方法
@@ -191,16 +206,34 @@
 /**
  *  设置导航栏右边的按钮
  */
-- (void)setupRightBarBtn{}
+- (void)setupRightBarBtn{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"实景体验" style:0 target:self action:@selector(rightBarButtonItemCilck)];
+}
 
-- (void)setupLeftBarBtn{}
+- (void)rightBarButtonItemCilck{
+//    JXMainViewController *mainVC = [[JXMainViewController alloc] initWithNibName:@"JXMainViewController" bundle:nil];
+//    [self presentViewController:mainVC animated:YES completion:nil];
+}
 
+- (void)setupLeftBarBtn{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"虚拟体验" style:0 target:self action:@selector(leftBarButtonItemCilck)];
+}
+
+- (void)leftBarButtonItemCilck{
+    
+    [HomeNetWork getAdcertisementWithBlock:^(NSArray *model, NSError *error) {
+        [model enumerateObjectsUsingBlock:^(AdvertisementModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSLog(@"obj---%@",obj.thumb);
+            
+        }];
+    }];
+}
 
 #pragma mark - TYTableDelegate
 - (void)TY_tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == self.tmTableView) {
         NSLog(@"今日特卖模块");
-        CategoryDetailController *cateVc = [[CategoryDetailController alloc]init];
+        CategoryDetailController *cateVc = [[CategoryDetailController alloc]initWithType:indexPath.row];
         cateVc.title = @"特卖会场";
         [self.navigationController pushViewController:cateVc animated:YES];
     }else if (tableView == self.tzTableView){

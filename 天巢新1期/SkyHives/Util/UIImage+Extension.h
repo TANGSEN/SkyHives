@@ -30,7 +30,7 @@
  */
 + (instancetype)circleImageWithName:(NSString *)name borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
 
+
 /**返回圆形图片*/
 +(instancetype)roundImageWith:(UIImage *)image;
-
 @end

@@ -125,7 +125,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     if (!_collectionView){
         // 添加大家还买了和今日最受欢迎
         _collectionView = [[TYCollectionView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topView.frame), JPScreenW, [TYCollectionView height])];
-        _collectionView.titles = self.titles;
+//        _collectionView.titles = self.titles;
         _collectionView.TY_delegate = self;
         
         
@@ -133,10 +133,6 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(_collectionView.frame));
     return _collectionView;
 }
-
-
-
-
 
 #pragma mark - TYCollectionDelegate
 - (void)TY_collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -155,11 +151,11 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     
     switch (customerTag) {
         case 1:
-            self.collectionView.titles = self.titles;
+//            self.collectionView.titles = self.titles;
             NSLog(@"今日最受欢迎");
             break;
         case 2:
-            self.collectionView.titles = self.titles2;
+//            self.collectionView.titles = self.titles2;
             NSLog(@"大家还买了");
         default:
             break;
@@ -171,7 +167,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
 }
 
 - (void)viewDidLoad {
@@ -182,20 +178,20 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     
     // 添加最底层的scrollView
     [self.view addSubview:self.scrollView];
-    
+
     
     self.PreSumLabel.text = @"￥0";
     
-    
+
     [self setupBottomButton];
     
     [self setupTableView];
     
     [self countButtonClick];
+
+//    [self.scrollView addSubview:self.topView];
     
-        [self.scrollView addSubview:self.topView];
-    
-        [self.scrollView addSubview:self.collectionView];
+//    [self.scrollView addSubview:self.collectionView];
 }
 /**
  *  配置tableView
@@ -218,33 +214,33 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     [BottomButton setBackgroundImage:[UIImage imageNamed:@"shopping_icon_default"] forState:UIControlStateNormal];
     [BottomButton setBackgroundImage:[UIImage imageNamed:@"shopping_icon_select"] forState:UIControlStateSelected];
     self.BottomButton = BottomButton;
-    [BottomButton bk_addEventHandler:^(id sender) {
-        BottomButton.selected = !BottomButton.selected;
-        if (BottomButton.selected == YES) {
-            self.PreSum = 0;
-            self.SelectedNumber = self.arr.count;
-            for (ShoppingModel *model in self.arr) {
-                model.Selected = YES;
-                self.PreSum += [model.Price integerValue]*[model.Count integerValue];
-                self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
-                NSLog(@"%ld",(long)self.PreSum);
-                
-            }
-        }else
-        {
-            self.SelectedNumber = 0;
-            for (ShoppingModel *model in self.arr) {
-                model.Selected = NO;
+        [BottomButton bk_addEventHandler:^(id sender) {
+            BottomButton.selected = !BottomButton.selected;
+            if (BottomButton.selected == YES) {
                 self.PreSum = 0;
-                self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
+                self.SelectedNumber = self.arr.count;
+                for (ShoppingModel *model in self.arr) {
+                    model.Selected = YES;
+                    self.PreSum += [model.Price integerValue]*[model.Count integerValue];
+                    self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
+                    NSLog(@"%ld",(long)self.PreSum);
+    
+                }
+            }else
+            {
+                self.SelectedNumber = 0;
+                for (ShoppingModel *model in self.arr) {
+                    model.Selected = NO;
+                    self.PreSum = 0;
+                    self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
+                }
+    
             }
+    
+            self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
             
-        }
-        
-        self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
-        
-        [self.table reloadData];
-    } forControlEvents:UIControlEventTouchUpInside];
+            [self.table reloadData];
+        } forControlEvents:UIControlEventTouchUpInside];
 }
 
 /**
@@ -253,19 +249,19 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 - (void)countButtonClick{
     /**结算按钮*/
     
-    [self.CountButton bk_addEventHandler:^(id sender) {
-        if (self.PreSum!=0) {
-            NSString *orderNo = [MyShoppingController rand_str:12]; // orderNo 一般在服务器生成
-            
-            //                        NSArray *contents = @[
-            //                                              @[@"商品", @[@"Kaico 搪瓷水壶 x 1", @"橡胶花瓶 x 1", @"扫把和簸箕 x 1"]],
-            //                                              @[@"运费", @[@"¥ 0.00"]]
-            //                                            ];
-            [Pingpp payWithOrderNo:orderNo amount:self.PreSum*100 display:nil serverURL:kBackendChargeURL customParams:nil appURLScheme:@"wx25d9ec509a6dbfca" viewController:self completionHandler:^(NSString *result, PingppError *error) {
-                NSLog(@">>>>>>> %@", result);
-            }];
-        }
-    } forControlEvents:UIControlEventTouchUpInside];
+        [self.CountButton bk_addEventHandler:^(id sender) {
+            if (self.PreSum!=0) {
+                NSString *orderNo = [MyShoppingController rand_str:12]; // orderNo 一般在服务器生成
+    
+//                        NSArray *contents = @[
+//                                              @[@"商品", @[@"Kaico 搪瓷水壶 x 1", @"橡胶花瓶 x 1", @"扫把和簸箕 x 1"]],
+//                                              @[@"运费", @[@"¥ 0.00"]]
+//                                            ];
+                [Pingpp payWithOrderNo:orderNo amount:self.PreSum*100 display:nil serverURL:kBackendChargeURL customParams:nil appURLScheme:@"wx25d9ec509a6dbfca" viewController:self completionHandler:^(NSString *result, PingppError *error) {
+                    NSLog(@">>>>>>> %@", result);
+                }];
+            }
+        } forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - 产生随机订单号
@@ -323,7 +319,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
             if (self.SelectedNumber==self.arr.count) {
                 self.BottomButton.selected = YES;
             }
-            
+
             NSLog(@"%ld",(long)self.PreSum);
             
             self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
@@ -398,7 +394,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 //定义编辑样式
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    [tableView setEditing:YES animated:YES];
+//    [tableView setEditing:YES animated:YES];
     return UITableViewCellEditingStyleDelete;
 }
 
@@ -408,7 +404,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         [self.arr removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             CGRect rect = CGRectMake(0, 0, ApplicationframeValue.width, CELLH * self.arr.count);
             tableView.frame = rect;
@@ -419,10 +415,9 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
                 self.topView.y -= CELLH;
                 self.collectionView.y = CGRectGetMaxY(self.topView.frame);
             }];
-            
         });
     }
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 50, JPScreenW, 60)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 100, JPScreenW, 60)];
     label.text = @"购物车是空的, 去逛逛吧";
     label.textAlignment = NSTextAlignmentCenter;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];

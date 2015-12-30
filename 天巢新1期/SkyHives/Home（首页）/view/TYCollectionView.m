@@ -42,10 +42,7 @@ static NSString * const reuseIdentifier = @"Cell";
     return self;
 }
 
-- (void)setTitles:(NSArray *)titles{
-    _titles = titles;
-    [self reloadData];
-}
+
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -70,8 +67,10 @@ static NSString * const reuseIdentifier = @"Cell";
  *  @return item个数
  */
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    return 10;
+    if (_itemCount == 0) {
+        return 10;
+    }
+    return _itemCount;
 }
 
 /**
@@ -88,12 +87,23 @@ static NSString * const reuseIdentifier = @"Cell";
     {
         [subView removeFromSuperview];
     }
+    if (self.furnitures.count == 0) {
+        cell.title = self.titles[indexPath.item];
+        cell.price = rand() % 100;
+        cell.sales = rand() % 100;
+        cell.imageName = @"placehyolder";
+    }else{
+        cell.furniture = self.furnitures[indexPath.item];
+    }
     
-    cell.imageName = @"placehyolder";
-    cell.title = self.titles[indexPath.item];
-    cell.price = rand() % 10000;
-    cell.sales = rand() % 10000;
     return cell;
+}
+
+- (void)setFurnitures:(NSArray<FurnitureModel *> *)furnitures{
+    _furnitures = furnitures;
+    if (furnitures.count != 0) {
+         [self reloadData];
+    }
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -117,6 +127,10 @@ static NSString * const reuseIdentifier = @"Cell";
  *
  *  @return 高度值
  */
+- (CGFloat)height{
+    return ((_itemCount / 2) + (_itemCount % 2)) * ItemH + (((_itemCount / 2) + (_itemCount % 2)) * JPMargin);
+}
+
 + (CGFloat)height{
     return ((10 / 2) + (10 % 2)) * ItemH + (((10 / 2) + (10 % 2)) * JPMargin);
 }

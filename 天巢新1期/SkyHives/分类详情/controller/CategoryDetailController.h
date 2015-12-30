@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FurnituresNetWork.h"
 
 @interface CategoryDetailController : UIViewController
-
+- (instancetype)initWithType:(FurnitureType)type;
+@property (nonatomic ,assign) FurnitureType type;
 @end

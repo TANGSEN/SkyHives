@@ -29,7 +29,11 @@
 
 - (void)setImages:(NSArray *)images{
     _images = images;
-    [self addPageControl];
+    if (images.count != 0) {
+        [self addTimer];
+        [self addPageControl];
+    }
+    
 }
 
 
@@ -52,11 +56,12 @@
         self.scrollEnabled = YES;
         self.backgroundColor = [UIColor yellowColor];
         [self registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CellIdentifier];
-        // 添加定时器
-        [self addTimer];
+        
     }
     return self;
 }
+
+
 
 #pragma mark - 自定义方法
 /**
@@ -142,8 +147,8 @@
     NSString *imageName = self.images[indexPath.item];
     UIImageView *imageView = [[UIImageView alloc]init];
     imageView.backgroundColor = [UIColor purpleColor];
-    imageView.image = [UIImage imageNamed:imageName];
-    //    [imageView sd_setImageWithURL:[NSURL URLWithString:imageName]];
+//    imageView.image = [UIImage imageNamed:imageName];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:imageName]];
     imageView.frame = CGRectMake(0, 0 , cell.contentView.width, cell.contentView.height);
     [cell.contentView addSubview:imageView];
     

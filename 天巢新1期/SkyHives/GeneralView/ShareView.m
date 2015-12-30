@@ -25,7 +25,7 @@
 
 -(NSArray *)imageArr
 {
-    
+
     if (!_imageArr) {
         _imageArr = [NSArray arrayWithObjects:@"icon_pengyouquan",@"icon_weixinhaoyou",@"icoc_qq",nil];
     }
@@ -63,11 +63,11 @@
         TitleLabel.font = AppFont(text_size_other);
         [viewS addSubview:TitleLabel];
         
-        //        UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 45, ApplicationframeValue.width, 1)];
-        //        lineImage.alpha = 0.5f;
-        //        lineImage.backgroundColor = Color_Hex16(@"#cccccc");;
-        //        [viewS addSubview:lineImage];
-        
+//        UIImageView *lineImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 45, ApplicationframeValue.width, 1)];
+//        lineImage.alpha = 0.5f;
+//        lineImage.backgroundColor = Color_Hex16(@"#cccccc");;
+//        [viewS addSubview:lineImage];
+     
         for (int i = 0; i < [self.imageArr count]; i++) {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.tag = i +1;
@@ -88,7 +88,7 @@
         UIButton *cancleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         cancleBtn.frame = CGRectMake(self.width-50, 0, 55, 55);
         [cancleBtn setBackgroundImage:[UIImage imageNamed:@"icon_shanchu"] forState:UIControlStateNormal];
-        //        cancleBtn.backgroundColor = [UIColor whiteColor];
+//        cancleBtn.backgroundColor = [UIColor whiteColor];
         [cancleBtn addTarget:self action:@selector(onCancleBtn) forControlEvents:UIControlEventTouchUpInside];
         [viewS addSubview:cancleBtn];
         
@@ -104,14 +104,14 @@
 -(void)onBtn:(UIButton *)sender{
     
     switch (sender.tag) {
-            //朋友圈
+        //朋友圈
         case 1:{
             if ([WXApi isWXAppInstalled]) {
                 id<ISSContent> publishContent = [ShareSDK content:nil defaultContent:nil image:nil title:nil url:nil description:nil             mediaType:SSPublishContentMediaTypeNews];
                 [publishContent addWeixinTimelineUnitWithType:[NSNumber numberWithInteger:SSPublishContentMediaTypeNews]content:self.message?self.message:INHERIT_VALUE
-                                                        title:self.content?self.content:INHERIT_VALUE  url:self.shareUrl?self.shareUrl:INHERIT_VALUE
-                 
-                                                   thumbImage:[ShareSDK imageWithPath:[[NSBundle mainBundle] pathForResource:self.pictureName ofType:@"png"]]
+                    title:self.content?self.content:INHERIT_VALUE  url:self.shareUrl?self.shareUrl:INHERIT_VALUE
+
+                                                   thumbImage:[ShareSDK imageWithPath:[[NSBundle mainBundle] pathForResource:@"placehyolder" ofType:@"png"]]
                                                         image:INHERIT_VALUE
                                                  musicFileUrl:nil
                                                       extInfo:nil
@@ -131,15 +131,15 @@
                     
                 }];
             }
-            
+           
             else{
                 AlertLog(@"", @"没有安装微信客户端，无法进行微信分享", @"确定", nil);
             }
         }
             break;
+
             
-            
-            //微信好友
+        //微信好友
         case 2:{
             if ([WXApi isWXAppInstalled]) {
                 id<ISSContent> publishContent = [ShareSDK content:nil defaultContent:nil image:nil title:nil url:nil description:nil mediaType:SSPublishContentMediaTypeText];
@@ -147,7 +147,7 @@
                                                      content:self.message?self.message:INHERIT_VALUE
                                                        title:self.content?self.content:INHERIT_VALUE
                                                          url:self.shareUrl?self.shareUrl:INHERIT_VALUE
-                                                  thumbImage:[ShareSDK imageWithPath:[[NSBundle mainBundle] pathForResource:self.pictureName ofType:@"png"]]
+                                                  thumbImage:[ShareSDK imageWithPath:[[NSBundle mainBundle] pathForResource:@"placehyolder" ofType:@"png"]]
                                                        image:INHERIT_VALUE
                                                 musicFileUrl:nil
                                                      extInfo:nil
@@ -172,8 +172,8 @@
                 AlertLog(@"", @"没有安装微信客户端，无法进行微信分享", @"确定", nil);
             }
         }
-            break;
-            //QQ好友
+        break;
+         //QQ好友
         case 3:{
             if ([QQApiInterface isQQInstalled]) {
                 id<ISSContent> publishContent = [ShareSDK content:nil defaultContent:nil image:nil title:nil url:nil description:nil mediaType:SSPublishContentMediaTypeNews];
@@ -181,36 +181,36 @@
                                           content:self.message?self.message:INHERIT_VALUE
                                             title:self.content?self.content:INHERIT_VALUE
                                               url:self.shareUrl?self.shareUrl:INHERIT_VALUE
-                                            image:[ShareSDK imageWithPath:[[NSBundle mainBundle] pathForResource:self.pictureName ofType:@"png"]]];
-                
-                
-                [ShareSDK showShareViewWithType:ShareTypeQQ container:nil content:publishContent statusBarTips:NO authOptions:nil shareOptions:nil result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                    if (state == SSResponseStateSuccess)
-                    {
-                        AlertLog(@"", @"分享成功", @"确定", nil);
-                    }
-                    else if (state == SSResponseStateFail)
-                    {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:[NSString stringWithFormat:@"分享失败,错误码:%ld,错误描述:%@",(long)[error errorCode], [error errorDescription]] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                        [alert show];
-                    }
+                                              image:[ShareSDK imageWithPath:[[NSBundle mainBundle] pathForResource:@"placehyolder" ofType:@"png"]]];
+                 
+                 
+                 [ShareSDK showShareViewWithType:ShareTypeQQ container:nil content:publishContent statusBarTips:NO authOptions:nil shareOptions:nil result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                     if (state == SSResponseStateSuccess)
+                     {
+                         AlertLog(@"", @"分享成功", @"确定", nil);
+                     }
+                     else if (state == SSResponseStateFail)
+                     {
+                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:[NSString stringWithFormat:@"分享失败,错误码:%ld,错误描述:%@",(long)[error errorCode], [error errorDescription]] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                         [alert show];
+                     }
                     
-                }];
+                 }];
             }
             else{
                 AlertLog(@"", @"没有安装QQ客户端，无法进行QQ分享", @"确定", nil);
-                
-            }
-        }
-            break;
             
+                 }
+            }
+                 break;
+                 
     }
 }
 
 -(void)onCancleBtn{
-    
+
     [self dismiss];
-    
+
 }
 
 
@@ -231,12 +231,12 @@
 //弹入层
 - (void)fadeIn
 {
-    
+
     self.alpha = 0;
     [UIView animateWithDuration:.35 animations:^{
-        
+       
         self.alpha = 1;
-        
+ 
     }];
     
 }
@@ -245,7 +245,7 @@
 - (void)fadeOut
 {
     [UIView animateWithDuration:.35 animations:^{
-        
+
         self.alpha = 0.0;
         
     } completion:^(BOOL finished) {

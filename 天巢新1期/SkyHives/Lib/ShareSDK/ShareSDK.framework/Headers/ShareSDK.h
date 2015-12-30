@@ -1170,36 +1170,37 @@
 
 ///#begin zh-cn
 /**
- *  链接Kakao Talk/Story以使用相关功能
- *  需要根据选择的平台导入 KaKaoTalkConnection.framework/KaKaoStoryConnection.framework
- *  @param type        平台类型，可以选择ShareTypeKaKaoTalk 或 ShareTypeKaKaoStory
- *  @param appKey      应用key
- *  @param restApiKey  应用restApiKey
- *  @param redirectUri 回调地址
- *  @param sessionCls  导入 KakaoOpenSDK.framework, 然后传入[KOSession class];
+ *	@brief	链接KaKao Talk以使用相关功能。
  *
- *  @since ver2.12.2
+ *  @since  ver2.10.0
+ *
  */
 ///#end
 ///#begin en
 /**
- *  Initialize KaKao Talk/Story platform
- *  This platform need import KaKaoTalkConnection.framework/KaKaoStoryConnection.framework
+ *	@brief	Initialize KaKao Talk platform，This platform need import KaKaoTalkConnection.framework
  *
- *  @param type        platformType，which can be ShareTypeKaKaoTalk or ShareTypeKaKaoStory
- *  @param appKey      AppKey
- *  @param restApiKey  RestApiKey
- *  @param redirectUri Redirect URI
- *  @param sessionCls  import KakaoOpenSDK, then pass[KOSession class];
- *
- *  @since ver2.12.2
+ *	@since  ver2.10.0
  */
 ///#end
-+ (void)connectKakaoWithType:(ShareType)type
-                    ByAppKey:(NSString *)appKey
-                  restApiKey:(NSString *)restApiKey
-                 redirectUri:(NSString *)redirectUri
-                    KakaoCls:(Class)sessionCls;
++ (void)connectKaKaoTalk;
+
+///#begin zh-cn
+/**
+ *	@brief	链接KaKao Story以使用相关功能。
+ *
+ *  @since  ver2.10.0
+ *
+ */
+///#end
+///#begin en
+/**
+ *	@brief	Initialize KaKao Story platform，This platform need import KaKaoTalkConnection.framework
+ *
+ *	@since  ver2.10.0
+ */
+///#end
++ (void)connectKaKaoStory;
 
 ///#begin zh-cn
 /**
@@ -1416,21 +1417,6 @@
 ///#end
 + (void)importYiXinClass:(Class)yixinClass;
 
-///#begin zh-cn
-/**
- *	@brief	在使用应用托管的时候才需要调用
- *
- *	@param 	sessionCls 	Kakao接口类型。导入 KakaoOpenSDK.framework, 然后传入[KOSession class]
- */
-///#end
-///#begin en
-/**
- *	@brief	Import Kakao classes if need
- *
- *	@param 	sessionCls 	Kakao class。You should import KakaoOpenSDK.framework，Then passed [KOSession class] this parameter.
- */
-///#end
-+ (void)importKakaoCls:(Class)sessionCls;
 
 ///#begin zh-cn
 /**

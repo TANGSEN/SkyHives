@@ -39,25 +39,31 @@
 
 + (UIBarButtonItem *)barButtonItemWithBg:(NSString *)bg title:(NSString *)title target:(id)target action:(SEL)action
 {
-    UIButton *button = [[UIButton alloc]init];
+    UIView *view = [[UIView alloc]init];
+    view.frame = CGRectMake(0, 0, 80, 40);
     
+    UIButton *btn = [[UIButton alloc]init];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    [button setImage:[UIImage imageNamed:bg] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:16];
+    UIButton *imageBtn = [[UIButton alloc]init];
+    [imageBtn setImage:[UIImage imageNamed:bg] forState:UIControlStateNormal];
+    imageBtn.width = 40;
+    imageBtn.height = 50;
+    imageBtn.x = -20;
+    imageBtn.y = -5;
+    btn.frame = CGRectMake(CGRectGetMidX(imageBtn.frame), (view.height - btn.height) / 2, 30, 40);
+    btn.width = 40;
+    btn.height = 40;
+    btn.x = CGRectGetMaxX(imageBtn.frame) - 15;
+    btn.y = 0;
     
-    [button setImageEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 0)];
+    [view addSubview:imageBtn];
+    [view addSubview:btn];
     
-    [button setTitle:title forState:UIControlStateNormal];
-    
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, -55, 0, 0)];
-    
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:14];
-    
-    button.frame = CGRectMake(0, 0, 60, 44);
-    
-    
-    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    
-    return [[UIBarButtonItem alloc] initWithCustomView:button];
+    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [imageBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    return [[UIBarButtonItem alloc] initWithCustomView:view];
 }
 @end

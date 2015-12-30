@@ -69,11 +69,8 @@
     return newImage;
 }
 
-
-
-
 +(instancetype)roundImageWith:(UIImage *)image{
-
+    
     CGSize size = CGSizeMake(image.size.width, image.size.height);
     
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
@@ -84,7 +81,8 @@
     UIImage *roundImage = UIGraphicsGetImageFromCurrentImageContext();
     
     return roundImage;
-
+    
 }
+
 
 @end

@@ -73,9 +73,18 @@
     _salesLabel.text = [NSString stringWithFormat:@"已售%ld",(long)_sales];
 }
 
+- (void)setFurniture:(FurnitureModel *)furniture{
+    _furniture = furniture;
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.furniture.thumb] placeholderImage:[UIImage imageNamed:@"placehyolder"]];
+    [_btn setTitle:self.furniture.name forState:UIControlStateNormal];
+    _priceLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.furniture.price];
+    self.sales = rand()%10000;
+    _salesLabel.text = [NSString stringWithFormat:@"已售%ld",(long)_sales];
+}
+
 - (void)layoutSubviews{
     [super layoutSubviews];
-    _imageView.frame  = CGRectMake(0, 0, self.width, 160);
+    _imageView.frame  = CGRectMake(5, 5, self.width - 10, 150);
     _btn.frame        = CGRectMake(0, CGRectGetMaxY(_imageView.frame) + 5, self.width-5, 40);
     _priceLabel.frame = CGRectMake(0, self.height - 20, self.width / 2, 20);
     _salesLabel.frame = CGRectMake(self.width / 2, self.height - 20, self.width / 2, 20);

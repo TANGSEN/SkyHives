@@ -10,7 +10,6 @@
 #import "TCHomeViewController.h"
 #import "TCCategoryController.h"
 #import "TCProfileController.h"
-#import "TCShoppingViewController.h"
 #import "TCNavigationController.h"
 #import "MyShoppingController.h"
 

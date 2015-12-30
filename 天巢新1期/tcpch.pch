@@ -108,7 +108,10 @@
 #import <BlocksKit+UIKit.h>
 
 #import "SharedInstance.h"
-
+#import <UIImageView+WebCache.h>
+#import "NSObject+Common.h"
+#import <MJExtension.h>
+#import <MJRefresh.h>
 //**提示框宏定义
 CG_INLINE void AlertLog (NSString *titleStr,NSString *message,NSString *button1,NSString *button2)
 {

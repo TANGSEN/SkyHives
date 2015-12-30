@@ -11,7 +11,6 @@
 @interface DetailDescriptionView ()
 @property (nonatomic ,strong) UIButton *titleBtn;
 @property (nonatomic ,strong) UIButton *btn;
-
 @end
 
 /** 私有变量 视图自身的高度值 */
@@ -53,7 +52,7 @@ static CGFloat _height;
     
     // 分享按钮
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(title.frame) + 20, 10, 50, 40)];
-    UIImage *image = [UIImage imageNamed:@"icon_share"];
+    UIImage *image = [UIImage imageNamed:@"action-red-button"];
     btn.contentMode = UIViewContentModeScaleAspectFit;
     [btn setImage:image forState:UIControlStateNormal];
     [btn setTitle:@"分享" forState:UIControlStateNormal];
@@ -64,19 +63,14 @@ static CGFloat _height;
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self addSubview:btn];
     self.btn = btn;
-    [btn addTarget:self action:@selector(shareView) forControlEvents:UIControlEventTouchUpInside];
-//    [btn bk_addEventHandler:^(id sender) {
-//
-//        ShareView *view = [[ShareView alloc] initWithFrame:CGRectMake(0, ApplicationframeValue.height - 160, ApplicationframeValue.width, 160)];
-//        view.content = @"天巢网";
-//        view.message = @"快来挑选一下属于你的家具吧";
-//        view.shareUrl = @"https://www.skyhives.com/";
-//        view.pictureName = @"512";
-//        
-//        [view show];
-//        
-//    
-//    } forControlEvents:UIControlEventTouchUpInside];
+    [btn bk_addEventHandler:^(id sender) {
+        ShareView *view = [[ShareView alloc] initWithFrame:CGRectMake(0, ApplicationframeValue.height - 160, ApplicationframeValue.width, 160)];
+        view.content = @"天巢网";
+        view.message = @"快来挑选一下属于你的家具吧";
+        view.shareUrl = @"https://www.skyhives.com/";
+//        view.pictureName = @"76-76";
+        [view show];
+    } forControlEvents:UIControlEventTouchUpInside];
     
     // 价格标签是一个有属性的字符串
     UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(title.frame), JPScreenW / 2, 40)];
@@ -116,18 +110,6 @@ static CGFloat _height;
 
 - (void)click{
     NSLog(@"hahahahhah");
-}
-
--(void)shareView{
-
-    ShareView *view = [[ShareView alloc] initWithFrame:CGRectMake(20, 200, ApplicationframeValue.width-40, 200)];
-    view.content = @"天巢网";
-    view.message = @"快来挑选一下属于你的家具吧";
-    view.shareUrl = @"https://www.skyhives.com/";
-    view.pictureName = @"512";
-    
-    [view show];
-
 }
 
 /**

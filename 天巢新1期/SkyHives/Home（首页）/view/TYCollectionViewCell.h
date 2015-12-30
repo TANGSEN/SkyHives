@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FurnitureModel.h"
 
 @interface TYCollectionViewCell : UICollectionViewCell
 
@@ -14,4 +15,5 @@
 @property (nonatomic ,assign) NSInteger sales;
 @property (nonatomic ,copy) NSString *title;
 @property (nonatomic ,copy) NSString *imageName;
+@property (nonatomic ,strong) FurnitureModel *furniture;
 @end

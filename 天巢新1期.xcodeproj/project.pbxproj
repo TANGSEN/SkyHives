@@ -42,7 +42,6 @@
 		878032FD1C205F37005BF2A9 /* TYCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 878032F81C205F37005BF2A9 /* TYCollectionViewCell.m */; };
 		878032FE1C205F37005BF2A9 /* TYTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 878032FA1C205F37005BF2A9 /* TYTableView.m */; };
 		878033051C205F98005BF2A9 /* TCCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878033021C205F98005BF2A9 /* TCCategoryController.m */; };
-		8780330C1C206043005BF2A9 /* TCShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 878033091C206043005BF2A9 /* TCShoppingViewController.m */; };
 		878033231C2060C3005BF2A9 /* Color_Process.m in Sources */ = {isa = PBXBuildFile; fileRef = 878033121C2060C3005BF2A9 /* Color_Process.m */; };
 		878033241C2060C3005BF2A9 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 878033141C2060C3005BF2A9 /* Factory.m */; };
 		878033251C2060C3005BF2A9 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 878033161C2060C3005BF2A9 /* NSDate+Extension.m */; };
@@ -61,11 +60,7 @@
 		87A3BD1F1C284B6800A20A68 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BD091C284B6800A20A68 /* TencentOpenAPI.framework */; };
 		87A3BD201C284B6800A20A68 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 87A3BD0A1C284B6800A20A68 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		87A3BD211C284B6800A20A68 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BD0C1C284B6800A20A68 /* libWeChatSDK.a */; };
-		87A3BD221C284B6800A20A68 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 87A3BD0D1C284B6800A20A68 /* read_me.txt */; };
 		87A3BD231C284B6800A20A68 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BD111C284B6800A20A68 /* ShareSDK.framework */; };
-		87A3BD241C284B6800A20A68 /* SMS_SDKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87A3BD131C284B6800A20A68 /* SMS_SDKLocalizable.strings */; };
-		87A3BD251C284B6800A20A68 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BD151C284B6800A20A68 /* MOBFoundation.framework */; };
-		87A3BD261C284B6800A20A68 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BD161C284B6800A20A68 /* SMS_SDK.framework */; };
 		87A3BD291C284C1400A20A68 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3BD281C284C1400A20A68 /* ShareView.m */; };
 		87A3BD2B1C284CE100A20A68 /* 512.png in Resources */ = {isa = PBXBuildFile; fileRef = 87A3BD2A1C284CE100A20A68 /* 512.png */; };
 		87A3BD591C284DAF00A20A68 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3BD2F1C284DAF00A20A68 /* AddressViewController.m */; };
@@ -105,6 +100,15 @@
 		AA397E391C1ADBCA00843044 /* ___1_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA397E381C1ADBCA00843044 /* ___1_Tests.m */; };
 		AA397E441C1ADBCA00843044 /* ___1_UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA397E431C1ADBCA00843044 /* ___1_UITests.m */; };
 		AA397EB61C1ADC0700843044 /* ChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA397E6C1C1ADC0700843044 /* ChannelView.m */; };
+		AA3DEE851C33C09A00C983C5 /* FurnitureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE841C33C09A00C983C5 /* FurnitureModel.m */; };
+		AA3DEE891C33C0F700C983C5 /* FurnituresNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE881C33C0F700C983C5 /* FurnituresNetWork.m */; };
+		AA3DEE8F1C33C12600C983C5 /* JPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE8C1C33C12600C983C5 /* JPNetWork.m */; };
+		AA3DEE901C33C12600C983C5 /* JPViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE8E1C33C12600C983C5 /* JPViewModel.m */; };
+		AA3DEE941C33C14700C983C5 /* HomeNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE931C33C14700C983C5 /* HomeNetWork.m */; };
+		AA3DEE971C33C17200C983C5 /* AdvertisementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE961C33C17200C983C5 /* AdvertisementModel.m */; };
+		AA3DEE9E1C33D3AF00C983C5 /* SMS_SDKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA3DEE991C33D3AF00C983C5 /* SMS_SDKLocalizable.strings */; };
+		AA3DEE9F1C33D3AF00C983C5 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3DEE9B1C33D3AF00C983C5 /* MOBFoundation.framework */; };
+		AA3DEEA01C33D3AF00C983C5 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3DEE9C1C33D3AF00C983C5 /* SMS_SDK.framework */; };
 		AA42886D1C23EE6800C88B11 /* MyShoppingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA42886A1C23EE6800C88B11 /* MyShoppingController.xib */; };
 		AA4288771C23EE7300C88B11 /* MyShoppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4288731C23EE7300C88B11 /* MyShoppingCell.m */; };
 		AA4288781C23EE7300C88B11 /* MyShoppingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4288741C23EE7300C88B11 /* MyShoppingCell.xib */; };
@@ -207,8 +211,6 @@
 		878032FA1C205F37005BF2A9 /* TYTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYTableView.m; sourceTree = "<group>"; };
 		878033011C205F98005BF2A9 /* TCCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCategoryController.h; sourceTree = "<group>"; };
 		878033021C205F98005BF2A9 /* TCCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCategoryController.m; sourceTree = "<group>"; };
-		878033081C206043005BF2A9 /* TCShoppingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCShoppingViewController.h; sourceTree = "<group>"; };
-		878033091C206043005BF2A9 /* TCShoppingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCShoppingViewController.m; sourceTree = "<group>"; };
 		878033111C2060C3005BF2A9 /* Color_Process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color_Process.h; sourceTree = "<group>"; };
 		878033121C2060C3005BF2A9 /* Color_Process.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Color_Process.m; sourceTree = "<group>"; };
 		878033131C2060C3005BF2A9 /* Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Factory.h; sourceTree = "<group>"; };
@@ -237,15 +239,9 @@
 		87A3BD091C284B6800A20A68 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		87A3BD0A1C284B6800A20A68 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		87A3BD0C1C284B6800A20A68 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		87A3BD0D1C284B6800A20A68 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
-		87A3BD0E1C284B6800A20A68 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		87A3BD0F1C284B6800A20A68 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		87A3BD101C284B6800A20A68 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		87A3BD111C284B6800A20A68 /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
-		87A3BD141C284B6800A20A68 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SMS_SDKLocalizable.strings; sourceTree = "<group>"; };
-		87A3BD151C284B6800A20A68 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
-		87A3BD161C284B6800A20A68 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
-		87A3BD171C284B6800A20A68 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SMS_SDKLocalizable.strings"; sourceTree = "<group>"; };
 		87A3BD271C284C1400A20A68 /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
 		87A3BD281C284C1400A20A68 /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
 		87A3BD2A1C284CE100A20A68 /* 512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 512.png; sourceTree = "<group>"; };
@@ -321,6 +317,22 @@
 		AA397E6B1C1ADC0700843044 /* ChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelView.h; sourceTree = "<group>"; };
 		AA397E6C1C1ADC0700843044 /* ChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelView.m; sourceTree = "<group>"; };
 		AA397ECF1C1AE25500843044 /* tcpch.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tcpch.pch; sourceTree = "<group>"; };
+		AA3DEE831C33C09A00C983C5 /* FurnitureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FurnitureModel.h; sourceTree = "<group>"; };
+		AA3DEE841C33C09A00C983C5 /* FurnitureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FurnitureModel.m; sourceTree = "<group>"; };
+		AA3DEE871C33C0F700C983C5 /* FurnituresNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FurnituresNetWork.h; sourceTree = "<group>"; };
+		AA3DEE881C33C0F700C983C5 /* FurnituresNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FurnituresNetWork.m; sourceTree = "<group>"; };
+		AA3DEE8B1C33C12600C983C5 /* JPNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPNetWork.h; sourceTree = "<group>"; };
+		AA3DEE8C1C33C12600C983C5 /* JPNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNetWork.m; sourceTree = "<group>"; };
+		AA3DEE8D1C33C12600C983C5 /* JPViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPViewModel.h; sourceTree = "<group>"; };
+		AA3DEE8E1C33C12600C983C5 /* JPViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPViewModel.m; sourceTree = "<group>"; };
+		AA3DEE921C33C14700C983C5 /* HomeNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNetWork.h; sourceTree = "<group>"; };
+		AA3DEE931C33C14700C983C5 /* HomeNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNetWork.m; sourceTree = "<group>"; };
+		AA3DEE951C33C17200C983C5 /* AdvertisementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertisementModel.h; sourceTree = "<group>"; };
+		AA3DEE961C33C17200C983C5 /* AdvertisementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertisementModel.m; sourceTree = "<group>"; };
+		AA3DEE9A1C33D3AF00C983C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SMS_SDKLocalizable.strings; sourceTree = "<group>"; };
+		AA3DEE9B1C33D3AF00C983C5 /* MOBFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MOBFoundation.framework; sourceTree = "<group>"; };
+		AA3DEE9C1C33D3AF00C983C5 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
+		AA3DEE9D1C33D3AF00C983C5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SMS_SDKLocalizable.strings"; sourceTree = "<group>"; };
 		AA42886A1C23EE6800C88B11 /* MyShoppingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyShoppingController.xib; sourceTree = "<group>"; };
 		AA4288721C23EE7300C88B11 /* MyShoppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyShoppingCell.h; sourceTree = "<group>"; };
 		AA4288731C23EE7300C88B11 /* MyShoppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyShoppingCell.m; sourceTree = "<group>"; };
@@ -407,9 +419,9 @@
 				87A3BD231C284B6800A20A68 /* ShareSDK.framework in Frameworks */,
 				87A3BD211C284B6800A20A68 /* libWeChatSDK.a in Frameworks */,
 				AA937B691C279A0300F61304 /* AlipaySDK.framework in Frameworks */,
+				AA3DEE9F1C33D3AF00C983C5 /* MOBFoundation.framework in Frameworks */,
+				AA3DEEA01C33D3AF00C983C5 /* SMS_SDK.framework in Frameworks */,
 				87A3BD1E1C284B6800A20A68 /* ShareSDKCoreService.framework in Frameworks */,
-				87A3BD251C284B6800A20A68 /* MOBFoundation.framework in Frameworks */,
-				87A3BD261C284B6800A20A68 /* SMS_SDK.framework in Frameworks */,
 				1A1F441CB676155FEA5072B7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,6 +509,7 @@
 		878032F01C205F37005BF2A9 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				AA3DEE911C33C14700C983C5 /* NetWork */,
 				878032F11C205F37005BF2A9 /* TCHomeViewController.h */,
 				878032F21C205F37005BF2A9 /* TCHomeViewController.m */,
 			);
@@ -506,6 +519,8 @@
 		878032F31C205F37005BF2A9 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				AA3DEE951C33C17200C983C5 /* AdvertisementModel.h */,
+				AA3DEE961C33C17200C983C5 /* AdvertisementModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -570,8 +585,6 @@
 		878033071C206043005BF2A9 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				878033081C206043005BF2A9 /* TCShoppingViewController.h */,
-				878033091C206043005BF2A9 /* TCShoppingViewController.m */,
 				AA42887A1C23EEB200C88B11 /* MyShoppingController.h */,
 				AA42887B1C23EEB200C88B11 /* MyShoppingController.m */,
 				AA42886A1C23EE6800C88B11 /* MyShoppingController.xib */,
@@ -669,22 +682,10 @@
 			isa = PBXGroup;
 			children = (
 				87A3BD0C1C284B6800A20A68 /* libWeChatSDK.a */,
-				87A3BD0D1C284B6800A20A68 /* read_me.txt */,
-				87A3BD0E1C284B6800A20A68 /* WechatAuthSDK.h */,
 				87A3BD0F1C284B6800A20A68 /* WXApi.h */,
 				87A3BD101C284B6800A20A68 /* WXApiObject.h */,
 			);
 			path = WeChatSDK;
-			sourceTree = "<group>";
-		};
-		87A3BD121C284B6800A20A68 /* SMS_SDK */ = {
-			isa = PBXGroup;
-			children = (
-				87A3BD131C284B6800A20A68 /* SMS_SDKLocalizable.strings */,
-				87A3BD151C284B6800A20A68 /* MOBFoundation.framework */,
-				87A3BD161C284B6800A20A68 /* SMS_SDK.framework */,
-			);
-			path = SMS_SDK;
 			sourceTree = "<group>";
 		};
 		87A3BD2C1C284DAF00A20A68 /* Profile(个人中心) */ = {
@@ -783,8 +784,8 @@
 		AA0AC50F1C254666009EA9AC /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				AA3DEE981C33D3AF00C983C5 /* SMS_SDK */,
 				87A3BCFB1C284B6800A20A68 /* ShareSDK */,
-				87A3BD121C284B6800A20A68 /* SMS_SDK */,
 				AA937B431C279A0300F61304 /* ping++ */,
 				AA0AC5281C254B87009EA9AC /* MBProgressHUD.bundle */,
 				AA0AC5291C254B87009EA9AC /* MBProgressHUD+MJ.h */,
@@ -883,6 +884,7 @@
 		AA397E511C1ADC0700843044 /* SkyHives */ = {
 			isa = PBXGroup;
 			children = (
+				AA3DEE8A1C33C12600C983C5 /* NetWork(网络请求) */,
 				877D5A2E1C31619400A63947 /* main */,
 				87A3BD2C1C284DAF00A20A68 /* Profile(个人中心) */,
 				878033101C2060C3005BF2A9 /* Util */,
@@ -914,6 +916,45 @@
 			path = GeneralView;
 			sourceTree = "<group>";
 		};
+		AA3DEE861C33C0F700C983C5 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				AA3DEE871C33C0F700C983C5 /* FurnituresNetWork.h */,
+				AA3DEE881C33C0F700C983C5 /* FurnituresNetWork.m */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		AA3DEE8A1C33C12600C983C5 /* NetWork(网络请求) */ = {
+			isa = PBXGroup;
+			children = (
+				AA3DEE8B1C33C12600C983C5 /* JPNetWork.h */,
+				AA3DEE8C1C33C12600C983C5 /* JPNetWork.m */,
+				AA3DEE8D1C33C12600C983C5 /* JPViewModel.h */,
+				AA3DEE8E1C33C12600C983C5 /* JPViewModel.m */,
+			);
+			path = "NetWork(网络请求)";
+			sourceTree = "<group>";
+		};
+		AA3DEE911C33C14700C983C5 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				AA3DEE921C33C14700C983C5 /* HomeNetWork.h */,
+				AA3DEE931C33C14700C983C5 /* HomeNetWork.m */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		AA3DEE981C33D3AF00C983C5 /* SMS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				AA3DEE991C33D3AF00C983C5 /* SMS_SDKLocalizable.strings */,
+				AA3DEE9B1C33D3AF00C983C5 /* MOBFoundation.framework */,
+				AA3DEE9C1C33D3AF00C983C5 /* SMS_SDK.framework */,
+			);
+			path = SMS_SDK;
+			sourceTree = "<group>";
+		};
 		AA4288701C23EE7300C88B11 /* network */ = {
 			isa = PBXGroup;
 			children = (
@@ -936,6 +977,7 @@
 		AA8279671C1C0E6100C99D9A /* 分类详情 */ = {
 			isa = PBXGroup;
 			children = (
+				AA3DEE861C33C0F700C983C5 /* NetWork */,
 				AA9667371C1E9CE6002FDA48 /* controller */,
 				AA96673A1C1E9CE6002FDA48 /* model */,
 				AA96673C1C1E9CE6002FDA48 /* view */,
@@ -1045,6 +1087,8 @@
 		AA96673A1C1E9CE6002FDA48 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				AA3DEE831C33C09A00C983C5 /* FurnitureModel.h */,
+				AA3DEE841C33C09A00C983C5 /* FurnitureModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1191,7 +1235,7 @@
 				872A5CA01C20632700AF221D /* per_icon_indent@2x.png in Resources */,
 				872A5CA31C20632700AF221D /* per_icon_treasu@2x.png in Resources */,
 				872A5C9E1C20632700AF221D /* per_icon_daituihuo@3x.png in Resources */,
-				87A3BD241C284B6800A20A68 /* SMS_SDKLocalizable.strings in Resources */,
+				AA3DEE9E1C33D3AF00C983C5 /* SMS_SDKLocalizable.strings in Resources */,
 				AA397E2E1C1ADBCA00843044 /* LaunchScreen.storyboard in Resources */,
 				872A5C9C1C20632700AF221D /* per_icon_daituihuo.png in Resources */,
 				872A5C9B1C20632700AF221D /* per_icon_daishouhuo@3x.png in Resources */,
@@ -1220,7 +1264,6 @@
 				AA937B681C279A0300F61304 /* AlipaySDK.bundle in Resources */,
 				872A5C981C20632700AF221D /* per_icon_daipingjia@3x.png in Resources */,
 				872A5CAA1C20632700AF221D /* profile_icon_yijianfankui@3x.png in Resources */,
-				87A3BD221C284B6800A20A68 /* read_me.txt in Resources */,
 				872A5CA61C20632700AF221D /* profile_icon_shoucang@2x.png in Resources */,
 				872A5CA11C20632700AF221D /* per_icon_indent@3x.png in Resources */,
 				AA397E2B1C1ADBCA00843044 /* Assets.xcassets in Resources */,
@@ -1309,13 +1352,17 @@
 				87A3BD601C284DAF00A20A68 /* SettingViewController.m in Sources */,
 				878033231C2060C3005BF2A9 /* Color_Process.m in Sources */,
 				87A3BD631C284DAF00A20A68 /* RegisterViewController.m in Sources */,
+				AA3DEE851C33C09A00C983C5 /* FurnitureModel.m in Sources */,
 				87A3BD6C1C284DAF00A20A68 /* TopUserInfoView.m in Sources */,
+				AA3DEE971C33C17200C983C5 /* AdvertisementModel.m in Sources */,
 				AA8279821C1C11AD00C99D9A /* CustomerView.m in Sources */,
 				87A3BD661C284DAF00A20A68 /* InputView.m in Sources */,
 				AA0AC5231C254666009EA9AC /* MJPhotoLoadingView.m in Sources */,
 				8780332B1C2060C3005BF2A9 /* UIWindow+Extension.m in Sources */,
 				AA0AC5271C254666009EA9AC /* SDWebImageManager+MJ.m in Sources */,
 				AA42887C1C23EEB200C88B11 /* MyShoppingController.m in Sources */,
+				AA3DEE8F1C33C12600C983C5 /* JPNetWork.m in Sources */,
+				AA3DEE891C33C0F700C983C5 /* FurnituresNetWork.m in Sources */,
 				87A3BD651C284DAF00A20A68 /* CountDownButton.m in Sources */,
 				877D5A351C31619400A63947 /* AppDelegate.m in Sources */,
 				AA96673D1C1E9CE6002FDA48 /* CategoryDetailController.m in Sources */,
@@ -1327,6 +1374,7 @@
 				878032FE1C205F37005BF2A9 /* TYTableView.m in Sources */,
 				878033281C2060C3005BF2A9 /* UIBarButtonItem+Extension.m in Sources */,
 				AA0AC5241C254666009EA9AC /* MJPhotoProgressView.m in Sources */,
+				AA3DEE901C33C12600C983C5 /* JPViewModel.m in Sources */,
 				87A3BD5B1C284DAF00A20A68 /* FeedbackController.m in Sources */,
 				AA397EB61C1ADC0700843044 /* ChannelView.m in Sources */,
 				87A3BD611C284DAF00A20A68 /* TCProfileController.m in Sources */,
@@ -1349,6 +1397,7 @@
 				87A3BD591C284DAF00A20A68 /* AddressViewController.m in Sources */,
 				878033271C2060C3005BF2A9 /* NSString+Extension.m in Sources */,
 				87A3BD641C284DAF00A20A68 /* SharedInstance.m in Sources */,
+				AA3DEE941C33C14700C983C5 /* HomeNetWork.m in Sources */,
 				AA937BBF1C279BD900F61304 /* Utils.m in Sources */,
 				AA42887F1C23EF6300C88B11 /* ShoppingModel.m in Sources */,
 				87A3BD5E1C284DAF00A20A68 /* PersonalViewController.m in Sources */,
@@ -1360,7 +1409,6 @@
 				AA82797F1C1C104B00C99D9A /* DetailViewController.m in Sources */,
 				87A3BD6B1C284DAF00A20A68 /* TCTextView.m in Sources */,
 				877D5A361C31619400A63947 /* TCNavigationController.m in Sources */,
-				8780330C1C206043005BF2A9 /* TCShoppingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1405,21 +1453,21 @@
 			name = ShareSDKLocalizable.strings;
 			sourceTree = "<group>";
 		};
-		87A3BD131C284B6800A20A68 /* SMS_SDKLocalizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				87A3BD141C284B6800A20A68 /* en */,
-				87A3BD171C284B6800A20A68 /* zh-Hans */,
-			);
-			name = SMS_SDKLocalizable.strings;
-			sourceTree = "<group>";
-		};
 		AA397E2C1C1ADBCA00843044 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AA397E2D1C1ADBCA00843044 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		AA3DEE991C33D3AF00C983C5 /* SMS_SDKLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA3DEE9A1C33D3AF00C983C5 /* en */,
+				AA3DEE9D1C33D3AF00C983C5 /* zh-Hans */,
+			);
+			name = SMS_SDKLocalizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

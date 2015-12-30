@@ -12,7 +12,6 @@
 
 #import "GGCSView.h"
 #import "TWXQView.h"
-#import "TCShoppingViewController.h"
 
 
 @interface TCDetailController () <CustomerDelegate ,UITableViewDelegate,UITableViewDataSource>
@@ -139,16 +138,11 @@
  *  加入购物车按钮响应方法
  */
 - (void)gouwu{
-    [TCShoppingViewController addModel:rand()%1000];
 }
 /**
  *  测试功能
  */
 - (void)getmodel{
-    NSArray*array = [TCShoppingViewController getAllModel];
-    [array enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"%@",obj);
-    }];
 }
 
 #pragma mark - CustomerDelegate

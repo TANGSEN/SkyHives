@@ -38,10 +38,10 @@
     for (int i = 0; i<texts.count; i++) {
         UIButton *btn = [[UIButton alloc]init];
         [btn addTarget:view action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-        btn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        btn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
         NSString *str = texts[i];
         [btn setTitle:str forState:UIControlStateNormal];
-        CGSize strsize = [str sizeWithFont:[UIFont boldSystemFontOfSize:15]];
+        CGSize strsize = [str sizeWithFont:[UIFont boldSystemFontOfSize:13]];
         if (i == 0 ) {
             btn.x = 5;
             btnW += strsize.width;
@@ -57,14 +57,16 @@
             }
             
         }
-        btn.backgroundColor = Color(250, 86, 87);
+        btn.backgroundColor = Color(236, 236, 236);
+        [btn setAlpha:0.5];
         btn.userInteractionEnabled = YES;
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [btn setTitleColor:Color(104, 97, 97) forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.y += count * (strsize.height + 10) + 15 + label.height;
         btn.width = strsize.width + 10;
         btn.height = strsize.height;
         btn.layer.cornerRadius = 6.0f;
+
         btn.clipsToBounds = YES;
         btn.tag = i;
         [view addSubview:btn];
@@ -78,12 +80,15 @@
 }
 
 - (void)btnClick:(UIButton *)sender{
-    
-    self.btn.backgroundColor = Color(250, 86, 87);
-    sender.selected = !sender.selected;
-    if (sender.selected) {
-        sender.backgroundColor = Color(253, 81    , 87);
+    if (![self.btn isEqual:sender]) {
+//        self.btn.backgroundColor = Color(236, 236, 236);
+        [self.btn setAlpha:0.5];
+        self.btn.layer.borderWidth = 0.0f;
+        self.btn.layer.borderColor = Color(250, 86, 87).CGColor;
     }
+        [sender setAlpha:0.6];
+        sender.layer.borderWidth = 1.0f;
+        sender.layer.borderColor = Color(250, 86, 87).CGColor;
     self.btn = sender;
 }
 

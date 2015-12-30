@@ -23,6 +23,8 @@
 @property (nonatomic ,strong) UIButton *btn;
 @property (nonatomic ,strong) UILabel *label;
 
+@property (nonatomic ,strong) UIView *channel;
+
 @end
 
 
@@ -36,18 +38,24 @@
         UIView *channel = [[UIView alloc]init];
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, JPScreenW / 4, 40)];
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(btn.x, CGRectGetMaxY(btn.frame), btn.width, 20)];
+        btn.userInteractionEnabled =NO;
+        label.userInteractionEnabled = NO;
         self.label = label;
         self.btn = btn;
         label.font = [UIFont boldSystemFontOfSize:12];
         label.textAlignment = NSTextAlignmentCenter;
         [channel addSubview:btn];
         [channel addSubview:label];
+        channel.userInteractionEnabled = YES;
         label.textColor = Color(128, 128, 128);
         [self addSubview:channel];
+        channel.tag = i;
+        self.channel = channel;
         [self.btn setImage:[UIImage imageNamed:images[i]] forState:UIControlStateNormal];
         self.label.text = names[i];
     }
 }
+
 
 - (void)layoutSubviews
 {

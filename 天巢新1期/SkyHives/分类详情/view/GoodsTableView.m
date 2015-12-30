@@ -8,7 +8,7 @@
 
 #import "GoodsTableView.h"
 
-#define kROWH 435.0f
+#define kROWH 285.0f
 
 CGFloat cellH;
 
@@ -65,35 +65,40 @@ CGFloat cellH;
                                      initWithStyle:UITableViewCellStyleSubtitle
                                      reuseIdentifier:Identifier];
     }
+    
+    FurnitureModel *furniture = self.furnitures[indexPath.row];
+    
     // 商品效果图
     UIImageView *imageView        = [[UIImageView alloc]init];
     imageView.frame               = CGRectMake(5, 0, JPScreenW - 10, 200 - 5);
     //    imageView.image               = [UIImage imageNamed:self.images[indexPath.row]];
-    imageView.image           = [UIImage imageNamed:@"placehyolder"];
+//    imageView.image           = [UIImage imageNamed:@"placehyolder"];
+    
+    [imageView sd_setImageWithURL:[NSURL URLWithString:furniture.thumb] placeholderImage:[UIImage imageNamed:@"placehyolder"]];
     imageView.backgroundColor = RandomColor;
     
     // 商品细节图1
-    UIImageView *xj1ImageView      = [[UIImageView alloc]init];
-    xj1ImageView.frame             = CGRectMake(imageView.x, CGRectGetMaxY(imageView.frame) + 5, (JPScreenW - 10) / 2, 150);
-    xj1ImageView.backgroundColor = RandomColor;
-    xj1ImageView.image             = [UIImage imageNamed:@"placehyolder"];
+//    UIImageView *xj1ImageView      = [[UIImageView alloc]init];
+//    xj1ImageView.frame             = CGRectMake(imageView.x, CGRectGetMaxY(imageView.frame) + 5, (JPScreenW - 10) / 2, 150);
+//    xj1ImageView.backgroundColor = RandomColor;
+//    xj1ImageView.image             = [UIImage imageNamed:@"placehyolder"];
     
     // 商品细节图1
-    UIImageView *xj2ImageView      = [[UIImageView alloc]init];
-    xj2ImageView.frame             = CGRectMake(CGRectGetMaxX(xj1ImageView.frame), CGRectGetMaxY(imageView.frame) + 5, (JPScreenW - 10) / 2, 150);
-    xj2ImageView.backgroundColor = RandomColor;
-    xj2ImageView.image             = [UIImage imageNamed:@"placehyolder"];
+//    UIImageView *xj2ImageView      = [[UIImageView alloc]init];
+//    xj2ImageView.frame             = CGRectMake(CGRectGetMaxX(xj1ImageView.frame), CGRectGetMaxY(imageView.frame) + 5, (JPScreenW - 10) / 2, 150);
+//    xj2ImageView.backgroundColor = RandomColor;
+//    xj2ImageView.image             = [UIImage imageNamed:@"placehyolder"];
     
     // 商品标题
     UILabel *titleLabel           = [[UILabel alloc]init];
-    titleLabel.text               = @"拉菲格慕 梦幻紫色圆梦大床";
+    titleLabel.text               = furniture.name;
     titleLabel.textColor          = Color(155, 151, 157);
     CGSize titleSize              = [titleLabel.text sizeWithFont:
                                      [UIFont boldSystemFontOfSize:15]];
     titleLabel.font = [UIFont boldSystemFontOfSize:15];
-    titleLabel.frame              = (CGRect){{imageView.x,CGRectGetMaxY(xj1ImageView.frame)+5},titleSize};
+    titleLabel.frame              = (CGRect){{imageView.x,CGRectGetMaxY(imageView.frame)+5},titleSize};
     
-    // 分类标题
+    // 商品描述
     UILabel *describeLabel        = [[UILabel alloc]init];
     describeLabel.text            = @"一道爱情的幸运符,喷上它变身年轻活力的少女,清晰,愉悦!";
     describeLabel.textColor       = Color(155, 151, 157);
@@ -104,15 +109,15 @@ CGFloat cellH;
     
     // 低价标题
     UILabel *priceLabel           = [[UILabel alloc]init];
-    priceLabel.text               = @"￥9999";
+    priceLabel.text               = [NSString stringWithFormat:@"￥%ld",furniture.price];
     priceLabel.textColor          = Color(255, 65, 67);
     CGSize priceSize              = [priceLabel.text sizeWithFont:
                                      [UIFont boldSystemFontOfSize:15]];
     priceLabel.font = [UIFont boldSystemFontOfSize:15];
     priceLabel.frame              = (CGRect){{imageView.x,CGRectGetMaxY(describeLabel.frame)+5},priceSize};
     
-    [cell.contentView              addSubview:xj1ImageView];
-    [cell.contentView              addSubview:xj2ImageView];
+//    [cell.contentView              addSubview:xj1ImageView];
+//    [cell.contentView              addSubview:xj2ImageView];
     [cell.contentView              addSubview:imageView];
     
     [cell.contentView              addSubview:titleLabel];
@@ -169,7 +174,6 @@ CGFloat cellH;
  */
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"-----------%f",cellH);
     return kROWH;
 }
 

@@ -27,7 +27,7 @@
         self.layer.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3].CGColor;
         self.placeholderLabel = placeholderLabel;
         self.delegate = self;
-/**键盘上添加“完成”按钮*/
+        /**键盘上添加“完成”按钮*/
         [self keyboardDisappearce];
         self.font = AppFont(text_size_little_2);
         self.placeholderLabel.textColor = [UIColor lightGrayColor];
@@ -58,7 +58,7 @@
 #pragma mark - private
 -(void)keyboardDisappearce{
     
-    UIToolbar * topView = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, ApplicationframeValue.width, 44)];
+    UIToolbar * topView = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
     topView.backgroundColor = [UIColor whiteColor];
     
     [topView setBarStyle:UIBarStyleDefault];
@@ -74,18 +74,7 @@
     //定义完成按钮
     UIBarButtonItem
     * doneButton = [[UIBarButtonItem alloc]initWithTitle:@"完成"style:UIBarButtonItemStyleDone target:self action:@selector(resignKeyboard)];
-
-    
-    UIBarButtonItem *appearance = [UIBarButtonItem appearance];
-    
-    
-    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[NSForegroundColorAttributeName] = AppColor;
-    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
-    
-    
-    [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
-    
+    doneButton.tintColor = [UIColor redColor];
     
     //在toolBar上加上这些按钮
     NSArray * buttonsArray = [NSArray arrayWithObjects:button1,button2,doneButton,nil];

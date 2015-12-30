@@ -44,8 +44,7 @@
     
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = [UIColor blackColor];
-    textAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
-
+    
     
     [appearance setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     
@@ -89,6 +88,7 @@
     
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
+        
         
         viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonItemWithBg:@"icon_return" title:@"返回" target:self action:@selector(back)];
     }
