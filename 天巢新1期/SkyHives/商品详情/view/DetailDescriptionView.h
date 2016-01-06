@@ -11,4 +11,10 @@
 @interface DetailDescriptionView : UIView
 + (DetailDescriptionView *)descriptionView;
 + (CGFloat)height;
+/** 价格 */
+@property (nonatomic ,assign) NSInteger price;
+/** 销量 */
+@property (nonatomic ,assign) NSInteger sales;
+/**商品标题*/
+@property (nonatomic ,copy) NSString *name;
 @end

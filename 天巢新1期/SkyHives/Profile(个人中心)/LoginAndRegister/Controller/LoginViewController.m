@@ -22,7 +22,9 @@
 
 -(void)viewDidLoad
 {
-    CustomerView *topView = [[CustomerView alloc] initWithFrame:CGRectMake(0, 64, ApplicationframeValue.width, 47) initButWithArray:@[@"手机登录",@"账号登录"] butFont:15];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    CustomerView *topView = [[CustomerView alloc] initWithFrame:CGRectMake(0, 64, ApplicationframeValue.width, 47) initButWithArray:@[@"手机登录",@"账号登录"] butFont:15 selectedIndex:0];
     topView.delegate = self;
     [self.view addSubview:topView];
     

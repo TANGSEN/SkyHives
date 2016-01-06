@@ -104,6 +104,9 @@
 }
 -(void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor whiteColor];
+
+    
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, -64, ApplicationframeValue.width, ApplicationframeValue.height+64-35)];
     scrollView.bounces = YES;
     scrollView.scrollEnabled = NO;

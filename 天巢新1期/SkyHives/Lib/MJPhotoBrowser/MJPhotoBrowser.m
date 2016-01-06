@@ -159,6 +159,9 @@
     // 只有一张图片
     if (_photos.count == 1) {
         [self showPhotoViewAtIndex:0];
+#warning 唐建平在天巢网 2015年最后一天修改此bug!!!!!!!!!
+        // 只有一张图片也要更新页码,要不然保存图片按钮不可用.
+        _toolbar.currentPhotoIndex = 0;
         return;
     }
     
@@ -190,6 +193,7 @@
 			[self showPhotoViewAtIndex:(unsigned int)index];
 		}
 	}
+   
 }
 
 #pragma mark 显示一个图片view

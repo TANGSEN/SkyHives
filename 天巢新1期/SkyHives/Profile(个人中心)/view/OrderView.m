@@ -30,5 +30,8 @@
     return self;
 
 }
+//- (IBAction)btnClick:(UIButton *)sender {
+//    NSLog(@"hahah");
+//}
 
 @end

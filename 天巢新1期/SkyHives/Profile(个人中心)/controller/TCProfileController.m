@@ -51,7 +51,8 @@
 
 -(void)viewDidLoad
 {
-    
+    self.view.backgroundColor = [UIColor whiteColor];
+
     
     
     self.tableView.showsVerticalScrollIndicator = NO;
@@ -62,7 +63,7 @@
 {
     
     if (!_ImageArr) {
-        _ImageArr = @[@"per_icon_indent",@"per_icon_indent",@"per_icon_indent",@"per_icon_treasu",@"per_icon_indent",@"profile_icon_shoucang",@"profile_icon_yijianfankui"];
+        _ImageArr = @[@"per_icon_indent",@"per_icon_indent",@"per_icon_indent",@"per_icon_treasu",@"per_icon_indent",@"tab_icon_shoucang",@"profile_icon_yijianfankui"];
     }
     return _ImageArr;
 }
@@ -168,15 +169,12 @@
         if (indexPath.row == 0) {
             
             if (indexPath.section == 1) {
-                
                 cell.detailTextLabel.text = @"查看全部订单";
                 cell.detailTextLabel.font = AppFont(13);
-                
             }
             
             cell.imageView.image = [[UIImage imageNamed:self.ImageArr[indexPath.section]]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             cell.textLabel.text = self.TitleArr[indexPath.section];
-            
             
             if (indexPath.section!=3) {
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -238,7 +236,6 @@
             BottomLabel.font = [UIFont systemFontOfSize:11];
             BottomLabel.textAlignment = NSTextAlignmentCenter;
             [view addSubview:BottomLabel];
-            
             BottomLabel.text = self.TreasureTitles[i];
             [cell.contentView addSubview:view];
         }
@@ -254,8 +251,10 @@
 }
 
 -(void)OnClick:(UIButton *)sender{
-    NSLog(@"%@",sender.titleLabel.text);
-    
+    MyOrderController *favorite = [[MyOrderController alloc] init];
+    favorite.selectedIndex = sender.tag;
+    favorite.title = @"我的订单";
+    [self.navigationController pushViewController:favorite animated:YES];
 }
 
 -(void)OnClickSetting{

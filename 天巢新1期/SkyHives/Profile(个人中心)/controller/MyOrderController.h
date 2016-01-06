@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MyOrderController : UIViewController
-
+@property (nonatomic ,assign) NSInteger selectedIndex;
 @end

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCTabBarController : UITabBarController
+#import "Singleton.h"
 
+@interface TCTabBarController : UITabBarController
+singleton_h(TabBarController)
+@property (nonatomic ,assign) NSInteger lastSelectedIndex;
 @end

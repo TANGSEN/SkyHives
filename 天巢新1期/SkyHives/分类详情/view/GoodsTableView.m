@@ -35,6 +35,11 @@ CGFloat cellH;
     
 }
 
+- (void)setFurnitures:(NSArray<FurnitureModel *> *)furnitures{
+    _furnitures = furnitures;
+    [self reloadData];
+}
+
 /**
  *  每个分区有多少行
  *
@@ -132,7 +137,7 @@ CGFloat cellH;
  *  @param tableView tableview
  *  @param indexPath indexPath
  */
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(GoodsTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.TYGoods_delegate respondsToSelector:@selector(TYGoods_tableView:didSelectRowAtIndexPath:)]) {
         [self.TYGoods_delegate TYGoods_tableView:tableView didSelectRowAtIndexPath:indexPath];
     }

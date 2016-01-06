@@ -19,6 +19,40 @@
 
 @implementation TCTabBarController
 
+- (id)init
+{
+    if (self = [super init]) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            // 加载资源
+            
+        });
+    }
+    return self;
+}
+singleton_m(TabBarController)
+
+/**
+ *  重写父类的setSelectedIndex方法,在父类调用之前获取最后一次选中的位置
+ *
+ *  @param selectedIndex 当前选中的位置
+ */
+-(void)setSelectedIndex:(NSUInteger)selectedIndex
+{
+    // 用户手动设置的时候
+    self.lastSelectedIndex = self.selectedIndex;
+    
+    //调用父类的setSelectedIndex
+    [super setSelectedIndex:selectedIndex];
+}
+
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    // 用户点击了tabbar某一项的时候
+    _lastSelectedIndex = self.selectedIndex;
+}
+
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -71,7 +105,6 @@
     // 设置控制器的图片
     childVc.tabBarItem.image = [UIImage imageNamed:image];
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
     //     设置文字的样式
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = [UIColor grayColor];
@@ -79,28 +112,8 @@
     selectTextAttrs[NSForegroundColorAttributeName] = [UIColor redColor];
     [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     [childVc.tabBarItem setTitleTextAttributes:selectTextAttrs forState:UIControlStateSelected];
-    /**
-     *  下面这行代码仅仅是来做测试用,现在打开会出现混乱,所以不要打开
-     */
-    //    childVc.view.backgroundColor = RandomColor;
     // 先给外面传进来的小控制器, 包装 一个导航控制器
     TCNavigationController *nav = [[TCNavigationController alloc]initWithRootViewController:childVc];
     [self addChildViewController:nav];
-    
-    
 }
-
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

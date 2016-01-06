@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FurnitureModel.h"
 
 @interface TCDetailController : UIViewController
-
+@property (nonatomic ,strong) FurnitureModel *furniture;
 @end

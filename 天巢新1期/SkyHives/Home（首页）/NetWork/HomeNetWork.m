@@ -8,6 +8,8 @@
 
 #import "HomeNetWork.h"
 
+#define kSeeAgainPath @"http://www.skyhives.com/frontapi/seeagain"
+
 #define kAdvertisementPath @"http://www.skyhives.com/frontapi/rotatePics"
 
 @implementation HomeNetWork
@@ -16,6 +18,14 @@
     NSDictionary *params = [NSDictionary dictionary];
     return [self GET:kAdvertisementPath parameters:params completionHandler:^(id responseObj, NSError *error) {
         completionHandle([AdvertisementModel mj_objectArrayWithKeyValuesArray:responseObj],error);
+    }];
+}
+
++ (id)getSeeAgainFurnitureWithblock:(void (^)(id, NSError *))completionHandle{
+    NSDictionary *params = [NSDictionary dictionary];
+    
+    return [self GET:kSeeAgainPath parameters:params completionHandler:^(id responseObj, NSError *error) {
+        completionHandle([FurnitureModel mj_objectArrayWithKeyValuesArray:responseObj],error);
     }];
 }
 

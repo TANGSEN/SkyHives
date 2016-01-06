@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "FurnitureModel.h"
 
+@class TYCollectionView;
+
 @protocol TYCollectionDelegate<NSObject> 
 @optional
--(void)TY_collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+-(void)TY_collectionView:(TYCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface TYCollectionView : UICollectionView <UICollectionViewDataSource , UICollectionViewDelegate>
@@ -21,4 +23,5 @@
 @property (nonatomic ,strong) NSArray <FurnitureModel *> *furnitures;
 @property (nonatomic ,assign) int itemCount;
 @property (nonatomic ,strong) NSArray *titles;
+
 @end

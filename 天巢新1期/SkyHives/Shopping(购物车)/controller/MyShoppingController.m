@@ -113,7 +113,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 
 - (CustomerView *)topView{
     if (!_topView){
-        _topView = [[CustomerView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.table.frame) + 10, JPScreenW, 47) initButWithArray:[NSArray arrayWithObjects:@"今日最受欢迎",@"大家还买了",nil] butFont:(NSInteger)14];
+        _topView = [[CustomerView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.table.frame) + 10, JPScreenW, 47) initButWithArray:[NSArray arrayWithObjects:@"今日最受欢迎",@"大家还买了",nil] butFont:(NSInteger)14 selectedIndex:0];
         _topView.delegate = self;
         _topView.clipsToBounds = YES;
     }
@@ -200,6 +200,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     self.table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ApplicationframeValue.width, CELLH * self.arr.count)];
     self.table.delegate = self;
     self.table.dataSource = self;
+    [self.table selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
     [self.scrollView addSubview:self.table];
     _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.table.frame));
 }

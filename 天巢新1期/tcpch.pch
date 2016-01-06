@@ -96,22 +96,41 @@
 #import "TCDetailController.h"
 #import "AutoScrollView.h"
 
+#import <AFNetworking.h>
+
 // 第三方支付
 #import "Pingpp.h"
 
-// 第三方类库
-#import <MBProgressHUD.h>
+// 分享视图
+#import "ShareView.h"
 
-#import <AFNetworking.h>
+// 短信验证
+#import <SMS_SDK/SMSSDK.h>
+#import <ShareSDK/ShareSDK.h>
+
+#import "JPNetWork.h"
+// 第三方类库
+#import "MBProgressHUD.h"
+
+//#import <AFNetworking.h>
 
 #import <BlocksKit.h>
 #import <BlocksKit+UIKit.h>
 
 #import "SharedInstance.h"
-#import <UIImageView+WebCache.h>
+
+
+#import "HomeNetWork.h"
+
 #import "NSObject+Common.h"
+
 #import <MJExtension.h>
+
 #import <MJRefresh.h>
+
+#import <UIImageView+WebCache.h>
+
+
 //**提示框宏定义
 CG_INLINE void AlertLog (NSString *titleStr,NSString *message,NSString *button1,NSString *button2)
 {
@@ -133,9 +152,4 @@ CG_INLINE void AlertLog (NSString *titleStr,NSString *message,NSString *button1,
 #define FooterView [[UIView alloc] init];
 /**全局颜色*/
 #define AppColor  Color(245, 58, 64)
-#import "SharedInstance.h"
-/**tableview 底部*/
-#define FooterView [[UIView alloc] init];
-#import <SMS_SDK/SMSSDK.h>
-#import <ShareSDK/ShareSDK.h>
 #endif /* tcpch_pch */

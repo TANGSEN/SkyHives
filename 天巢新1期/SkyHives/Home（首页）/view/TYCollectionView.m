@@ -87,15 +87,9 @@ static NSString * const reuseIdentifier = @"Cell";
     {
         [subView removeFromSuperview];
     }
-    if (self.furnitures.count == 0) {
-        cell.title = self.titles[indexPath.item];
-        cell.price = rand() % 100;
-        cell.sales = rand() % 100;
-        cell.imageName = @"placehyolder";
-    }else{
-        cell.furniture = self.furnitures[indexPath.item];
-    }
     
+    // 传递商品模型
+    cell.furniture = self.furnitures[indexPath.item];
     return cell;
 }
 
@@ -113,7 +107,7 @@ static NSString * const reuseIdentifier = @"Cell";
  *  @param collectionView collectionView
  *  @param indexPath      indexPath
  */
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+- (void)collectionView:(TYCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.TY_delegate respondsToSelector:
                  @selector(TY_collectionView:
                     didSelectItemAtIndexPath:)]) {

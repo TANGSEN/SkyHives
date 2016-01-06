@@ -22,14 +22,14 @@ static NSMutableArray *_photos;
     _photos = [[NSMutableArray alloc]init];
     scrollView.userInteractionEnabled = YES;
     CGFloat imageW = JPScreenW;
-    CGFloat imageH = 130;
+    CGFloat imageH = 200;
     NSInteger count = images.count;
     for (int i = 0; i < count; i ++) {
         UIImageView *imageView = [[UIImageView alloc]init];
         imageView.contentMode = UIViewContentModeScaleToFill;
         imageView.userInteractionEnabled = YES;
         NSString *imageName = images[i];
-        imageView.image = [UIImage imageNamed:imageName];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"placehyolder"]];
         [scrollView addSubview:imageView];
         
         imageView.y = 0;
@@ -40,7 +40,7 @@ static NSMutableArray *_photos;
         // 添加点按手势
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:scrollView action:@selector(tap:)];
         [imageView addGestureRecognizer:tap];
-        [_photos addObject:imageView.image];
+        [_photos addObject:imageName];
     }
     scrollView.contentSize = CGSizeMake(count * imageW, 0);
     scrollView.pagingEnabled = YES;
@@ -56,14 +56,10 @@ static NSMutableArray *_photos;
     int i = 0;
     NSMutableArray *arrM = [NSMutableArray array];
     // 为了使用MJPhotoBrowser , 需要将Photo -> MJPhoto
-    for (UIImage *photo in _photos) {
+    for (NSString *photo in _photos) {
         
         MJPhoto *p = [[MJPhoto alloc] init];
-        //        NSString *urlStr = photo.thumbnail_pic.absoluteString;
-//        NSString *urlStr = photo.thumbnail_pic;
-//        urlStr = [urlStr stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
-//        p.url = [NSURL URLWithString:urlStr];
-        p.image = photo;
+        p.url = [NSURL URLWithString:photo];
         p.index = i;
         p.srcImageView = (UIImageView *)tapView;
         [arrM addObject:p];

@@ -52,34 +52,12 @@
 }
 
 
-- (void)setImageName:(NSString *)imageName{
-    _imageName = [imageName copy];
-    _imageView.image = [UIImage imageNamed:_imageName];
-}
-
-- (void)setTitle:(NSString *)title{
-    _title = [title copy];
-    [_btn setTitle:_title forState:UIControlStateNormal];
-}
-
-- (void)setPrice:(NSInteger)price{
-    _price = price;
-    _priceLabel.text = [NSString stringWithFormat:@"￥%ld",(long)_price];
-    
-}
-
-- (void)setSales:(NSInteger)sales{
-    _sales = sales;
-    _salesLabel.text = [NSString stringWithFormat:@"已售%ld",(long)_sales];
-}
-
 - (void)setFurniture:(FurnitureModel *)furniture{
     _furniture = furniture;
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.furniture.thumb] placeholderImage:[UIImage imageNamed:@"placehyolder"]];
     [_btn setTitle:self.furniture.name forState:UIControlStateNormal];
     _priceLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.furniture.price];
-    self.sales = rand()%10000;
-    _salesLabel.text = [NSString stringWithFormat:@"已售%ld",(long)_sales];
+    _salesLabel.text = [NSString stringWithFormat:@"已售%ld",(long)self.furniture.sold_count];
 }
 
 - (void)layoutSubviews{

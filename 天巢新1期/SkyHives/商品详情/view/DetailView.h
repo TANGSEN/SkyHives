@@ -7,12 +7,16 @@
 //  商品描述,包括滚动视图,详情描述价格\介绍\销量
 
 #import <UIKit/UIKit.h>
+#import "Furniture.h"
 
-@interface DetailViewController : UIViewController
+@interface DetailView : UIView
 /**
  *  返回自己的高度
  *
  *  @return height
  */
 + (CGFloat)height;
+- (instancetype)initWithImages:(NSArray *)images furniture:(Furniture *)furniture;
+@property (nonatomic ,strong) NSArray *images;
+@property (nonatomic ,strong) Furniture *furniture;
 @end

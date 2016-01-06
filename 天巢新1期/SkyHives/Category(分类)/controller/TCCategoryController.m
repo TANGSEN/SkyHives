@@ -42,7 +42,9 @@
 @property (nonatomic ,assign) NSInteger index;
 @property (nonatomic ,strong) UICollectionView *collectionView;
 @property (nonatomic ,strong) UILabel *label;
-@property (nonatomic ,strong) UILabel *selectedLabel;
+@property (nonatomic ,strong) UIView *selectedView;
+@property (nonatomic ,weak) UITableViewCell *tableCell;
+
 @end
 
 @implementation TCCategoryController
@@ -170,27 +172,24 @@
     return _label;
 }
 
-- (UILabel *)selectedLabel{
-    if (!_selectedLabel){
+- (UIView *)selectedView{
+    if (!_selectedView){
+        _selectedView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 102, 44)];
+        _selectedView.backgroundColor = [UIColor whiteColor];
+        UILabel *redLine = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 2, 44)];
+        redLine.backgroundColor = Color(253, 45, 57);
+        [_selectedView addSubview:redLine];
         
-        _selectedLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, 102, 44)];
-        _selectedLabel.backgroundColor = [UIColor whiteColor];
-        _selectedLabel.text = @"沙发";
-        _selectedLabel.textAlignment = NSTextAlignmentCenter;
-        _selectedLabel.textColor = [UIColor orangeColor];
-        UILabel *redLine = [[UILabel alloc]initWithFrame:CGRectMake(5, 0, 2, _selectedLabel.height)];
-        redLine.backgroundColor = [UIColor redColor];
-        [_selectedLabel addSubview:redLine];
     }
-    return _selectedLabel;
+    return _selectedView;
 }
 
 - (UITableView *)mytable{
     if (!_mytable) {
-        _mytable = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 100, JPScreenH  -64)];
+        _mytable = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 100, JPScreenH  -64)];
         _mytable.dataSource = self;
         _mytable.delegate = self;
-        _mytable.backgroundColor = Color(240, 240, 240);
+        _mytable.backgroundColor = [UIColor clearColor];
         _mytable.separatorStyle = UITableViewCellSeparatorStyleNone;
         _mytable.bounces  = NO;
         _mytable.showsVerticalScrollIndicator = NO;
@@ -202,7 +201,7 @@
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
         
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(101, 64, JPScreenW - self.mytable.width, JPScreenH - 64 - 46) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(101, 0, JPScreenW - self.mytable.width, JPScreenH - 64 - 46) collectionViewLayout:layout];
         
         layout.itemSize = CGSizeMake(_collectionView.width  / 3    , (_collectionView.width ) / 3);
         layout.minimumInteritemSpacing = 0;
@@ -222,11 +221,8 @@
     [super viewDidLoad];
     
     
-    
-    
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(100, 0, 1, JPScreenH)];
-    label.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:label];
+    [self.view addSubview:self.selectedView];
+    [self.view addSubview:self.mytable];
     // 注册cell
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CellIdentifier];
     [self.view addSubview:self.collectionView];
@@ -235,10 +231,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.view addSubview:self.mytable];
-    [self.view addSubview:self.selectedLabel];
-    [self.mytable selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.view.backgroundColor = Color(243, 244, 246);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -270,7 +265,7 @@
     label.font = [UIFont systemFontOfSize:14];
     [cell.contentView addSubview:label];
     self.label = label;
-
+    
     return cell;
 }
 
@@ -301,14 +296,29 @@
         [subView removeFromSuperview];
     }
     
+    
+    
     UILabel *label = [[UILabel alloc]initWithFrame:cell.contentView.bounds];
     label.text = self.cellTexts[indexPath.row];
     label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor blackColor];
-    label.font = [UIFont systemFontOfSize:14];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (indexPath.row == 0) {
+            cell.selected = YES;
+        }
+    });
+    
+    NSLog(@"%ld",(long)cell.selected);
+    if ([self.tableCell isEqual:cell] || cell.selected == YES) {
+        label.textColor = Color(253, 49, 60);
+        label.font = [UIFont boldSystemFontOfSize:16];
+    }else{
+        label.textColor = [UIColor blackColor];
+        label.font = [UIFont systemFontOfSize:14];
+    }
     [cell setValue:label forKeyPath:@"textLabel"];
     UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, CELLH - 1, cell.contentView.width, 1)];
-    line.backgroundColor = [UIColor grayColor];
+    line.backgroundColor = Color(221, 221, 222);
     [cell.contentView addSubview:line];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
@@ -316,15 +326,20 @@
 }
 
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.tableCell = [tableView cellForRowAtIndexPath:indexPath];
+    self.tableCell.textLabel.textColor = Color(253, 49, 60);
+    self.tableCell.textLabel.font = [UIFont boldSystemFontOfSize:16];
     // 取出这一行对应的数据显示到collectionView上
     self.names = self.namesArray[indexPath.row];
-    self.selectedLabel.text = self.cellTexts[indexPath.row];
-        [UIView animateWithDuration:0.4 animations:^{
-        self.selectedLabel.y = self.selectedLabel.height * indexPath.row + 64;
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        self.selectedView.y = self.selectedView.height * indexPath.row;
     }completion:^(BOOL finished) {
+        [tableView reloadData];
         
-
     }];
     [UIView animateWithDuration:0.5 animations:^{
         [self.collectionView reloadData];

@@ -23,7 +23,7 @@
 
 - (NSArray *)detailTexts{
     if (!_detailTexts){
-        _detailTexts = [[NSArray alloc]initWithObjects:@"",@"凯撒豪庭",@"KSHT-KSH-HO23-TZ",@"美式古典",@"3件",@"7.93m",@"023系",@"广东佛山", nil];
+        _detailTexts = [[NSArray alloc]initWithObjects:@"",@"凯撒豪庭",@"KSHT-KSH-HO23-TZ",self.furniture.style_name,@"3件",@"7.93m",@"023系",self.furniture.place, nil];
     }
     return _detailTexts;
 }

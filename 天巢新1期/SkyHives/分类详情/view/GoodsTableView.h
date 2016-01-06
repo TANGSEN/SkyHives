@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "FurnitureModel.h"
 
+@class GoodsTableView;
+
 @protocol TYGoodsTableDelegate<NSObject>
 @optional
--(void)TYGoods_tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+-(void)TYGoods_tableView:(GoodsTableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @interface GoodsTableView : UITableView <UITableViewDataSource , UITableViewDelegate>

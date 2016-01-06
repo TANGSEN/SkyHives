@@ -11,6 +11,7 @@
 #import "WXApi.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
+
 @interface AppDelegate ()
 
 @end
@@ -39,7 +40,7 @@
     //    //3.QQ
     [ShareSDK connectQQWithAppId:QQAppID qqApiCls:[QQApiInterface class]];
     
-//    [SMSSDK registerApp:SMSAppKey withSecret:SMSAppSecret];
+    //    [SMSSDK registerApp:SMSAppKey withSecret:SMSAppSecret];
     
     [self.window makeKeyAndVisible];
     

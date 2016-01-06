@@ -18,7 +18,7 @@
     /**底线*/
     UIImageView *lineView;
 }
-- (id)initWithFrame:(CGRect)frame  initButWithArray:(NSArray*)subjects butFont:(NSInteger)font;
+- (id)initWithFrame:(CGRect)frame  initButWithArray:(NSArray*)subjects butFont:(NSInteger)font selectedIndex:(NSInteger)selectedIndex;
 
 @property(nonatomic,assign)id<CustomerDelegate> delegate;
 //**选项卡标签

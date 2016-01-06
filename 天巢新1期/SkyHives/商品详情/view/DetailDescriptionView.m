@@ -7,10 +7,11 @@
 //
 
 #import "DetailDescriptionView.h"
-#import "ShareView.h"
 @interface DetailDescriptionView ()
-@property (nonatomic ,strong) UIButton *titleBtn;
+@property (nonatomic ,strong) UILabel *nameLabel;
 @property (nonatomic ,strong) UIButton *btn;
+@property (nonatomic ,weak) UILabel *priceLabel;
+@property (nonatomic ,strong) UILabel *salesLabel;
 @end
 
 /** 私有变量 视图自身的高度值 */
@@ -31,28 +32,56 @@ static CGFloat _height;
     return descriptionView;
     
 }
+
+- (instancetype)init{
+    if (self = [super init]) {
+        // 添加所有子控件
+        [self addSubControl];
+    }
+    return self;
+}
+
+- (void)setPrice:(NSInteger)price{
+    _price = price;
+    NSString *str = [NSString stringWithFormat:@"￥%ld",(long)price];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:str];
+    [string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, str.length)];
+    [string addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, 1)];
+    self.priceLabel.attributedText = string;
+}
+
+- (void)setSales:(NSInteger)sales{
+    _sales = sales;
+    NSString *salesStr = [NSString stringWithFormat:@"已售%ld",(long)sales];
+    self.salesLabel.text = salesStr;
+}
+
+- (void)setName:(NSString *)name{
+    _name = name;
+    self.nameLabel.text = [@"  " stringByAppendingString:name];
+}
+
 /**
  *  添加所有子控件
  */
 - (void )addSubControl{
     // 商品标题
-    UIButton *title  = [[UIButton alloc]initWithFrame:CGRectMake(5, 5, JPScreenW - 60, 40)];
-    [title setTitle:@"源氏木语 北欧简约纯实木白橡木三人特价木架沙发 客厅组合家具" forState:UIControlStateNormal];
-    title.titleLabel.numberOfLines = 2;
-    title.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-    [title setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [self addSubview:title];
-    self.titleBtn = title;
+    UILabel *nameLabel  = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, JPScreenW - 60, 40)];
+    [self addSubview:nameLabel];
+    nameLabel.font = [UIFont boldSystemFontOfSize:12];
+    nameLabel.textColor = [UIColor grayColor];
+    nameLabel.numberOfLines = 2;
+    self.nameLabel = nameLabel;
     
     // 商品标题和分享按钮之间的分割线
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(title.frame) + 10, 10, 0.5, 25)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(nameLabel.frame) + 10, 10, 0.5, 25)];
     label.backgroundColor = [UIColor grayColor];
     label.alpha = 0.7;
     [self addSubview:label];
     
     // 分享按钮
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(title.frame) + 20, 10, 50, 40)];
-    UIImage *image = [UIImage imageNamed:@"action-red-button"];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(CGRectGetMaxX(nameLabel.frame) + 20, 10, 50, 40)];
+    UIImage *image = [UIImage imageNamed:@"icon_share"];
     btn.contentMode = UIViewContentModeScaleAspectFit;
     [btn setImage:image forState:UIControlStateNormal];
     [btn setTitle:@"分享" forState:UIControlStateNormal];
@@ -73,23 +102,18 @@ static CGFloat _height;
     } forControlEvents:UIControlEventTouchUpInside];
     
     // 价格标签是一个有属性的字符串
-    UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(title.frame), JPScreenW / 2, 40)];
-    NSInteger price = rand() % 10000;
-    NSString *str = [NSString stringWithFormat:@"￥%ld",(long)price];
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:str];
-    [string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, str.length)];
-    [string addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, 1)];
-    priceLabel.attributedText = string;
+    UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(nameLabel.frame), JPScreenW / 2, 40)];
+//    NSInteger price = rand() % 10000;
+    
+    self.priceLabel = priceLabel;
     [self addSubview:priceLabel];
     
     // 销量标签 sales
     UILabel *salesLabel = [[UILabel alloc]initWithFrame:CGRectMake(JPScreenW / 2, priceLabel.y, JPScreenW / 2 - 15, priceLabel.height)];
-    NSInteger sales = rand() % 10000;
-    NSString *salesStr = [NSString stringWithFormat:@"已售%ld",(long)sales];
-    salesLabel.text = salesStr;
     salesLabel.textColor = [UIColor grayColor];
     salesLabel.textAlignment = NSTextAlignmentRight;
     salesLabel.font = [UIFont boldSystemFontOfSize:10];
+    self.salesLabel = salesLabel;
     [self addSubview:salesLabel];
     
     UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(priceLabel.frame) + 10, JPScreenW - 20, 0.5)];

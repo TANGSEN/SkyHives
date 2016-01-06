@@ -10,6 +10,10 @@
 #import "AdvertisementModel.h"
 
 @interface HomeNetWork : JPNetWork
+/** 获取看了又看数据 */
++ (id)getSeeAgainFurnitureWithblock:kCompletionHandle;
 
+/** 获取首页轮播图 */
 + (id)getAdcertisementWithBlock:kCompletionHandle;
+
 @end

@@ -104,7 +104,6 @@
 		AA3DEE891C33C0F700C983C5 /* FurnituresNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE881C33C0F700C983C5 /* FurnituresNetWork.m */; };
 		AA3DEE8F1C33C12600C983C5 /* JPNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE8C1C33C12600C983C5 /* JPNetWork.m */; };
 		AA3DEE901C33C12600C983C5 /* JPViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE8E1C33C12600C983C5 /* JPViewModel.m */; };
-		AA3DEE941C33C14700C983C5 /* HomeNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE931C33C14700C983C5 /* HomeNetWork.m */; };
 		AA3DEE971C33C17200C983C5 /* AdvertisementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3DEE961C33C17200C983C5 /* AdvertisementModel.m */; };
 		AA3DEE9E1C33D3AF00C983C5 /* SMS_SDKLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA3DEE991C33D3AF00C983C5 /* SMS_SDKLocalizable.strings */; };
 		AA3DEE9F1C33D3AF00C983C5 /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3DEE9B1C33D3AF00C983C5 /* MOBFoundation.framework */; };
@@ -121,7 +120,6 @@
 		AA8279761C1C0E6100C99D9A /* TWXQView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8279721C1C0E6100C99D9A /* TWXQView.m */; };
 		AA82797D1C1C104B00C99D9A /* DetailDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8279781C1C104B00C99D9A /* DetailDescriptionView.m */; };
 		AA82797E1C1C104B00C99D9A /* DetailScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA82797A1C1C104B00C99D9A /* DetailScrollView.m */; };
-		AA82797F1C1C104B00C99D9A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA82797C1C1C104B00C99D9A /* DetailViewController.m */; };
 		AA8279821C1C11AD00C99D9A /* CustomerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8279811C1C11AD00C99D9A /* CustomerView.m */; };
 		AA8279AA1C1C14E800C99D9A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8279A91C1C14E800C99D9A /* SystemConfiguration.framework */; };
 		AA8279AC1C1C14F300C99D9A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8279AB1C1C14F300C99D9A /* QuartzCore.framework */; };
@@ -146,6 +144,10 @@
 		AA96673D1C1E9CE6002FDA48 /* CategoryDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9667391C1E9CE6002FDA48 /* CategoryDetailController.m */; };
 		AA9667421C1E9D16002FDA48 /* GoodsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9667411C1E9D16002FDA48 /* GoodsTableView.m */; };
 		AAE9CE2D1C1BCC54001EBE0D /* AutoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE9CE2C1C1BCC54001EBE0D /* AutoScrollView.m */; };
+		AAFEFAB11C3CC7CF004E8292 /* Furniture.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFEFAB01C3CC7CF004E8292 /* Furniture.m */; };
+		AAFEFAB51C3CC7F7004E8292 /* FurnitureNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFEFAB41C3CC7F7004E8292 /* FurnitureNetWork.m */; };
+		AAFEFAB91C3CC8CC004E8292 /* HomeNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFEFAB81C3CC8CC004E8292 /* HomeNetWork.m */; };
+		AAFEFABC1C3CCB30004E8292 /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFEFABB1C3CCB30004E8292 /* DetailView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -325,8 +327,6 @@
 		AA3DEE8C1C33C12600C983C5 /* JPNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPNetWork.m; sourceTree = "<group>"; };
 		AA3DEE8D1C33C12600C983C5 /* JPViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPViewModel.h; sourceTree = "<group>"; };
 		AA3DEE8E1C33C12600C983C5 /* JPViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPViewModel.m; sourceTree = "<group>"; };
-		AA3DEE921C33C14700C983C5 /* HomeNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNetWork.h; sourceTree = "<group>"; };
-		AA3DEE931C33C14700C983C5 /* HomeNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNetWork.m; sourceTree = "<group>"; };
 		AA3DEE951C33C17200C983C5 /* AdvertisementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertisementModel.h; sourceTree = "<group>"; };
 		AA3DEE961C33C17200C983C5 /* AdvertisementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertisementModel.m; sourceTree = "<group>"; };
 		AA3DEE9A1C33D3AF00C983C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SMS_SDKLocalizable.strings; sourceTree = "<group>"; };
@@ -355,8 +355,6 @@
 		AA8279781C1C104B00C99D9A /* DetailDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDescriptionView.m; sourceTree = "<group>"; };
 		AA8279791C1C104B00C99D9A /* DetailScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailScrollView.h; sourceTree = "<group>"; };
 		AA82797A1C1C104B00C99D9A /* DetailScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailScrollView.m; sourceTree = "<group>"; };
-		AA82797B1C1C104B00C99D9A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		AA82797C1C1C104B00C99D9A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		AA8279801C1C11AD00C99D9A /* CustomerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerView.h; sourceTree = "<group>"; };
 		AA8279811C1C11AD00C99D9A /* CustomerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerView.m; sourceTree = "<group>"; };
 		AA8279A91C1C14E800C99D9A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -387,6 +385,14 @@
 		AA9667411C1E9D16002FDA48 /* GoodsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsTableView.m; sourceTree = "<group>"; };
 		AAE9CE2B1C1BCC54001EBE0D /* AutoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoScrollView.h; sourceTree = "<group>"; };
 		AAE9CE2C1C1BCC54001EBE0D /* AutoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoScrollView.m; sourceTree = "<group>"; };
+		AAFEFAAF1C3CC7CF004E8292 /* Furniture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Furniture.h; sourceTree = "<group>"; };
+		AAFEFAB01C3CC7CF004E8292 /* Furniture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Furniture.m; sourceTree = "<group>"; };
+		AAFEFAB31C3CC7F7004E8292 /* FurnitureNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FurnitureNetWork.h; sourceTree = "<group>"; };
+		AAFEFAB41C3CC7F7004E8292 /* FurnitureNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FurnitureNetWork.m; sourceTree = "<group>"; };
+		AAFEFAB71C3CC8CC004E8292 /* HomeNetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNetWork.h; sourceTree = "<group>"; };
+		AAFEFAB81C3CC8CC004E8292 /* HomeNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNetWork.m; sourceTree = "<group>"; };
+		AAFEFABA1C3CCB30004E8292 /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
+		AAFEFABB1C3CCB30004E8292 /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
 		F023A37FAD68440106261233 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -499,6 +505,7 @@
 		878032EF1C205F37005BF2A9 /* Home（首页） */ = {
 			isa = PBXGroup;
 			children = (
+				AAFEFAB61C3CC8CC004E8292 /* NetWork */,
 				878032F01C205F37005BF2A9 /* controller */,
 				878032F31C205F37005BF2A9 /* model */,
 				878032F41C205F37005BF2A9 /* view */,
@@ -509,7 +516,6 @@
 		878032F01C205F37005BF2A9 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				AA3DEE911C33C14700C983C5 /* NetWork */,
 				878032F11C205F37005BF2A9 /* TCHomeViewController.h */,
 				878032F21C205F37005BF2A9 /* TCHomeViewController.m */,
 			);
@@ -936,15 +942,6 @@
 			path = "NetWork(网络请求)";
 			sourceTree = "<group>";
 		};
-		AA3DEE911C33C14700C983C5 /* NetWork */ = {
-			isa = PBXGroup;
-			children = (
-				AA3DEE921C33C14700C983C5 /* HomeNetWork.h */,
-				AA3DEE931C33C14700C983C5 /* HomeNetWork.m */,
-			);
-			path = NetWork;
-			sourceTree = "<group>";
-		};
 		AA3DEE981C33D3AF00C983C5 /* SMS_SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -988,6 +985,7 @@
 		AA82796A1C1C0E6100C99D9A /* 商品详情 */ = {
 			isa = PBXGroup;
 			children = (
+				AAFEFAB21C3CC7F7004E8292 /* NetWork */,
 				AA96673E1C1E9CF5002FDA48 /* model */,
 				AA82796B1C1C0E6100C99D9A /* controller */,
 				AA82796E1C1C0E6100C99D9A /* view */,
@@ -1007,6 +1005,8 @@
 		AA82796E1C1C0E6100C99D9A /* view */ = {
 			isa = PBXGroup;
 			children = (
+				AAFEFABA1C3CCB30004E8292 /* DetailView.h */,
+				AAFEFABB1C3CCB30004E8292 /* DetailView.m */,
 				AA82796F1C1C0E6100C99D9A /* GGCSView.h */,
 				AA8279701C1C0E6100C99D9A /* GGCSView.m */,
 				AA8279711C1C0E6100C99D9A /* TWXQView.h */,
@@ -1015,8 +1015,6 @@
 				AA8279781C1C104B00C99D9A /* DetailDescriptionView.m */,
 				AA8279791C1C104B00C99D9A /* DetailScrollView.h */,
 				AA82797A1C1C104B00C99D9A /* DetailScrollView.m */,
-				AA82797B1C1C104B00C99D9A /* DetailViewController.h */,
-				AA82797C1C1C104B00C99D9A /* DetailViewController.m */,
 				AA58579C1C1FF7EF00A0CD29 /* AttributeView.h */,
 				AA58579D1C1FF7EF00A0CD29 /* AttributeView.m */,
 			);
@@ -1105,8 +1103,28 @@
 		AA96673E1C1E9CF5002FDA48 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				AAFEFAAF1C3CC7CF004E8292 /* Furniture.h */,
+				AAFEFAB01C3CC7CF004E8292 /* Furniture.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		AAFEFAB21C3CC7F7004E8292 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				AAFEFAB31C3CC7F7004E8292 /* FurnitureNetWork.h */,
+				AAFEFAB41C3CC7F7004E8292 /* FurnitureNetWork.m */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		AAFEFAB61C3CC8CC004E8292 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				AAFEFAB71C3CC8CC004E8292 /* HomeNetWork.h */,
+				AAFEFAB81C3CC8CC004E8292 /* HomeNetWork.m */,
+			);
+			path = NetWork;
 			sourceTree = "<group>";
 		};
 		D3F0C653EBABC81ED27EC5F8 /* Frameworks */ = {
@@ -1359,6 +1377,7 @@
 				87A3BD661C284DAF00A20A68 /* InputView.m in Sources */,
 				AA0AC5231C254666009EA9AC /* MJPhotoLoadingView.m in Sources */,
 				8780332B1C2060C3005BF2A9 /* UIWindow+Extension.m in Sources */,
+				AAFEFAB11C3CC7CF004E8292 /* Furniture.m in Sources */,
 				AA0AC5271C254666009EA9AC /* SDWebImageManager+MJ.m in Sources */,
 				AA42887C1C23EEB200C88B11 /* MyShoppingController.m in Sources */,
 				AA3DEE8F1C33C12600C983C5 /* JPNetWork.m in Sources */,
@@ -1367,11 +1386,14 @@
 				877D5A351C31619400A63947 /* AppDelegate.m in Sources */,
 				AA96673D1C1E9CE6002FDA48 /* CategoryDetailController.m in Sources */,
 				87A3BD5D1C284DAF00A20A68 /* MyOrderController.m in Sources */,
+				AAFEFABC1C3CCB30004E8292 /* DetailView.m in Sources */,
 				AA0AC5251C254666009EA9AC /* MJPhotoToolbar.m in Sources */,
 				878033241C2060C3005BF2A9 /* Factory.m in Sources */,
 				AA0AC53C1C254B87009EA9AC /* MBProgressHUD+MJ.m in Sources */,
 				AA0AC5221C254666009EA9AC /* MJPhotoBrowser.m in Sources */,
 				878032FE1C205F37005BF2A9 /* TYTableView.m in Sources */,
+				AAFEFAB91C3CC8CC004E8292 /* HomeNetWork.m in Sources */,
+				AAFEFAB51C3CC7F7004E8292 /* FurnitureNetWork.m in Sources */,
 				878033281C2060C3005BF2A9 /* UIBarButtonItem+Extension.m in Sources */,
 				AA0AC5241C254666009EA9AC /* MJPhotoProgressView.m in Sources */,
 				AA3DEE901C33C12600C983C5 /* JPViewModel.m in Sources */,
@@ -1397,7 +1419,6 @@
 				87A3BD591C284DAF00A20A68 /* AddressViewController.m in Sources */,
 				878033271C2060C3005BF2A9 /* NSString+Extension.m in Sources */,
 				87A3BD641C284DAF00A20A68 /* SharedInstance.m in Sources */,
-				AA3DEE941C33C14700C983C5 /* HomeNetWork.m in Sources */,
 				AA937BBF1C279BD900F61304 /* Utils.m in Sources */,
 				AA42887F1C23EF6300C88B11 /* ShoppingModel.m in Sources */,
 				87A3BD5E1C284DAF00A20A68 /* PersonalViewController.m in Sources */,
@@ -1406,7 +1427,6 @@
 				AA0AC5201C254666009EA9AC /* MJPhoto.m in Sources */,
 				87A3BD621C284DAF00A20A68 /* LoginViewController.m in Sources */,
 				87A3BD5C1C284DAF00A20A68 /* MyFavoriteController.m in Sources */,
-				AA82797F1C1C104B00C99D9A /* DetailViewController.m in Sources */,
 				87A3BD6B1C284DAF00A20A68 /* TCTextView.m in Sources */,
 				877D5A361C31619400A63947 /* TCNavigationController.m in Sources */,
 			);

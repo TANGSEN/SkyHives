@@ -9,14 +9,6 @@
 #import "AdvertisementModel.h"
 
 @implementation AdvertisementModel
-
-
-
-//- (void)setThumb:(NSString *)thumb{
-//    _thumb = thumb;
-//    _thumb = [NSString stringWithFormat:@"%@%@",@"img.k980.com",_thumb];
-//}
-
 @end
 
 

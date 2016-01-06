@@ -25,6 +25,9 @@
 -(void)viewDidLoad
 {
     
+    self.view.backgroundColor = [UIColor whiteColor];
+
+    
     self.tableView.tableFooterView = FooterView;
     
     

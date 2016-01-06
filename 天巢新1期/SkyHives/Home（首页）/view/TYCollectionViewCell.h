@@ -11,9 +11,9 @@
 
 @interface TYCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic ,assign) NSInteger price;
-@property (nonatomic ,assign) NSInteger sales;
-@property (nonatomic ,copy) NSString *title;
-@property (nonatomic ,copy) NSString *imageName;
+//@property (nonatomic ,assign) NSInteger price;
+//@property (nonatomic ,assign) NSInteger sales;
+//@property (nonatomic ,copy) NSString *title;
+//@property (nonatomic ,copy) NSString *imageName;
 @property (nonatomic ,strong) FurnitureModel *furniture;
 @end
