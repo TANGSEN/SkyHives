@@ -22,6 +22,22 @@
  
  4、有一个按钮没选择的话 下面的全选按钮的状态应该变为 未选中状态
  
+ 接口	http://www.skyhives.com/ping/ppay
+ 输入参数	oid（订单id）
+	channel（支付渠道，选项有：
+ alipay: 支付宝手机支付；
+ wx:微信支付
+ 更多请参考ping++官方文档
+ ）
+	tag（1：支付  2：取消）
+ 返
+ 回
+ 值	status（修改状态:1 成功 0 失败）
+	data（返回charge对象）
+	msg(消息提示)
+ 例子	http://www.skyhives.com/ping/ppay?oid=123&&channel= wx&&tag=1
+ 
+ 
  */
 
 
@@ -32,6 +48,7 @@
 #import "MyShoppingCell.h"
 #import "ShoppingModel.h"
 #import "TCTabBarController.h"
+#import "Pingpp.h"
 
 #define CELLH 100.0f
 
@@ -187,7 +204,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     
     [self setupTableView];
     
-    [self countButtonClick];
+//    [self countButtonClick];
 
 //    [self.scrollView addSubview:self.topView];
     
@@ -245,13 +262,45 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 }
 
 /**
+ *  支付调用接口(支付宝/微信)
+ *
+ *  @param charge           Charge 对象(JSON 格式字符串)
+ *  @param scheme           URL Scheme，支付宝渠道回调需要，没有支付宝情况下可为 nil
+ *  @param completionBlock  支付结果回调 Block
+ */
+//- (IBAction)countBtnClick:(UIButton *)sender {
+//    
+//    [Pingpp createPayment:<#(NSString *)#> appURLScheme:<#(NSString *)#> withCompletion:<#^(NSString *result, PingppError *error)completion#>];
+//}
+
+/**
  *  结算按钮点击事件
  */
 - (void)countButtonClick{
     /**结算按钮*/
     
+    /*
+     接口	http://www.skyhives.com/ping/ppay
+     输入参数	oid（订单id）
+     channel（支付渠道，选项有：
+     alipay: 支付宝手机支付；
+     wx:微信支付
+     更多请参考ping++官方文档
+     ）
+     tag（1：支付  2：取消）
+     返
+     回
+     值	status（修改状态:1 成功 0 失败）
+     data（返回charge对象）
+     msg(消息提示)
+     例子	http://www.skyhives.com/ping/ppay?oid=123&&channel= wx&&tag=1
+     */
+    
+
+    
+    
         [self.CountButton bk_addEventHandler:^(id sender) {
-            if (self.PreSum!=0) {
+        if (self.PreSum!=0) {
                 NSString *orderNo = [MyShoppingController rand_str:12]; // orderNo 一般在服务器生成
     
 //                        NSArray *contents = @[

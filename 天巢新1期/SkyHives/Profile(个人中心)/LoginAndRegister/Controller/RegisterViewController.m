@@ -9,7 +9,50 @@
 #import "RegisterViewController.h"
 #import "CountDownButton.h"
 #import "Utils.h"
-@interface RegisterViewController ()<UITextFieldDelegate>
+#import "NSString+Hash.h"
+
+/*
+ 发送短信验证码
+ 接口	http://www.skyhives.com /zp/userbehaviorapi/sendCode
+ 输入参数	telphone (电话号码)
+ 返
+ 回
+ 值	status（发送状态:1 成功 0 失败）
+	data（返回数据）
+	msg(消息提示)
+ 例子	以13416137382注册为例
+ http://www.skyhives.com/zp/userbehaviorapi/sendCode?telephone=13416137382
+ 
+ 
+ 检验短信验证码是否正确
+ 接口	http:// www.skyhives.com/m/chkcode
+ 输入参数	telphone (电话号码)
+	random (验证码)
+ 返
+ 回
+ 值	status（发送状态:1 成功 0 失败）
+	data（返回数据）
+	msg(消息提示)
+ 例子	以13416137382注册为例
+ http://www.skyhives.com/m/chkcode?telphone=13416137382&&random=123456
+ 
+ 注册用户
+ 接口	http://www.skyhives.com/m/regp
+ 输入参数	tel(电话)
+	rsa(登录密码,用MD5 32位加密)
+	tpwd(交易密码，用MD5 32位加密)
+	Level(登录密码强度)
+	level2(交易密码强度)密码强度的实现算法见4.1
+ 返
+ 回
+ 值	status（注册状态:1 成功 0 失败）
+	data（返回数据）
+	msg(消息提示)
+ 例子	http:// www.skyhives.com/m/regp?tel=13416137382&&rsa= e10adc3949ba59abbe56e057f20f883e&& tpwd= e10adc3949ba59abbe56e057f20f883e&&level=2&&level2=3
+ 注意	注册前请校验手机验证码，图片验证码
+ */
+
+@interface RegisterViewController ()<UITextFieldDelegate, NSURLConnectionDataDelegate>
 /**手机号*/
 @property (nonatomic,strong)UITextField *phoneText;
 /**验证码*/
@@ -24,9 +67,20 @@
 /**确认支付密码*/
 @property (nonatomic,strong)UITextField *TFpasswordText;
 @property (nonatomic,strong)CountDownButton *countDown;
+
+@property (nonatomic ,strong) NSMutableData *jpData;
+
 @end
 
 @implementation RegisterViewController
+
+- (NSMutableData *)jpData{
+    if (!_jpData){
+        _jpData = [[NSMutableData alloc]init];
+    }
+    return _jpData;
+}
+
 -(void)viewDidLoad
 {
 
@@ -185,25 +239,79 @@
         AlertLog(nil, @"您输入的手机号码格式不正确", @"确定", nil);
         return ;
     }
-    /**判断是否已经注册*/
-//    NSString *userName = [[SharedInstance sharedInstance]getPhoneNumber];
-//    if ([userName isEqualToString:self.phoneText.text]) {
-//        AlertLog(nil, @"您输入的手机号码已注册", @"确定", nil);
-//        return;
-//    }
     
     [self.countDown beginCountDown];
-    /**发送验证码*/
-    [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:self.phoneText.text zone:@"86" customIdentifier:nil result:^(NSError *error) {
+    /**  SMSSDK发送验证码  */
+   /* [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:self.phoneText.text zone:@"86" customIdentifier:nil result:^(NSError *error) {
         if (error) {
             NSLog(@"error %@", error);
         }else{
             NSLog(@"验证码发送成功");
         }
+    }]; */
+    
+    [JPNetWork POST:@"http://www.skyhives.com/userbehaviorapi/sendCode?" parameters:@{@"telphone":self.phoneText.text} completionHandler:^(NSDictionary *responseObj, NSError *error) {
+        NSNumber *statusCode = responseObj[@"status"];
+        if ([statusCode isEqualToNumber:@0]) {
+            [self showErrorMsg:responseObj[@"msg"]];
+            [self.countDown stop];
+        }else if ([statusCode isEqualToNumber:@1]){
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }
+        
+        if (error) {
+            if (error.code == -1001) {
+                [self showErrorMsg:@"请求超时,请重试"];
+            }else{
+                [self showErrorMsg:[NSString stringWithFormat:@"服务器返回错误%ld",error.code]];
+            }
+            [self.countDown stop];
+        }
+        
     }];
     
+    /* 原生 POST请求
+    // POST请求
+    NSString *urlString = @"http://www.skyhives.com/userbehaviorapi/sendCode?";
+    // 创建url对象
+    NSURL *url = [NSURL URLWithString:urlString];
+    // 创建请求
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
+    // 创建参数字符串对象
+    NSString *parmStr = [NSString stringWithFormat:@"telphone=%@",self.phoneText.text];
+    // 将字符串转换为NSData对象
+    NSData *data = [parmStr dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:data];
+    [request setHTTPMethod:@"POST"];
+    // 创建异步连接（形式二）
+    [NSURLConnection connectionWithRequest:request delegate:self];
+    */
 }
 
+/* 原生请求代理方法
+// 服务器接收到请求时
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+}
+// 当收到服务器返回的数据时触发, 返回的可能是资源片段
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.jpData appendData:data];
+}
+// 当服务器返回所有数据时触发, 数据返回完毕
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSString *string = [[NSString alloc]initWithData:self.jpData encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",string);
+}
+// 请求数据失败时触发
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"%s", __FUNCTION__);
+    
+    NSLog(@"error===%@",error);
+}
+ */
 
 -(void)registerNow{
     
@@ -252,6 +360,35 @@
         return;
     }
     
+    [JPNetWork POST:@"http://www.skyhives.com/m/chkcode" parameters:@{@"telphone":self.phoneText.text,@"random":self.yanzhengma.text} completionHandler:^(NSDictionary * responseObj, NSError *error) {
+        NSLog(@"responseObj===%@",responseObj);
+        NSLog(@"error===%ld",error.code);
+        if (error) {
+            if (error.code == -1001) {
+                [self showErrorMsg:@"请求超时"];
+            }else if (error.code == 3804){
+                [self showErrorMsg:@"服务器错误"];
+            }else{
+                AlertLog(nil, @"验证码不正确", @"确定", nil);
+            }
+            //倒计时停止，重新发送
+            [self.countDown stop];
+
+        }else{
+            NSLog(@"验证码正确");
+            [self.countDown stop];
+            [self sendRegp];
+            //在此存储手机号和密码，进入个人中心
+            [[SharedInstance sharedInstance] setPhoneNumber:self.phoneText.text];
+            [[SharedInstance sharedInstance] setPassword:self.passwordText.text];
+
+            //标记已经登录
+            [SharedInstance sharedInstance].alreadyLanded = YES;
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }];
+    /*  SMSSDK验证码效验
     [SMSSDK commitVerificationCode:self.yanzhengma.text phoneNumber:self.phoneText.text zone:@"86" result:^(NSError *error) {
         if (error) {
             NSLog(@"验证码不正确 %@", error);
@@ -273,6 +410,7 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }];
+     */
 }
 
 // 发送注册消息
@@ -283,15 +421,22 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     params[@"tel"] = self.phoneText.text;
-    params[@"rsa"] = self.FpasswordText.text;
-    params[@"tpwd"] = self.TFpasswordText.text;
+    /**
+     *  此处用到了NSString+Hash分类,
+     */
+    params[@"rsa"] = [self.FpasswordText.text md5String];
+    params[@"tpwd"] = [self.TFpasswordText.text md5String];
+    params[@"level"] = @2;
+    params[@"level2"] = @2;
     [mgr POST:@"http://www.skyhives.com/m/regp" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"注册成功");
+        NSLog(@"responseObject -- -- %@",responseObject);
         [self showSuccessMsg:@"注册成功"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self showErrorMsg:@"注册失败,等会儿再试"];
+        NSLog(@"error -- -- %@",error);
     }];
 }
 

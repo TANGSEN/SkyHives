@@ -148,6 +148,8 @@
 		AAFEFAB51C3CC7F7004E8292 /* FurnitureNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFEFAB41C3CC7F7004E8292 /* FurnitureNetWork.m */; };
 		AAFEFAB91C3CC8CC004E8292 /* HomeNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFEFAB81C3CC8CC004E8292 /* HomeNetWork.m */; };
 		AAFEFABC1C3CCB30004E8292 /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFEFABB1C3CCB30004E8292 /* DetailView.m */; };
+		AAFEFAC71C3CF285004E8292 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFEFAC41C3CF285004E8292 /* NSString+Hash.m */; };
+		AAFEFAC81C3CF285004E8292 /* NSString+PJR.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFEFAC61C3CF285004E8292 /* NSString+PJR.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,6 +395,10 @@
 		AAFEFAB81C3CC8CC004E8292 /* HomeNetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNetWork.m; sourceTree = "<group>"; };
 		AAFEFABA1C3CCB30004E8292 /* DetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
 		AAFEFABB1C3CCB30004E8292 /* DetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
+		AAFEFAC31C3CF285004E8292 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
+		AAFEFAC41C3CF285004E8292 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
+		AAFEFAC51C3CF285004E8292 /* NSString+PJR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PJR.h"; sourceTree = "<group>"; };
+		AAFEFAC61C3CF285004E8292 /* NSString+PJR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PJR.m"; sourceTree = "<group>"; };
 		F023A37FAD68440106261233 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -615,6 +621,10 @@
 				878033121C2060C3005BF2A9 /* Color_Process.m */,
 				878033131C2060C3005BF2A9 /* Factory.h */,
 				878033141C2060C3005BF2A9 /* Factory.m */,
+				AAFEFAC31C3CF285004E8292 /* NSString+Hash.h */,
+				AAFEFAC41C3CF285004E8292 /* NSString+Hash.m */,
+				AAFEFAC51C3CF285004E8292 /* NSString+PJR.h */,
+				AAFEFAC61C3CF285004E8292 /* NSString+PJR.m */,
 				878033151C2060C3005BF2A9 /* NSDate+Extension.h */,
 				878033161C2060C3005BF2A9 /* NSDate+Extension.m */,
 				878033171C2060C3005BF2A9 /* NSObject+Common.h */,
@@ -1359,6 +1369,7 @@
 			files = (
 				878033261C2060C3005BF2A9 /* NSObject+Common.m in Sources */,
 				878033251C2060C3005BF2A9 /* NSDate+Extension.m in Sources */,
+				AAFEFAC71C3CF285004E8292 /* NSString+Hash.m in Sources */,
 				AA9667421C1E9D16002FDA48 /* GoodsTableView.m in Sources */,
 				878032FC1C205F37005BF2A9 /* TYCollectionView.m in Sources */,
 				877D5A371C31619400A63947 /* TCTabBarController.m in Sources */,
@@ -1376,6 +1387,7 @@
 				AA8279821C1C11AD00C99D9A /* CustomerView.m in Sources */,
 				87A3BD661C284DAF00A20A68 /* InputView.m in Sources */,
 				AA0AC5231C254666009EA9AC /* MJPhotoLoadingView.m in Sources */,
+				AAFEFAC81C3CF285004E8292 /* NSString+PJR.m in Sources */,
 				8780332B1C2060C3005BF2A9 /* UIWindow+Extension.m in Sources */,
 				AAFEFAB11C3CC7CF004E8292 /* Furniture.m in Sources */,
 				AA0AC5271C254666009EA9AC /* SDWebImageManager+MJ.m in Sources */,

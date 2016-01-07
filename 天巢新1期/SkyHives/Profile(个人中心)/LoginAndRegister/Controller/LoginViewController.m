@@ -9,6 +9,8 @@
 #import "LoginViewController.h"
 #import "CustomerView.h"
 #import "RegisterViewController.h"
+#import "NSString+Hash.h"
+#import "Utils.h"
 @interface LoginViewController ()<CustomerDelegate,UITextFieldDelegate>
 @property (nonatomic,strong)UIView *loginView;
 @property (nonatomic,strong)UIView *registerView;
@@ -44,7 +46,7 @@
     registerView.backgroundColor = [UIColor whiteColor];
     UIImageView *usersImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile_icon_yijianfankui"]];
     usersImage.frame = CGRectMake(30, 30, 40, 40);
-//    usersImage.backgroundColor = AppColor;
+    //    usersImage.backgroundColor = AppColor;
     [registerView addSubview:usersImage];
     
     
@@ -66,13 +68,15 @@
     [registerView addSubview:passwordText];
     passwordText.delegate = self;
     passwordText.placeholder = @"请输入密码";
+    passwordText.secureTextEntry = YES;
+    
     self.passwordText = passwordText;
     passwordText.font = AppFont(12);
     
     
     
     
-/**横线*/
+    /**横线*/
     
     
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(usersImage.origin.x+10, usersImage.origin.y+usersImage.size.height, ApplicationframeValue.width-2*usersImage.origin.x, 0.4f)];
@@ -84,7 +88,7 @@
     lineView2.backgroundColor = [Color_LightGray colorWithAlphaComponent:0.5f];
     [registerView addSubview:lineView2];
     
- 
+    
     UIButton *forgetPassword = [[UIButton alloc] initWithFrame:CGRectMake(lineView2.origin.x, CGRectGetMaxY(lineView2.frame) , 70, 30)];
     
     [registerView addSubview:forgetPassword];
@@ -97,7 +101,7 @@
     
     
     
-/**登录按钮*/
+    /**登录按钮*/
     UIButton *loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(forgetPassword.origin.x, CGRectGetMaxY(forgetPassword.frame)+30, buttonW, 30)];
     
     [registerView addSubview:loginBtn];
@@ -109,7 +113,7 @@
     
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-/**注册按钮*/
+    /**注册按钮*/
     UIButton *registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMidX(loginBtn.frame) +buttonW, loginBtn.origin.y, buttonW, 30)];
     
     [registerView addSubview:registerBtn];
@@ -124,10 +128,10 @@
     
     [self.view addSubview:registerView];
     self.registerView = registerView;
-//    [self.view addSubview:loginView];
-
-
-
+    //    [self.view addSubview:loginView];
+    
+    
+    
 }
 
 
@@ -143,40 +147,80 @@
             break;
         case 2:
             [self.view bringSubviewToFront:self.registerView];
-
+            
             break;
-       
+            
             
     }
-
-
-
+    
+    
+    
 }
 
 #pragma mark - 点击登录
 -(void)login{
     
     if (!self.userText.text.length) {
-        AlertLog(nil, @"请输入手机号码", @"确定", nil);
+        //        AlertLog(nil, @"请输入手机号码", @"确定", nil);
+        [self showErrorMsg:@"请输入手机号码"];
         return ;
     }
     if (!self.passwordText.text.length) {
-        AlertLog(nil, @"请输入密码", @"确定", nil);
+        //        AlertLog(nil, @"请输入密码", @"确定", nil);
+        [self showErrorMsg: @"请输入密码"];
         return ;
     }
     
-    NSString *phoneNumber = [[SharedInstance sharedInstance] getPhoneNumber];
-    NSString *password = [[SharedInstance sharedInstance]getPassword];
-    [[NSUserDefaults standardUserDefaults]synchronize];
+    //    NSString *phoneNumber = [[SharedInstance sharedInstance] getPhoneNumber];
+    //    NSString *password = [[SharedInstance sharedInstance]getPassword];
+    //    [[NSUserDefaults standardUserDefaults]synchronize];
+    //
+    //    if (![phoneNumber isEqualToString:self.userText.text]||![password isEqualToString:self.passwordText.text]) {
+    ////        AlertLog(nil, @"输入的手机号或者密码不正确", @"确认", nil);
+    //        [self showErrorMsg: @"输入的手机号或者密码不正确"];
+    //        return;
+    //    }
+    //    [SharedInstance sharedInstance].alreadyLanded = YES;
+    //
+    //    [self.navigationController popViewControllerAnimated:YES];
     
-    if (![phoneNumber isEqualToString:self.userText.text]||![password isEqualToString:self.passwordText.text]) {
-        AlertLog(nil, @"输入的手机号或者密码不正确", @"确认", nil);
-        return;
-    }
-    [SharedInstance sharedInstance].alreadyLanded = YES;
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
-//    [self.navigationController popToRootViewControllerAnimated:YES];
-    [self.navigationController popViewControllerAnimated:YES];
+    // 2. 拼接请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyyMMddHHmm"];
+    NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
+    params[@"rsa"] = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQZ2ios30dSJBTjXfGELQEk/YI2cRLYXawqSj0AhBGr9LPrGn5xgda/QGfkZFNkmyP1k7Rj3EKRgr6lUGxsp8SKzM0fHOOccelCYrCFMI3rDqFklHQQseHd6mu73PBRljXb3DIqTW7p9a4NmM+nU8AVS2tAQlU3Q/h7cawuk96rwIDAQAB";
+    params[@"account"] = self.userText.text;
+    params[@"password"] = self.passwordText.text.md5String;
+    
+    params[@"time"] = currentDateStr;
+    params[@"random"] = @"456556";
+    
+    
+    NSLog(@"params---%@",params);
+    [mgr POST:@"http://www.skyhives.com/userbehavior/login?" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"登录成功");
+        
+        NSLog(@"responseObject----%@",responseObject);
+        
+        [self showSuccessMsg:@"登录成功"];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"error===%@",error);
+        [self showErrorMsg:@"登录失败,等会儿再试"];
+    }];
+    //    [JPNetWork POST:@"http://www.skyhives.com/userbehavior/login" parameters:params completionHandler:^(id responseObj, NSError *error) {
+    //
+    //                NSLog(@"responseObject----%@",responseObj);
+    //        NSLog(@"error===%@",error);
+    ////                [self showSuccessMsg:@"登录成功"];
+    //    }];
+    
     
     
 }
@@ -195,7 +239,7 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
-
+    
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {

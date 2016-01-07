@@ -14,7 +14,7 @@
 
 + (BOOL)checkTelNumber:(NSString *)telNumber
 {
-    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,3,5-9]))\\d{8}$";
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     

@@ -78,6 +78,9 @@
                                     <exclude reference="wok-Gk-9pf"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="countBtnClick:" destination="-1" eventType="touchUpInside" id="xoG-Lb-bpW"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全选" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Nm-dR-XbA">
                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -432,7 +435,7 @@
                     <exclude reference="iMP-KQ-4WV"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="428" y="334"/>
+            <point key="canvasLocation" x="498" y="371"/>
         </view>
     </objects>
 </document>

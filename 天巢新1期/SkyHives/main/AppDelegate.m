@@ -48,6 +48,21 @@
 }
 
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    BOOL canHandleURL = [Pingpp handleOpenURL:url withCompletion:nil];
+    return canHandleURL;
+}
+
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary *)options {
+    BOOL canHandleURL = [Pingpp handleOpenURL:url withCompletion:nil];
+    return canHandleURL;
+}
+
 
 
 
