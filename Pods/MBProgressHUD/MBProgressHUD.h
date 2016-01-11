@@ -307,7 +307,7 @@ typedef void (^MBProgressHUDCompletionBlock)();
  *
  * @see MBProgressHUDDelegate
  */
-@property (MB_WEAK) id<MBProgressHUDDelegate> delegate;
+@property (nonatomic ,weak) id<MBProgressHUDDelegate> delegate;
 
 /** 
  * An optional short message to be displayed below the activity indicator. The HUD is automatically resized to fit
@@ -456,6 +456,8 @@ typedef void (^MBProgressHUDCompletionBlock)();
  * Called after the HUD was fully hidden from the screen. 
  */
 - (void)hudWasHidden:(MBProgressHUD *)hud;
+
+- (void)tapHud:(MBProgressHUD *)hud;
 
 @end
 

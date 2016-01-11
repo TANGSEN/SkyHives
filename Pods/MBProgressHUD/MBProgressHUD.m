@@ -162,9 +162,21 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 #pragma mark - Lifecycle
 
+
+- (void)tapGR{
+    if ([delegate respondsToSelector:@selector(tapHud:)]) {
+        [delegate tapHud:self];
+    }
+}
+
+
+
 - (id)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
+        
+        
+        
 		// Set default values for properties
 		self.animationType = MBProgressHUDAnimationFade;
 		self.mode = MBProgressHUDModeIndeterminate;
@@ -204,6 +216,10 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[self updateIndicators];
 		[self registerForKVO];
 		[self registerForNotifications];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGR)];
+        [self addGestureRecognizer:tap];
+        
 	}
 	return self;
 }

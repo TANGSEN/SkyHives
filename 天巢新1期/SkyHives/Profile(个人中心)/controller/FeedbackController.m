@@ -35,6 +35,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
+
+    
     /**键盘弹起*/
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyborardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     
@@ -104,6 +107,9 @@
 }
 -(void)viewDidLoad
 {
+    
+    [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
 
     

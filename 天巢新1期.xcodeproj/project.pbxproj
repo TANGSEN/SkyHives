@@ -94,6 +94,10 @@
 		AA0AC5271C254666009EA9AC /* SDWebImageManager+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0AC51F1C254666009EA9AC /* SDWebImageManager+MJ.m */; };
 		AA0AC53B1C254B87009EA9AC /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA0AC5281C254B87009EA9AC /* MBProgressHUD.bundle */; };
 		AA0AC53C1C254B87009EA9AC /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0AC52A1C254B87009EA9AC /* MBProgressHUD+MJ.m */; };
+		AA17BBDA1C43460900E50EAF /* NSData+AESEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = AA17BBD91C43460900E50EAF /* NSData+AESEncryption.m */; };
+		AA17BBE41C4384BE00E50EAF /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = AA17BBDE1C4384BE00E50EAF /* GTMBase64.m */; };
+		AA17BBE51C4384BE00E50EAF /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = AA17BBE11C4384BE00E50EAF /* NSData+AES.m */; };
+		AA17BBE61C4384BE00E50EAF /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = AA17BBE31C4384BE00E50EAF /* SecurityUtil.m */; };
 		AA397E201C1ADBCA00843044 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA397E1F1C1ADBCA00843044 /* main.m */; };
 		AA397E2B1C1ADBCA00843044 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA397E2A1C1ADBCA00843044 /* Assets.xcassets */; };
 		AA397E2E1C1ADBCA00843044 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA397E2C1C1ADBCA00843044 /* LaunchScreen.storyboard */; };
@@ -115,6 +119,9 @@
 		AA42887C1C23EEB200C88B11 /* MyShoppingController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA42887B1C23EEB200C88B11 /* MyShoppingController.m */; };
 		AA42887F1C23EF6300C88B11 /* ShoppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA42887E1C23EF6300C88B11 /* ShoppingModel.m */; };
 		AA58579E1C1FF7EF00A0CD29 /* AttributeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58579D1C1FF7EF00A0CD29 /* AttributeView.m */; };
+		AA7E6F961C40A31300B37C0F /* RSAJM.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7E6F951C40A31300B37C0F /* RSAJM.m */; };
+		AA7E705B1C40E6A000B37C0F /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7E705A1C40E6A000B37C0F /* RSA.m */; };
+		AA7E705D1C40E6B300B37C0F /* public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = AA7E705C1C40E6B300B37C0F /* public_key.der */; };
 		AA8279741C1C0E6100C99D9A /* TCDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA82796D1C1C0E6100C99D9A /* TCDetailController.m */; };
 		AA8279751C1C0E6100C99D9A /* GGCSView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8279701C1C0E6100C99D9A /* GGCSView.m */; };
 		AA8279761C1C0E6100C99D9A /* TWXQView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8279721C1C0E6100C99D9A /* TWXQView.m */; };
@@ -307,6 +314,15 @@
 		AA0AC5281C254B87009EA9AC /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		AA0AC5291C254B87009EA9AC /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
 		AA0AC52A1C254B87009EA9AC /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		AA17BBD81C43460900E50EAF /* NSData+AESEncryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AESEncryption.h"; sourceTree = "<group>"; };
+		AA17BBD91C43460900E50EAF /* NSData+AESEncryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AESEncryption.m"; sourceTree = "<group>"; };
+		AA17BBDD1C4384BE00E50EAF /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		AA17BBDE1C4384BE00E50EAF /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		AA17BBDF1C4384BE00E50EAF /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		AA17BBE01C4384BE00E50EAF /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
+		AA17BBE11C4384BE00E50EAF /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
+		AA17BBE21C4384BE00E50EAF /* SecurityUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityUtil.h; sourceTree = "<group>"; };
+		AA17BBE31C4384BE00E50EAF /* SecurityUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityUtil.m; sourceTree = "<group>"; };
 		AA397E1B1C1ADBCA00843044 /* 天巢新1期.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "天巢新1期.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA397E1F1C1ADBCA00843044 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AA397E2A1C1ADBCA00843044 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -347,6 +363,11 @@
 		AA42887E1C23EF6300C88B11 /* ShoppingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingModel.m; sourceTree = "<group>"; };
 		AA58579C1C1FF7EF00A0CD29 /* AttributeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeView.h; sourceTree = "<group>"; };
 		AA58579D1C1FF7EF00A0CD29 /* AttributeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeView.m; sourceTree = "<group>"; };
+		AA7E6F941C40A31300B37C0F /* RSAJM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAJM.h; sourceTree = "<group>"; };
+		AA7E6F951C40A31300B37C0F /* RSAJM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAJM.m; sourceTree = "<group>"; };
+		AA7E70591C40E6A000B37C0F /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
+		AA7E705A1C40E6A000B37C0F /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
+		AA7E705C1C40E6B300B37C0F /* public_key.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = public_key.der; sourceTree = "<group>"; };
 		AA82796C1C1C0E6100C99D9A /* TCDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDetailController.h; sourceTree = "<group>"; };
 		AA82796D1C1C0E6100C99D9A /* TCDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDetailController.m; sourceTree = "<group>"; };
 		AA82796F1C1C0E6100C99D9A /* GGCSView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGCSView.h; sourceTree = "<group>"; };
@@ -407,11 +428,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA8279B41C1C152400C99D9A /* Security.framework in Frameworks */,
 				AA8279AA1C1C14E800C99D9A /* SystemConfiguration.framework in Frameworks */,
 				AA8279BC1C1C157200C99D9A /* libsqlite3.tbd in Frameworks */,
 				AA8279BA1C1C154800C99D9A /* CoreText.framework in Frameworks */,
 				AA8279B81C1C153E00C99D9A /* libstdc++.tbd in Frameworks */,
-				AA8279B41C1C152400C99D9A /* Security.framework in Frameworks */,
 				87A3BD6E1C284EFB00A20A68 /* libz.1.2.5.tbd in Frameworks */,
 				AA8279B01C1C150F00C99D9A /* libicucore.tbd in Frameworks */,
 				AA8279AE1C1C14FE00C99D9A /* CoreTelephony.framework in Frameworks */,
@@ -616,9 +637,16 @@
 		878033101C2060C3005BF2A9 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				AA17BBDB1C4384BE00E50EAF /* Security */,
 				AA937BBC1C279BD900F61304 /* 正则表达式 */,
 				878033111C2060C3005BF2A9 /* Color_Process.h */,
 				878033121C2060C3005BF2A9 /* Color_Process.m */,
+				AA7E70591C40E6A000B37C0F /* RSA.h */,
+				AA7E705A1C40E6A000B37C0F /* RSA.m */,
+				AA17BBD81C43460900E50EAF /* NSData+AESEncryption.h */,
+				AA17BBD91C43460900E50EAF /* NSData+AESEncryption.m */,
+				AA7E6F941C40A31300B37C0F /* RSAJM.h */,
+				AA7E6F951C40A31300B37C0F /* RSAJM.m */,
 				878033131C2060C3005BF2A9 /* Factory.h */,
 				878033141C2060C3005BF2A9 /* Factory.m */,
 				AAFEFAC31C3CF285004E8292 /* NSString+Hash.h */,
@@ -833,6 +861,28 @@
 			path = MJPhotoBrowser;
 			sourceTree = "<group>";
 		};
+		AA17BBDB1C4384BE00E50EAF /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				AA17BBDC1C4384BE00E50EAF /* GTMBase64 */,
+				AA17BBE01C4384BE00E50EAF /* NSData+AES.h */,
+				AA17BBE11C4384BE00E50EAF /* NSData+AES.m */,
+				AA17BBE21C4384BE00E50EAF /* SecurityUtil.h */,
+				AA17BBE31C4384BE00E50EAF /* SecurityUtil.m */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		AA17BBDC1C4384BE00E50EAF /* GTMBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				AA17BBDD1C4384BE00E50EAF /* GTMBase64.h */,
+				AA17BBDE1C4384BE00E50EAF /* GTMBase64.m */,
+				AA17BBDF1C4384BE00E50EAF /* GTMDefines.h */,
+			);
+			path = GTMBase64;
+			sourceTree = "<group>";
+		};
 		AA397E121C1ADBCA00843044 = {
 			isa = PBXGroup;
 			children = (
@@ -860,6 +910,7 @@
 			children = (
 				AA397E511C1ADC0700843044 /* SkyHives */,
 				AA397E2A1C1ADBCA00843044 /* Assets.xcassets */,
+				AA7E705C1C40E6B300B37C0F /* public_key.der */,
 				AA397E2C1C1ADBCA00843044 /* LaunchScreen.storyboard */,
 				AA397E2F1C1ADBCA00843044 /* Info.plist */,
 				AA397ECF1C1AE25500843044 /* tcpch.pch */,
@@ -1277,6 +1328,7 @@
 				872A5CA21C20632700AF221D /* per_icon_treasu.png in Resources */,
 				87A3BD6A1C284DAF00A20A68 /* TCOrderCell.xib in Resources */,
 				87A3BD201C284B6800A20A68 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				AA7E705D1C40E6B300B37C0F /* public_key.der in Resources */,
 				872A5CA41C20632700AF221D /* per_icon_treasu@3x.png in Resources */,
 				872A5C931C20632700AF221D /* per_icon_daifukuan.png in Resources */,
 				872A5CA71C20632700AF221D /* profile_icon_shoucang@3x.png in Resources */,
@@ -1382,12 +1434,14 @@
 				878033231C2060C3005BF2A9 /* Color_Process.m in Sources */,
 				87A3BD631C284DAF00A20A68 /* RegisterViewController.m in Sources */,
 				AA3DEE851C33C09A00C983C5 /* FurnitureModel.m in Sources */,
+				AA7E6F961C40A31300B37C0F /* RSAJM.m in Sources */,
 				87A3BD6C1C284DAF00A20A68 /* TopUserInfoView.m in Sources */,
 				AA3DEE971C33C17200C983C5 /* AdvertisementModel.m in Sources */,
 				AA8279821C1C11AD00C99D9A /* CustomerView.m in Sources */,
 				87A3BD661C284DAF00A20A68 /* InputView.m in Sources */,
 				AA0AC5231C254666009EA9AC /* MJPhotoLoadingView.m in Sources */,
 				AAFEFAC81C3CF285004E8292 /* NSString+PJR.m in Sources */,
+				AA7E705B1C40E6A000B37C0F /* RSA.m in Sources */,
 				8780332B1C2060C3005BF2A9 /* UIWindow+Extension.m in Sources */,
 				AAFEFAB11C3CC7CF004E8292 /* Furniture.m in Sources */,
 				AA0AC5271C254666009EA9AC /* SDWebImageManager+MJ.m in Sources */,
@@ -1399,6 +1453,7 @@
 				AA96673D1C1E9CE6002FDA48 /* CategoryDetailController.m in Sources */,
 				87A3BD5D1C284DAF00A20A68 /* MyOrderController.m in Sources */,
 				AAFEFABC1C3CCB30004E8292 /* DetailView.m in Sources */,
+				AA17BBDA1C43460900E50EAF /* NSData+AESEncryption.m in Sources */,
 				AA0AC5251C254666009EA9AC /* MJPhotoToolbar.m in Sources */,
 				878033241C2060C3005BF2A9 /* Factory.m in Sources */,
 				AA0AC53C1C254B87009EA9AC /* MBProgressHUD+MJ.m in Sources */,
@@ -1407,12 +1462,14 @@
 				AAFEFAB91C3CC8CC004E8292 /* HomeNetWork.m in Sources */,
 				AAFEFAB51C3CC7F7004E8292 /* FurnitureNetWork.m in Sources */,
 				878033281C2060C3005BF2A9 /* UIBarButtonItem+Extension.m in Sources */,
+				AA17BBE51C4384BE00E50EAF /* NSData+AES.m in Sources */,
 				AA0AC5241C254666009EA9AC /* MJPhotoProgressView.m in Sources */,
 				AA3DEE901C33C12600C983C5 /* JPViewModel.m in Sources */,
 				87A3BD5B1C284DAF00A20A68 /* FeedbackController.m in Sources */,
 				AA397EB61C1ADC0700843044 /* ChannelView.m in Sources */,
 				87A3BD611C284DAF00A20A68 /* TCProfileController.m in Sources */,
 				878032FD1C205F37005BF2A9 /* TYCollectionViewCell.m in Sources */,
+				AA17BBE41C4384BE00E50EAF /* GTMBase64.m in Sources */,
 				87A3BD691C284DAF00A20A68 /* TCOrderCell.m in Sources */,
 				AA4288791C23EE7300C88B11 /* TCShoppingTable.m in Sources */,
 				AA4288771C23EE7300C88B11 /* MyShoppingCell.m in Sources */,
@@ -1425,6 +1482,7 @@
 				87A3BD5A1C284DAF00A20A68 /* ChangeUserNameController.m in Sources */,
 				878033291C2060C3005BF2A9 /* UIImage+Extension.m in Sources */,
 				AA0AC5261C254666009EA9AC /* MJPhotoView.m in Sources */,
+				AA17BBE61C4384BE00E50EAF /* SecurityUtil.m in Sources */,
 				AA397E201C1ADBCA00843044 /* main.m in Sources */,
 				AAE9CE2D1C1BCC54001EBE0D /* AutoScrollView.m in Sources */,
 				AA8279751C1C0E6100C99D9A /* GGCSView.m in Sources */,
@@ -1602,6 +1660,7 @@
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/ShareSDK/Extend/QQConnectSDK",
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/ShareSDK",
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/SMS_SDK",
+					"$(PROJECT_DIR)/天巢新1期/SkyHives/Util/RSA/include",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "天巢新1期/tcpch.pch";
@@ -1619,6 +1678,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
 					"\"${PODS_ROOT}/Headers/Public/RESideMenu\"",
 					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${SRCROOT}/天巢新1期/SkyHives/Util/RSA/include",
 				);
 				INFOPLIST_FILE = "天巢新1期/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1628,11 +1688,55 @@
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/ping++/Channels",
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/ping++",
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/ShareSDK/Extend/WeChatSDK",
+					"$(PROJECT_DIR)/天巢新1期/SkyHives/Util/IOS-RSA/RSA/lib",
+					"$(PROJECT_DIR)/天巢新1期/SkyHives/Util/RSA/lib",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"BlocksKit\"",
+					"-l\"DACircularProgress\"",
+					"-l\"FMDB\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"MWPhotoBrowser\"",
+					"-l\"Masonry\"",
+					"-l\"RESideMenu\"",
+					"-l\"SDWebImage\"",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MediaPlayer\"",
+					"-framework",
+					"\"MessageUI\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"Photos\"",
+					"-lstdc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.skyhives;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s i386 arm64";
 			};
 			name = Debug;
 		};
@@ -1653,6 +1757,7 @@
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/ShareSDK/Extend/QQConnectSDK",
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/ShareSDK",
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/SMS_SDK",
+					"$(PROJECT_DIR)/天巢新1期/SkyHives/Util/RSA/include",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "天巢新1期/tcpch.pch";
@@ -1670,6 +1775,7 @@
 					"\"${PODS_ROOT}/Headers/Public/Masonry\"",
 					"\"${PODS_ROOT}/Headers/Public/RESideMenu\"",
 					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${SRCROOT}/天巢新1期/SkyHives/Util/RSA/include",
 				);
 				INFOPLIST_FILE = "天巢新1期/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1679,11 +1785,55 @@
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/ping++/Channels",
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/ping++",
 					"$(PROJECT_DIR)/天巢新1期/SkyHives/Lib/ShareSDK/Extend/WeChatSDK",
+					"$(PROJECT_DIR)/天巢新1期/SkyHives/Util/IOS-RSA/RSA/lib",
+					"$(PROJECT_DIR)/天巢新1期/SkyHives/Util/RSA/lib",
 				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"BlocksKit\"",
+					"-l\"DACircularProgress\"",
+					"-l\"FMDB\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"MWPhotoBrowser\"",
+					"-l\"Masonry\"",
+					"-l\"RESideMenu\"",
+					"-l\"SDWebImage\"",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MediaPlayer\"",
+					"-framework",
+					"\"MessageUI\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"Photos\"",
+					"-lstdc++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.skyhives;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 armv7s arm64";
+				VALID_ARCHS = "armv7 armv7s i386 arm64";
 			};
 			name = Release;
 		};

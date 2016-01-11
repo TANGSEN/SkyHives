@@ -17,6 +17,7 @@
 -(void)viewDidLoad
 {
 
+    [super viewDidLoad];
     self.view.backgroundColor = View_BgColor;
     self.title = @"绑定手机";
     

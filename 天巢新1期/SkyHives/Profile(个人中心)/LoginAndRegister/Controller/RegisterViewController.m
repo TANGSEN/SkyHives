@@ -84,6 +84,8 @@
 -(void)viewDidLoad
 {
 
+    [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
 
     
@@ -270,7 +272,7 @@
         
     }];
     
-    /* 原生 POST请求
+    // 原生 POST请求
     // POST请求
     NSString *urlString = @"http://www.skyhives.com/userbehaviorapi/sendCode?";
     // 创建url对象
@@ -285,7 +287,7 @@
     [request setHTTPMethod:@"POST"];
     // 创建异步连接（形式二）
     [NSURLConnection connectionWithRequest:request delegate:self];
-    */
+    
 }
 
 /* 原生请求代理方法

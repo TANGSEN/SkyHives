@@ -14,4 +14,10 @@
 
 - (CGSize)sizeWithFont:(UIFont *)font;
 
++ (NSString*)hexStringForData:(NSData*)data;
+
++ (NSString*)hexStringForChar:(unsigned char *)data len:(int)len;
+
++ (NSData*)dataForHexString:(NSString*)hexString;
+
 @end

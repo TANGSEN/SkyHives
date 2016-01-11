@@ -11,6 +11,11 @@
 #import "RegisterViewController.h"
 #import "NSString+Hash.h"
 #import "Utils.h"
+#import "NSData+AESEncryption.h"
+#import "SecurityUtil.h"
+
+
+
 @interface LoginViewController ()<CustomerDelegate,UITextFieldDelegate>
 @property (nonatomic,strong)UIView *loginView;
 @property (nonatomic,strong)UIView *registerView;
@@ -24,6 +29,8 @@
 
 -(void)viewDidLoad
 {
+    [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     CustomerView *topView = [[CustomerView alloc] initWithFrame:CGRectMake(0, 64, ApplicationframeValue.width, 47) initButWithArray:@[@"手机登录",@"账号登录"] butFont:15 selectedIndex:0];
@@ -170,21 +177,11 @@
         [self showErrorMsg: @"请输入密码"];
         return ;
     }
-    
-    //    NSString *phoneNumber = [[SharedInstance sharedInstance] getPhoneNumber];
-    //    NSString *password = [[SharedInstance sharedInstance]getPassword];
-    //    [[NSUserDefaults standardUserDefaults]synchronize];
-    //
-    //    if (![phoneNumber isEqualToString:self.userText.text]||![password isEqualToString:self.passwordText.text]) {
-    ////        AlertLog(nil, @"输入的手机号或者密码不正确", @"确认", nil);
-    //        [self showErrorMsg: @"输入的手机号或者密码不正确"];
-    //        return;
-    //    }
-    //    [SharedInstance sharedInstance].alreadyLanded = YES;
-    //
-    //    [self.navigationController popViewControllerAnimated:YES];
+
     
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    
+    
     
     // 2. 拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -193,37 +190,50 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyyMMddHHmm"];
     NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
-    params[@"rsa"] = @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQZ2ios30dSJBTjXfGELQEk/YI2cRLYXawqSj0AhBGr9LPrGn5xgda/QGfkZFNkmyP1k7Rj3EKRgr6lUGxsp8SKzM0fHOOccelCYrCFMI3rDqFklHQQseHd6mu73PBRljXb3DIqTW7p9a4NmM+nU8AVS2tAQlU3Q/h7cawuk96rwIDAQAB";
-    params[@"account"] = self.userText.text;
-    params[@"password"] = self.passwordText.text.md5String;
     
-    params[@"time"] = currentDateStr;
-    params[@"random"] = @"456556";
+
     
     
-    NSLog(@"params---%@",params);
-    [mgr POST:@"http://www.skyhives.com/userbehavior/login?" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+
+    
+    NSString *originString = [NSString stringWithFormat:@"{account:'%@',password:'%@',time:'%@',random:'%@'}",self.userText.text,self.passwordText.text.md5String,currentDateStr,@"258258"];
+
+    NSData *data = [SecurityUtil encryptAESWithString:originString];
+    NSString *str = [NSString hexStringForData:data];
+    
+    params[@"code"] = str;
+    
+    
+    [mgr GET:@"http://192.168.1.154:8080/zp/userbehaviorapi/loginApp?" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
         
-    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"登录成功");
+        NSNumber *status = responseObject[@"status"];
         
-        NSLog(@"responseObject----%@",responseObject);
+        NSLog(@"%@",status);
         
-        [self showSuccessMsg:@"登录成功"];
+        NSLog(@"%@",responseObject);
+        
+        if ([status isEqualToNumber:@1]) {
+            [self showSuccessMsg:@"登陆成功"];
+            
+            //在此存储手机号和密码，进入个人中心
+            [[SharedInstance sharedInstance] setPhoneNumber:self.userText.text];
+            [[SharedInstance sharedInstance] setPassword:self.passwordText.text];
+            
+            //标记已经登录
+            [SharedInstance sharedInstance].alreadyLanded = YES;
+            
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error===%@",error);
         [self showErrorMsg:@"登录失败,等会儿再试"];
     }];
-    //    [JPNetWork POST:@"http://www.skyhives.com/userbehavior/login" parameters:params completionHandler:^(id responseObj, NSError *error) {
-    //
-    //                NSLog(@"responseObject----%@",responseObj);
-    //        NSLog(@"error===%@",error);
-    ////                [self showSuccessMsg:@"登录成功"];
-    //    }];
-    
-    
-    
 }
+
+
+
+
+
 #pragma mark - 注册
 -(void)registerClick{
     
@@ -238,7 +248,16 @@
 #pragma mark - textFieldDelegate
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self.view endEditing:YES];
+    
+    NSString *secret = @"{account:'13416137382',password:'5a854bedc4ceb10e33acbab3552b58f9',time:'201501111144',random:'654321'}";
+
+    //加密
+    NSString *encryptDate=[SecurityUtil encryptAESData:secret];
+    NSLog(@"base64EncryptDate %@",encryptDate);
+    
+    //解密
+    NSString *decodeData=[SecurityUtil decryptAESData:[SecurityUtil encryptAESData:secret]];
+    NSLog(@"decodeData %@",decodeData);
     
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

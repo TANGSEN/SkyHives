@@ -46,21 +46,34 @@ static AFHTTPSessionManager *manager = nil;
 
 + (id)GET:(NSString *)path parameters:(NSDictionary *)params completionHandler:(void(^)(id responseObj, NSError *error))complete{
 
-    return [[self sharedAFManager] GET:path parameters:params success:^void(NSURLSessionDataTask * task, id responseObject) {
+    return [[self sharedAFManager] GET:path parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         complete(responseObject, nil);
-    } failure:^void(NSURLSessionDataTask * task, NSError * error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         complete(nil, error);
     }];
+    
+    
+//    return [[self sharedAFManager] GET:path parameters:params success:^void(NSURLSessionDataTask * task, id responseObject) {
+//        
+//    } failure:^void(NSURLSessionDataTask * task, NSError * error) {
+//        
+//    }];
 }
 
 + (id)POST:(NSString *)path parameters:(NSDictionary *)params completionHandler:(void(^)(id responseObj, NSError *error))complete{
     
-    return [[self sharedAFManager] POST:path parameters:params success:^void(NSURLSessionDataTask * task, id responseObject) {
+    return [[self sharedAFManager] POST:path parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         complete(responseObject, nil);
-    } failure:^void(NSURLSessionDataTask * task, NSError * error) {
-        [self handleError:error];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         complete(nil, error);
     }];
+    
+//    return [[self sharedAFManager] POST:path parameters:params success:^void(NSURLSessionDataTask * task, id responseObject) {
+//        
+//    } failure:^void(NSURLSessionDataTask * task, NSError * error) {
+//        [self handleError:error];
+//        
+//    }];
 }
 
 + (void)handleError:(NSError *)error{

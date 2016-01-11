@@ -22,6 +22,8 @@
 
 @property (nonatomic, assign) NSInteger add_time;
 
+@property (nonatomic, copy) NSString *Thumb_Picture;
+
 @property (nonatomic, copy) NSString *thumb;
 
 @property (nonatomic, copy) NSString *url;

@@ -85,7 +85,7 @@
     NSMutableArray *array = [[NSMutableArray alloc]init];
     [HomeNetWork getAdcertisementWithBlock:^(NSArray *model, NSError *error) {
         [model enumerateObjectsUsingBlock:^(AdvertisementModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [array addObject:obj.thumb];
+            [array addObject:obj.Thumb_Picture];
         }];
         scrollView.images = array;
         [scrollView reloadData];

@@ -12,16 +12,27 @@
 #import "HomeNetWork.h"
 #import "FurnituresNetWork.h"
 
-@interface MyOrderController ()<CustomerDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface MyOrderController ()<CustomerDelegate,UITableViewDataSource,UITableViewDelegate, MBProgressHUDDelegate>
 @property (nonatomic,strong)NSArray *Titles;
 @property (nonatomic ,weak) OrderView *cell;
 @property (nonatomic ,weak) UITableView *tableView;
 @property (nonatomic ,copy) NSString *btnType;
 @property (nonatomic ,assign) FurnitureType type;
+@property (nonatomic ,strong) MBProgressHUD *hud;
+
 @end
 
 
 @implementation MyOrderController
+
+- (MBProgressHUD *)hud{
+    if (!_hud){
+        _hud = [[MBProgressHUD alloc]init];
+        _hud.delegate = self;
+    }
+    return _hud;
+}
+
 -(NSArray *)Titles
 {
     if (!_Titles) {
@@ -32,6 +43,10 @@
 }
 -(void)viewDidLoad
 {
+    [super viewDidLoad];
+    
+    
+    
     self.title = @"我的订单";
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -149,8 +164,14 @@
     }
 }
 
+- (void)tapHud:(MBProgressHUD *)hud{
+    NSLog(@"执行了tapHud");
+    [self.hud hide:YES];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self showSuccessMsg:[NSString stringWithFormat:@"点击了%ld行",indexPath.row]];
+    
+    [self.hud showSuccessMsg:[NSString stringWithFormat:@"点击了%ld行",indexPath.row]];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

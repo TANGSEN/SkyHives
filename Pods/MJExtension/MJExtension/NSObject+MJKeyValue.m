@@ -465,7 +465,10 @@ static NSNumberFormatter *numberFormatter_;
 - (instancetype)setKeyValues:(id)keyValues error:(NSError **)error
 {
     id value = [self mj_setKeyValues:keyValues];
-    *error = [self.class mj_error];
+    /** 此处对MJ的框架进行修改 . 对error进行非空判断 , 因为error传进来的可能是一个空值 , 静态分析时会报可能返回空指针 */
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -477,7 +480,9 @@ static NSNumberFormatter *numberFormatter_;
 - (instancetype)setKeyValues:(id)keyValues context:(NSManagedObjectContext *)context error:(NSError **)error
 {
     id value = [self mj_setKeyValues:keyValues context:context];
-    *error = [self.class mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -494,7 +499,9 @@ static NSNumberFormatter *numberFormatter_;
 - (NSMutableDictionary *)keyValuesWithError:(NSError **)error
 {
     id value = [self mj_keyValues];
-    *error = [self.class mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -506,7 +513,9 @@ static NSNumberFormatter *numberFormatter_;
 - (NSMutableDictionary *)keyValuesWithKeys:(NSArray *)keys error:(NSError **)error
 {
     id value = [self mj_keyValuesWithKeys:keys];
-    *error = [self.class mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -518,7 +527,9 @@ static NSNumberFormatter *numberFormatter_;
 - (NSMutableDictionary *)keyValuesWithIgnoredKeys:(NSArray *)ignoredKeys error:(NSError **)error
 {
     id value = [self mj_keyValuesWithIgnoredKeys:ignoredKeys];
-    *error = [self.class mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -530,7 +541,9 @@ static NSNumberFormatter *numberFormatter_;
 + (NSMutableArray *)keyValuesArrayWithObjectArray:(NSArray *)objectArray error:(NSError **)error
 {
     id value = [self mj_keyValuesArrayWithObjectArray:objectArray];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -542,7 +555,9 @@ static NSNumberFormatter *numberFormatter_;
 + (NSMutableArray *)keyValuesArrayWithObjectArray:(NSArray *)objectArray keys:(NSArray *)keys error:(NSError **)error
 {
     id value = [self mj_keyValuesArrayWithObjectArray:objectArray keys:keys];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -554,7 +569,9 @@ static NSNumberFormatter *numberFormatter_;
 + (NSMutableArray *)keyValuesArrayWithObjectArray:(NSArray *)objectArray ignoredKeys:(NSArray *)ignoredKeys error:(NSError **)error
 {
     id value = [self mj_keyValuesArrayWithObjectArray:objectArray ignoredKeys:ignoredKeys];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -566,7 +583,9 @@ static NSNumberFormatter *numberFormatter_;
 + (instancetype)objectWithKeyValues:(id)keyValues error:(NSError **)error
 {
     id value = [self mj_objectWithKeyValues:keyValues];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -578,7 +597,9 @@ static NSNumberFormatter *numberFormatter_;
 + (instancetype)objectWithKeyValues:(id)keyValues context:(NSManagedObjectContext *)context error:(NSError **)error
 {
     id value = [self mj_objectWithKeyValues:keyValues context:context];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -590,7 +611,9 @@ static NSNumberFormatter *numberFormatter_;
 + (instancetype)objectWithFilename:(NSString *)filename error:(NSError **)error
 {
     id value = [self mj_objectWithFilename:filename];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -602,7 +625,9 @@ static NSNumberFormatter *numberFormatter_;
 + (instancetype)objectWithFile:(NSString *)file error:(NSError **)error
 {
     id value = [self mj_objectWithFile:file];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -614,7 +639,9 @@ static NSNumberFormatter *numberFormatter_;
 + (NSMutableArray *)objectArrayWithKeyValuesArray:(id)keyValuesArray error:(NSError **)error
 {
     id value = [self mj_objectArrayWithKeyValuesArray:keyValuesArray];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -626,7 +653,9 @@ static NSNumberFormatter *numberFormatter_;
 + (NSMutableArray *)objectArrayWithKeyValuesArray:(id)keyValuesArray context:(NSManagedObjectContext *)context error:(NSError **)error
 {
     id value = [self mj_objectArrayWithKeyValuesArray:keyValuesArray context:context];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -638,7 +667,9 @@ static NSNumberFormatter *numberFormatter_;
 + (NSMutableArray *)objectArrayWithFilename:(NSString *)filename error:(NSError **)error
 {
     id value = [self mj_objectArrayWithFilename:filename];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 
@@ -650,7 +681,9 @@ static NSNumberFormatter *numberFormatter_;
 + (NSMutableArray *)objectArrayWithFile:(NSString *)file error:(NSError **)error
 {
     id value = [self mj_objectArrayWithFile:file];
-    *error = [self mj_error];
+    if (*error != NULL) {
+        *error = [self.class mj_error];
+    }
     return value;
 }
 

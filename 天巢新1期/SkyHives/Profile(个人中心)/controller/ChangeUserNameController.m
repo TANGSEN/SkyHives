@@ -17,7 +17,7 @@
 
 -(void)viewDidLoad
 {
-    
+    [super viewDidLoad];
     self.view.backgroundColor = View_BgColor;
     self.title = @"修改用户名";
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleDone target:self action:@selector(save)];

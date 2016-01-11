@@ -24,7 +24,7 @@
 
 -(void)viewDidLoad
 {
-    
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 
     
@@ -35,6 +35,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
+    
     self.Titles  = [SharedInstance sharedInstance].alreadyLanded? @[@"个人资料",@"收货地址管理",@"关于天巢",@"退出账号"]:@[@"个人资料",@"收货地址管理",@"关于天巢"];
     [self.tableView reloadData];
     

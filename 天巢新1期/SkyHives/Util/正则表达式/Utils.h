@@ -14,4 +14,7 @@
 + (BOOL)checkTelNumber:(NSString *)telNumber;
 /**验证密码6-18位*/
 + (BOOL)checkPassword:(NSString *)passWord;
+/** 生成六位随机数 */
++(NSString *)arc6RandomString;
+
 @end

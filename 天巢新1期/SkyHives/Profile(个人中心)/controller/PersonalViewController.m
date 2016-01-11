@@ -37,6 +37,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
+
+    
     self.headerView.image = [[SharedInstance sharedInstance] getUserImage];
     [self.tableView reloadData];
     
@@ -44,6 +47,8 @@
 
 -(void)viewDidLoad
 {
+    
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 
     
