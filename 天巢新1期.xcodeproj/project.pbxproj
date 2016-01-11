@@ -84,6 +84,9 @@
 		87A3BD6B1C284DAF00A20A68 /* TCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3BD561C284DAF00A20A68 /* TCTextView.m */; };
 		87A3BD6C1C284DAF00A20A68 /* TopUserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A3BD581C284DAF00A20A68 /* TopUserInfoView.m */; };
 		87A3BD6E1C284EFB00A20A68 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A3BD6D1C284EFB00A20A68 /* libz.1.2.5.tbd */; };
+		87C58F331C43FED700354BA5 /* NewAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C58F321C43FED700354BA5 /* NewAddressController.m */; };
+		87C58F361C43FEF500354BA5 /* CityPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C58F351C43FEF500354BA5 /* CityPickerView.m */; };
+		87C58F381C43FF3200354BA5 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87C58F371C43FF3200354BA5 /* area.plist */; };
 		AA0AC5201C254666009EA9AC /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0AC5121C254666009EA9AC /* MJPhoto.m */; };
 		AA0AC5211C254666009EA9AC /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA0AC5131C254666009EA9AC /* MJPhotoBrowser.bundle */; };
 		AA0AC5221C254666009EA9AC /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0AC5151C254666009EA9AC /* MJPhotoBrowser.m */; };
@@ -295,6 +298,11 @@
 		87A3BD571C284DAF00A20A68 /* TopUserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopUserInfoView.h; sourceTree = "<group>"; };
 		87A3BD581C284DAF00A20A68 /* TopUserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopUserInfoView.m; sourceTree = "<group>"; };
 		87A3BD6D1C284EFB00A20A68 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		87C58F311C43FED700354BA5 /* NewAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAddressController.h; sourceTree = "<group>"; };
+		87C58F321C43FED700354BA5 /* NewAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAddressController.m; sourceTree = "<group>"; };
+		87C58F341C43FEF500354BA5 /* CityPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityPickerView.h; sourceTree = "<group>"; };
+		87C58F351C43FEF500354BA5 /* CityPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityPickerView.m; sourceTree = "<group>"; };
+		87C58F371C43FF3200354BA5 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		9B3E5DB48783979063398C32 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AA0AC5111C254666009EA9AC /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
 		AA0AC5121C254666009EA9AC /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
@@ -748,6 +756,8 @@
 			children = (
 				87A3BD2E1C284DAF00A20A68 /* AddressViewController.h */,
 				87A3BD2F1C284DAF00A20A68 /* AddressViewController.m */,
+				87C58F311C43FED700354BA5 /* NewAddressController.h */,
+				87C58F321C43FED700354BA5 /* NewAddressController.m */,
 				87A3BD301C284DAF00A20A68 /* ChangeUserNameController.h */,
 				87A3BD311C284DAF00A20A68 /* ChangeUserNameController.m */,
 				87A3BD321C284DAF00A20A68 /* FeedbackController.h */,
@@ -821,6 +831,8 @@
 				87A3BD561C284DAF00A20A68 /* TCTextView.m */,
 				87A3BD571C284DAF00A20A68 /* TopUserInfoView.h */,
 				87A3BD581C284DAF00A20A68 /* TopUserInfoView.m */,
+				87C58F341C43FEF500354BA5 /* CityPickerView.h */,
+				87C58F351C43FEF500354BA5 /* CityPickerView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -912,6 +924,7 @@
 				AA397E2A1C1ADBCA00843044 /* Assets.xcassets */,
 				AA7E705C1C40E6B300B37C0F /* public_key.der */,
 				AA397E2C1C1ADBCA00843044 /* LaunchScreen.storyboard */,
+				87C58F371C43FF3200354BA5 /* area.plist */,
 				AA397E2F1C1ADBCA00843044 /* Info.plist */,
 				AA397ECF1C1AE25500843044 /* tcpch.pch */,
 				AA397E1E1C1ADBCA00843044 /* Supporting Files */,
@@ -1340,6 +1353,7 @@
 				872A5C951C20632700AF221D /* per_icon_daifukuan@3x.png in Resources */,
 				AA0AC5211C254666009EA9AC /* MJPhotoBrowser.bundle in Resources */,
 				87A3BD1B1C284B6800A20A68 /* ShareSDKLocalizable.strings in Resources */,
+				87C58F381C43FF3200354BA5 /* area.plist in Resources */,
 				87A3BD681C284DAF00A20A68 /* OrderView.xib in Resources */,
 				AA937B681C279A0300F61304 /* AlipaySDK.bundle in Resources */,
 				872A5C981C20632700AF221D /* per_icon_daipingjia@3x.png in Resources */,
@@ -1478,9 +1492,11 @@
 				8780332A1C2060C3005BF2A9 /* UIView+Extnesion.m in Sources */,
 				86C395B61C215697002050CE /* UIImage+ColorToBackImage.m in Sources */,
 				AA58579E1C1FF7EF00A0CD29 /* AttributeView.m in Sources */,
+				87C58F331C43FED700354BA5 /* NewAddressController.m in Sources */,
 				AA82797E1C1C104B00C99D9A /* DetailScrollView.m in Sources */,
 				87A3BD5A1C284DAF00A20A68 /* ChangeUserNameController.m in Sources */,
 				878033291C2060C3005BF2A9 /* UIImage+Extension.m in Sources */,
+				87C58F361C43FEF500354BA5 /* CityPickerView.m in Sources */,
 				AA0AC5261C254666009EA9AC /* MJPhotoView.m in Sources */,
 				AA17BBE61C4384BE00E50EAF /* SecurityUtil.m in Sources */,
 				AA397E201C1ADBCA00843044 /* main.m in Sources */,

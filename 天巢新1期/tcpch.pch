@@ -17,7 +17,13 @@
 // 随机色
 #define RandomColor Color(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 
+#import "AppDelegate.h"
 
+//**全局 appdelegate 对象
+#define TheAppDelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+
+//**程序window
+#define TheWindow [(AppDelegate *)[UIApplication sharedApplication].delegate window]
 
 #import "Factory.h"
 #define ShareAppKey @"564e7ea267e58ee2b0005052" //ShareSdk  appkey
