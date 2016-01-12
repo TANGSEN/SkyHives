@@ -30,7 +30,7 @@
     }
     return self;
 }
-singleton_m(TabBarController)
+//singleton_m(TabBarController)
 
 /**
  *  重写父类的setSelectedIndex方法,在父类调用之前获取最后一次选中的位置
