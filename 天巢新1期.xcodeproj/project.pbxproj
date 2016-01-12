@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A1F441CB676155FEA5072B7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2313E2A313B6868B30229B59 /* libPods.a */; };
+		8628E41C1C44CB3200278CAD /* OrderAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8628E41B1C44CB3200278CAD /* OrderAddressModel.m */; };
 		86C395B61C215697002050CE /* UIImage+ColorToBackImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C395B51C215697002050CE /* UIImage+ColorToBackImage.m */; };
 		872A5C931C20632700AF221D /* per_icon_daifukuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 872A5C7B1C20632700AF221D /* per_icon_daifukuan.png */; };
 		872A5C941C20632700AF221D /* per_icon_daifukuan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 872A5C7C1C20632700AF221D /* per_icon_daifukuan@2x.png */; };
@@ -181,6 +182,8 @@
 
 /* Begin PBXFileReference section */
 		2313E2A313B6868B30229B59 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8628E41A1C44CB3200278CAD /* OrderAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderAddressModel.h; sourceTree = "<group>"; };
+		8628E41B1C44CB3200278CAD /* OrderAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderAddressModel.m; sourceTree = "<group>"; };
 		86C395B41C215697002050CE /* UIImage+ColorToBackImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorToBackImage.h"; sourceTree = "<group>"; };
 		86C395B51C215697002050CE /* UIImage+ColorToBackImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ColorToBackImage.m"; sourceTree = "<group>"; };
 		872A5C7B1C20632700AF221D /* per_icon_daifukuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = per_icon_daifukuan.png; sourceTree = "<group>"; };
@@ -743,8 +746,8 @@
 		87A3BD2C1C284DAF00A20A68 /* Profile(个人中心) */ = {
 			isa = PBXGroup;
 			children = (
-				87A3BD2D1C284DAF00A20A68 /* controller */,
 				87A3BD401C284DAF00A20A68 /* LoginAndRegister */,
+				87A3BD2D1C284DAF00A20A68 /* controller */,
 				87A3BD4D1C284DAF00A20A68 /* model */,
 				87A3BD4E1C284DAF00A20A68 /* view */,
 			);
@@ -814,6 +817,8 @@
 		87A3BD4D1C284DAF00A20A68 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				8628E41A1C44CB3200278CAD /* OrderAddressModel.h */,
+				8628E41B1C44CB3200278CAD /* OrderAddressModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1498,6 +1503,7 @@
 				878033291C2060C3005BF2A9 /* UIImage+Extension.m in Sources */,
 				87C58F361C43FEF500354BA5 /* CityPickerView.m in Sources */,
 				AA0AC5261C254666009EA9AC /* MJPhotoView.m in Sources */,
+				8628E41C1C44CB3200278CAD /* OrderAddressModel.m in Sources */,
 				AA17BBE61C4384BE00E50EAF /* SecurityUtil.m in Sources */,
 				AA397E201C1ADBCA00843044 /* main.m in Sources */,
 				AAE9CE2D1C1BCC54001EBE0D /* AutoScrollView.m in Sources */,

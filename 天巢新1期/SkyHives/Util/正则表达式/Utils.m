@@ -24,9 +24,9 @@
 #pragma 正则匹配用户密码
 + (BOOL)checkPassword:(NSString *)passWord
 {
-    NSString *passWordRegex = @"^[a-zA-Z0-9]{6,20}+$";
-    NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
-    BOOL isMatch =[passWordPredicate evaluateWithObject:passWord];
+    NSString *pattern = @"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,16}";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
+    BOOL isMatch = [pred evaluateWithObject:passWord];
     return isMatch;
 }
 +(NSString *)arc6RandomString

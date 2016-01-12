@@ -10,15 +10,16 @@
 
 #import "CityPickerView.h"
 #import "Utils.h"
+#import "OrderAddressModel.h"
 #define addAddressUrl @"http://www.skyhives.com/m/user/editadd"
 
 @interface NewAddressController ()<UITextFieldDelegate>
 
 @property (nonatomic,strong)NSArray *titles;
 @property (nonatomic,strong)UITableView *tableView;
-@property (nonatomic,strong)UITextField *textField0;
-@property (nonatomic,strong)UITextField *textField1;
-@property (nonatomic,strong)UITextField *textField3;
+@property (nonatomic,strong)UITextField *name;
+@property (nonatomic,strong)UITextField *PhoneNum;
+@property (nonatomic,strong)UITextField *Street;
 
 /**城市选择器视图*/
 @property (nonatomic,strong)CityPickerView *cityPickerView;
@@ -60,26 +61,34 @@
 /**保存数据*/
 -(void)Done{
     
-    BOOL isMatched = [Utils checkTelNumber:self.textField1.text];
+    BOOL isMatched = [Utils checkTelNumber:self.PhoneNum.text];
     
     if (!isMatched) {
         [self showErrorMsg:@"请输入正确的手机号码"];
         return;
     }
+    
+    
+    
     NSMutableDictionary *params = [[NSMutableDictionary alloc]init];
-    params[@"name"] = self.textField0.text;
+    params[@"name"] = self.name.text;
     params[@"area"] = _cityPickerView.showMsg;
-    params[@"tel"] = self.textField1.text;
-    params[@"street"] = self.textField3.text;
+    params[@"tel"] = self.PhoneNum.text;
+    params[@"street"] = self.Street.text;
+    params[@"zp-browse-id"] = [[SharedInstance sharedInstance]getUserID];
+
+    
     
     
     [JPNetWork GET:addAddressUrl parameters:params completionHandler:^(id responseObj, NSError *error) {
         if (!error) {
             [self showSuccessMsg:responseObj[@"msg"]];
+            
             NSLog(@"addAddError===%@",error);
         }
         else
         {
+            [self showErrorMsg:responseObj[@"msg"]];
             NSLog(@"addAddError===%@",error);
             
         }
@@ -87,7 +96,7 @@
     
     
     
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
@@ -107,21 +116,21 @@
     
     
     if (indexPath.row == 0){
-        self.textField0 = [[UITextField alloc] initWithFrame:CGRectMake(120, 0, JPScreenW-135, 44)];
-        self.textField0.clearButtonMode = UITextFieldViewModeAlways;
-        self.textField0.delegate = self;
-        self.textField0.font = AppFont(14);
-        self.textField0.keyboardType = UIKeyboardTypeDefault;
-        [cell.contentView addSubview:self.textField0];
+        self.name = [[UITextField alloc] initWithFrame:CGRectMake(120, 0, JPScreenW-135, 44)];
+        self.name.clearButtonMode = UITextFieldViewModeAlways;
+        self.name.delegate = self;
+        self.name.font = AppFont(14);
+        self.name.keyboardType = UIKeyboardTypeDefault;
+        [cell.contentView addSubview:self.name];
         
     }
     else if (indexPath.row == 1){
-        self.textField1 = [[UITextField alloc] initWithFrame:CGRectMake(120, 0, JPScreenW-135, 44)];
-        self.textField1.font = AppFont(14);
-        self.textField1.clearButtonMode = UITextFieldViewModeAlways;
-        self.textField1.delegate = self;
-        self.textField1.keyboardType = UIKeyboardTypeNumberPad;
-        [cell.contentView addSubview:self.textField1];
+        self.PhoneNum = [[UITextField alloc] initWithFrame:CGRectMake(120, 0, JPScreenW-135, 44)];
+        self.PhoneNum.font = AppFont(14);
+        self.PhoneNum.clearButtonMode = UITextFieldViewModeAlways;
+        self.PhoneNum.delegate = self;
+        self.PhoneNum.keyboardType = UIKeyboardTypeNumberPad;
+        [cell.contentView addSubview:self.PhoneNum];
         
         
     }else  if (indexPath.row ==2) {
@@ -138,13 +147,13 @@
         
     }
     else {
-        self.textField3 = [[UITextField alloc] initWithFrame:CGRectMake(120, 0, JPScreenW-135, 44)];
-        self.textField3.clearButtonMode = UITextFieldViewModeAlways;
-        self.textField3.delegate = self;
-        self.textField3.keyboardType = UIKeyboardTypeDefault;
-        self.textField3.font = AppFont(14);
+        self.Street = [[UITextField alloc] initWithFrame:CGRectMake(120, 0, JPScreenW-135, 44)];
+        self.Street.clearButtonMode = UITextFieldViewModeAlways;
+        self.Street.delegate = self;
+        self.Street.keyboardType = UIKeyboardTypeDefault;
+        self.Street.font = AppFont(14);
         
-        [cell.contentView addSubview:self.textField3];
+        [cell.contentView addSubview:self.Street];
         
     }
     
@@ -168,9 +177,9 @@
     
     [_cityPickerView removeFromSuperview];
     if (indexPath.row == 2) {
-        [self.textField0 resignFirstResponder];
-        [self.textField1 resignFirstResponder];
-        [self.textField3 resignFirstResponder];
+        [self.name resignFirstResponder];
+        [self.PhoneNum resignFirstResponder];
+        [self.Street resignFirstResponder];
         [self addPickerView];
     }
     
@@ -193,11 +202,11 @@
     
     
     [_cityPickerView removeFromSuperview];
-    [self.textField0 resignFirstResponder];
-    [self.textField1 resignFirstResponder];
-    [self.textField3 resignFirstResponder];
+    [self.name resignFirstResponder];
+    [self.PhoneNum resignFirstResponder];
+    [self.Street resignFirstResponder];
 
-    _cityPickerView = [[CityPickerView alloc] initWithFrame:CGRectMake(0, JPScreenH - 200, JPScreenW, 200)];
+    _cityPickerView = [[CityPickerView alloc] initWithFrame:CGRectMake(0, JPScreenH - 240, JPScreenW, 240)];
     [self.view addSubview:_cityPickerView];
 
     

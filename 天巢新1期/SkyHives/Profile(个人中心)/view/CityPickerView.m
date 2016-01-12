@@ -26,7 +26,6 @@
     
     if ([provinceStr isEqualToString: cityStr] || [cityStr isEqualToString: districtStr]) {
         cityStr = @"";
-//        districtStr = @"";
     }
     else if ([cityStr isEqualToString: districtStr]) {
         districtStr = @"";
@@ -40,7 +39,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        [self getAreaData];
+
         _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 40, 40)];
         [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
         [_cancelBtn setTitleColor:AppColor forState:UIControlStateNormal];
@@ -59,8 +59,9 @@
         self.pickView.dataSource = self;
         self.pickView.showsSelectionIndicator = YES;
         [self.pickView selectRow:0 inComponent:0 animated:YES];
+        _selectedProvince = [_provinces objectAtIndex: 0];
+
         [self addSubview:self.pickView];
-        [self getAreaData];
         
     }
     return self;
@@ -138,98 +139,106 @@
 }
 #pragma mark - pickerview delegate
 
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    
-    if (component == 0) {
-        
-        return [_provinces objectAtIndex:row];
-    }
-    else if (component == 1) {
-        
-        return [_citys objectAtIndex:row];
-        
-    }
-    else {
-        
-        return [_districts objectAtIndex:row];
-        
-    }
-    
-}
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    if (component ==0) {
-        
-        _selectedProvince = [_provinces objectAtIndex:row];
+    if (component == PROVINCE_COMPONENT) {
+        _selectedProvince = [_provinces objectAtIndex: row];
         NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [_areaDic objectForKey: [NSString stringWithFormat:@"%ld", (long)row]]];
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: _selectedProvince]];
         NSArray *cityArray = [dic allKeys];
+        NSArray *sortedArray = [cityArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+            
+            if ([obj1 integerValue] > [obj2 integerValue]) {
+                return (NSComparisonResult)NSOrderedDescending;//递减
+            }
+            
+            if ([obj1 integerValue] < [obj2 integerValue]) {
+                return (NSComparisonResult)NSOrderedAscending;//上升
+            }
+            return (NSComparisonResult)NSOrderedSame;
+        }];
         
         NSMutableArray *array = [[NSMutableArray alloc] init];
-        for (int i = 0; i<[cityArray count]; i++) {
-            NSString *index = [cityArray objectAtIndex:i];
+        for (int i=0; i<[sortedArray count]; i++) {
+            NSString *index = [sortedArray objectAtIndex:i];
             NSArray *temp = [[dic objectForKey: index] allKeys];
             [array addObject: [temp objectAtIndex:0]];
         }
+        
         _citys = [[NSArray alloc] initWithArray: array];
         
-        
-        
-        
-        NSDictionary *cityDic = [dic objectForKey: [cityArray objectAtIndex: 0]];
+        NSDictionary *cityDic = [dic objectForKey: [sortedArray objectAtIndex: 0]];
         _districts = [[NSArray alloc] initWithArray: [cityDic objectForKey: [_citys objectAtIndex: 0]]];
-        [self.pickView reloadComponent:1];
-        [self.pickView reloadComponent:2];
-        [self.pickView selectRow:0 inComponent:1 animated:YES];
-        [self.pickView selectRow:0 inComponent:2 animated:YES];;
-        
-        
+        [_pickView selectRow: 0 inComponent: CITY_COMPONENT animated: YES];
+        [_pickView selectRow: 0 inComponent: DISTRICT_COMPONENT animated: YES];
+        [_pickView reloadComponent: CITY_COMPONENT];
+        [_pickView reloadComponent: DISTRICT_COMPONENT];
         
     }
-    if (component == 1) {
+    else if (component == CITY_COMPONENT) {
+
         NSString *provinceIndex = [NSString stringWithFormat: @"%lu", (unsigned long)[_provinces indexOfObject: _selectedProvince]];
         NSDictionary *tmp = [NSDictionary dictionaryWithDictionary: [_areaDic objectForKey: provinceIndex]];
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary: [tmp objectForKey: _selectedProvince]];
         NSArray *dicKeyArray = [dic allKeys];
-        NSDictionary *cityDic = [NSDictionary dictionaryWithDictionary: [dic objectForKey: [dicKeyArray objectAtIndex: row]]];
+        NSArray *sortedArray = [dicKeyArray sortedArrayUsingComparator: ^(id obj1, id obj2) {
+            
+            if ([obj1 integerValue] > [obj2 integerValue]) {
+                return (NSComparisonResult)NSOrderedDescending;
+            }
+            
+            if ([obj1 integerValue] < [obj2 integerValue]) {
+                return (NSComparisonResult)NSOrderedAscending;
+            }
+            return (NSComparisonResult)NSOrderedSame;
+        }];
+        
+        NSDictionary *cityDic = [NSDictionary dictionaryWithDictionary: [dic objectForKey: [sortedArray objectAtIndex: row]]];
         NSArray *cityKeyArray = [cityDic allKeys];
+        
         _districts = [[NSArray alloc] initWithArray: [cityDic objectForKey: [cityKeyArray objectAtIndex:0]]];
-        [self.pickView selectRow: 0 inComponent: 2 animated: YES];
-        [self.pickView reloadComponent: 2];
+        [_pickView selectRow: 0 inComponent: DISTRICT_COMPONENT animated: YES];
+        [_pickView reloadComponent: DISTRICT_COMPONENT];
     }
     
-    
 }
+
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
+    return JPScreenW/3;
+}
+
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UILabel *myView = nil;
     
-    if (component == 0) {
+    if (component == PROVINCE_COMPONENT) {
         myView = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, JPScreenW/3, 30)];
         myView.textAlignment = NSTextAlignmentCenter;
         myView.text = [_provinces objectAtIndex:row];
-        myView.font = [UIFont boldSystemFontOfSize:14];
+        myView.font = [UIFont systemFontOfSize:14];
         myView.backgroundColor = [UIColor clearColor];
     }
-    else if (component == 1) {
+    else if (component == CITY_COMPONENT) {
         myView = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, JPScreenW/3, 30)];
         myView.textAlignment = NSTextAlignmentCenter;
         myView.text = [_citys objectAtIndex:row];
-        myView.font = [UIFont boldSystemFontOfSize:14];
+        myView.font = [UIFont systemFontOfSize:14];
         myView.backgroundColor = [UIColor clearColor];
     }
     else {
         myView = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, JPScreenW/3, 30)];
         myView.textAlignment = NSTextAlignmentCenter;
         myView.text = [_districts objectAtIndex:row];
-        myView.font = [UIFont boldSystemFontOfSize:14];
+        myView.font = [UIFont systemFontOfSize:14];
         myView.backgroundColor = [UIColor clearColor];
     }
     
     return myView;
 }
+
+
 
 
 @end
