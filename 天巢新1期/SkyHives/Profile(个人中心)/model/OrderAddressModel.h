@@ -10,10 +10,11 @@
 
 @interface OrderAddressModel : NSObject
 
-@property (nonatomic,copy)NSString *Name;
-@property (nonatomic,copy)NSString *Address;
-@property (nonatomic,copy)NSString *PhoneNum;
+@property (nonatomic,copy)NSString *name;
+@property (nonatomic,copy)NSString *detailed_address;
+@property (nonatomic,copy)NSString *phone;
 
 +(NSMutableArray *)demoData;
 +(OrderAddressModel *)orderAddressModel;
++(id)OrderAddressWithDict:(NSDictionary *)dict;
 @end

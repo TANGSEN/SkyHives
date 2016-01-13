@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface NewAddressController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property(nonatomic,copy)NSString *orderName;
+@property(nonatomic,copy)NSString *orderPhone;
+@property(nonatomic,copy)NSString *orderStreet;
+
 
 @end
