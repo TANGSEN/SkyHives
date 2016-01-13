@@ -14,7 +14,6 @@
     
     thumb = [thumb stringByReplacingOccurrencesOfString:@"Picture" withString:@"Thumb_Picture"];
     _thumb = thumb;
-    NSLog(@"%@",_thumb);
 }
 
 @end

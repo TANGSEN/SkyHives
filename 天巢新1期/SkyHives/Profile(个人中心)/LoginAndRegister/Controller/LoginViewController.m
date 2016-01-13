@@ -201,9 +201,8 @@
         NSNumber *status = responseObject[@"status"];
         
         
-        //      NSString * UserID = [NSString stringWithFormat:@]responseObject[@"data"][@"zp-browse-id"];
-        //                NSLog(@"UserID%@",UserID);
-        NSLog(@"UserID%@",responseObject);
+        NSString *str = responseObject[@"data"];
+        NSLog(@"%@",responseObject[@"data"]);
         if ([status isEqualToNumber:@1]) {
             [self showSuccessMsg:responseObject[@"msg"]];
             

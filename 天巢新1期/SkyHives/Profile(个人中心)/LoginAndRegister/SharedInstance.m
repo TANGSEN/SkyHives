@@ -141,9 +141,6 @@ static SharedInstance *shared = nil;
     [[SharedInstance sharedInstance] setUserImage:nil];
     
 }
-
-
-
 //-(BOOL)alreadyLanded
 //{
 //

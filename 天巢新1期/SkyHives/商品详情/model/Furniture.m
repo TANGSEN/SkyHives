@@ -10,6 +10,9 @@
 
 @implementation Furniture
 
-
+- (void)setImgs:(NSArray *)imgs{
+    _imgs = imgs;
+    NSLog(@"%@",imgs);
+}
 
 @end

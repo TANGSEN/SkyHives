@@ -17,6 +17,9 @@
     NSString *path = [NSString stringWithFormat:@"%@%ld",kFurnitureIdPath,ID];
     
     return [self GET:path parameters:params completionHandler:^(id responseObj, NSError *error) {
+#warning LOG...
+        NSLog(@"responseObj==%@",responseObj);
+        
         completionHandle([Furniture mj_objectWithKeyValues:responseObj],error);
     }];
 }

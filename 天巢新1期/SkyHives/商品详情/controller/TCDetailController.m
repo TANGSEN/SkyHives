@@ -116,6 +116,8 @@
        self.ggcsView = [[GGCSView alloc]initWithFrame:CGRectMake(0, 0, JPScreenW, [GGCSView Height]) style:UITableViewStylePlain];
        self.ggcsView.hidden = YES;
        self.ggcsView.furniture = model;
+#warning LOG...
+       NSLog(@"%@",model.imgs);
        
        // 刷新table
        [self.tableView reloadData];
@@ -124,12 +126,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_shoucang"] style:0 target:self action:@selector(rightBarButtonClick)];
     [self.view addSubview:self.tableView];
     self.title = @"商品详情";
     [self setupPhoneBtnAndGouWuBtn];
     self.navigationItem.backBarButtonItem.tintColor = [UIColor whiteColor];
 }
 
+/**
+ *  右侧按钮点击方法
+ */
+- (void)rightBarButtonClick{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"zp-browse-id"] = @"5C76A6543797577A3F7A5097B18875E55285AD0672A68E004BDE167A0FF08948672AE031A091FC00EECDFDD703738E58";
+    params[@"status"] = @1;
+    params[@"g_id"] = @(self.furniture.id);
+    params[@"is_item"] = @1;
+    [JPNetWork POST:@"http://www.skyhives.com/goods/addcollection" parameters:params completionHandler:^(NSDictionary *responseObj, NSError *error) {
+        NSLog(@"添加%@",responseObj);
+    }];
+    
+    
+    [JPNetWork POST:@"http://www.skyhives.com/userbehavior/collection" parameters:@{@"zp-browse-id":@"5C76A6543797577A3F7A5097B18875E55285AD0672A68E004BDE167A0FF08948672AE031A091FC00EECDFDD703738E58"} completionHandler:^(id responseObj, NSError *error) {
+        NSLog(@"查询%@",responseObj);
+    }];
+    
+}
 
 - (void)setupPhoneBtnAndGouWuBtn{
     /** 打电话给商家 */

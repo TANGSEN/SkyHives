@@ -362,7 +362,7 @@
         return;
     }
     
-    [JPNetWork POST:@"http://www.skyhives.com/m/chkcode" parameters:@{@"telphone":self.phoneText.text,@"random":self.yanzhengma.text} completionHandler:^(NSDictionary * responseObj, NSError *error) {
+    [JPNetWork GET:@"http://www.skyhives.com/m/chkcode" parameters:@{@"telphone":self.phoneText.text,@"random":self.yanzhengma.text} completionHandler:^(NSDictionary * responseObj, NSError *error) {
         NSLog(@"responseObj===%@",responseObj);
         NSLog(@"error===%ld",error.code);
         if (error) {
