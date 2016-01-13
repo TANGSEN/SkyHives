@@ -122,9 +122,9 @@ static SharedInstance *shared = nil;
     [[SharedInstance sharedInstance] setUserImage:nil];
     
 }
--(BOOL)alreadyLanded
-{
-
-    return YES;
-}
+//-(BOOL)alreadyLanded
+//{
+//
+//    return YES;
+//}
 @end

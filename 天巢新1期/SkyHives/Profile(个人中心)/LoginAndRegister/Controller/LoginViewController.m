@@ -204,7 +204,7 @@
     params[@"code"] = str;
     
     
-    [mgr GET:@"http://192.168.1.154:8080/zp/userbehaviorapi/loginApp?" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
+    [mgr GET:@"http://www.skyhives.com/userbehaviorapi/loginApp?" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
         
         NSNumber *status = responseObject[@"status"];
         
@@ -212,6 +212,8 @@
         
         NSLog(@"%@",responseObject);
         
+        NSString *str = responseObject[@"data"];
+        NSLog(@"%@",responseObject[@"data"]);
         if ([status isEqualToNumber:@1]) {
             [self showSuccessMsg:@"登陆成功"];
             

@@ -11,6 +11,15 @@
 @implementation FurnitureModel
 
 
+- (void)setThumb:(NSString *)thumb{
+    
+    thumb = [thumb stringByReplacingOccurrencesOfString:@"Picture" withString:@"Thumb_Picture"];
+    _thumb = thumb;
+}
+
+
+
+
 @end
 
 
