@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CityPickerView : UIView<UIPickerViewDataSource,UIPickerViewDelegate>
-/**区域字典*/
+#define PROVINCE_COMPONENT  0
+#define CITY_COMPONENT      1
+#define DISTRICT_COMPONENT  2
+@interface CityPickerView : UIView<UIPickerViewDataSource,UIPickerViewDelegate>/**区域字典*/
 @property (nonatomic,strong)NSDictionary *areaDic;
 /**省*/
 @property (nonatomic,strong)NSArray *provinces;

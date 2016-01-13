@@ -114,6 +114,25 @@ static SharedInstance *shared = nil;
     
     
 }
+
+/**设置userID*/
+-(void)setUserID:(NSString *)UserID
+{
+
+    [[NSUserDefaults standardUserDefaults] setObject:UserID forKey:@"UserID"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+}
+/**获取userID*/
+-(NSString *)getUserID
+{
+    NSString *UserID=[[NSUserDefaults standardUserDefaults]objectForKey:@"UserID"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    return UserID;
+    
+
+}
+
 -(void)clearAllData{
     [SharedInstance sharedInstance].alreadyLanded = NO;
     [[SharedInstance sharedInstance] setPhoneNumber:@""];

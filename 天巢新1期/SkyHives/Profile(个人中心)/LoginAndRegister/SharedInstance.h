@@ -38,4 +38,12 @@
 
 /**标记用户是否已经登陆*/
 @property (nonatomic,assign)  BOOL alreadyLanded;
+
+/**设置USERID*/
+-(void)setUserID:(NSString *)UserID;
+
+/**获取userID*/
+-(NSString *)getUserID;
+
+
 @end

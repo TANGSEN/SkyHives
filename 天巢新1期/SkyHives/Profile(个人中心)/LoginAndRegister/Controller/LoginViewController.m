@@ -168,16 +168,14 @@
 -(void)login{
     
     if (!self.userText.text.length) {
-        //        AlertLog(nil, @"请输入手机号码", @"确定", nil);
         [self showErrorMsg:@"请输入手机号码"];
         return ;
     }
     if (!self.passwordText.text.length) {
-        //        AlertLog(nil, @"请输入密码", @"确定", nil);
         [self showErrorMsg: @"请输入密码"];
         return ;
     }
-
+    
     
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
@@ -190,14 +188,8 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyyMMddHHmm"];
     NSString *currentDateStr = [dateFormatter stringFromDate:[NSDate date]];
-    
-
-    
-    
-
-    
     NSString *originString = [NSString stringWithFormat:@"{account:'%@',password:'%@',time:'%@',random:'%@'}",self.userText.text,self.passwordText.text.md5String,currentDateStr,@"258258"];
-
+    
     NSData *data = [SecurityUtil encryptAESWithString:originString];
     NSString *str = [NSString hexStringForData:data];
     
@@ -208,22 +200,19 @@
         
         NSNumber *status = responseObject[@"status"];
         
-        NSLog(@"%@",status);
-        
-        NSLog(@"%@",responseObject);
         
         NSString *str = responseObject[@"data"];
         NSLog(@"%@",responseObject[@"data"]);
         if ([status isEqualToNumber:@1]) {
-            [self showSuccessMsg:@"登陆成功"];
+            [self showSuccessMsg:responseObject[@"msg"]];
             
             //在此存储手机号和密码，进入个人中心
-            [[SharedInstance sharedInstance] setPhoneNumber:self.userText.text];
-            [[SharedInstance sharedInstance] setPassword:self.passwordText.text];
+            //            [[SharedInstance sharedInstance] setPhoneNumber:self.userText.text];
+            //            [[SharedInstance sharedInstance] setPassword:self.passwordText.text];
             
             //标记已经登录
             [SharedInstance sharedInstance].alreadyLanded = YES;
-            
+            [[SharedInstance sharedInstance] setUserID:@"A8EE7617146FD3C6A034516C543DC589811825ABB831CA69F78A0EBE4D6992BD7F0B8A0C78D574EF6AFEACB9DDA4890D"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -252,7 +241,7 @@
 {
     
     NSString *secret = @"{account:'13416137382',password:'5a854bedc4ceb10e33acbab3552b58f9',time:'201501111144',random:'654321'}";
-
+    
     //加密
     NSString *encryptDate=[SecurityUtil encryptAESData:secret];
     NSLog(@"base64EncryptDate %@",encryptDate);
