@@ -15,43 +15,35 @@
 @interface AddressViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)UIScrollView *scrollView;
-@property (nonatomic,strong)NSMutableArray *arr;
+//@property (nonatomic,strong)NSMutableArray *arr;
+@property(nonatomic,assign) int arr;
 @property (nonatomic,strong)UILabel *bottomLabel;
 @property (nonatomic,strong)UIView *footerView;
+@property(nonatomic,strong)OrderAddressModel *orderAddressModel;
+@property(nonatomic,strong)NSDictionary *orderDic;
+
 @end
 
 @implementation AddressViewController
 
 
--(NSMutableArray *)arr
-{
-    if (!_arr) {
-//        _arr = [[NSMutableArray alloc] init];
-        _arr = [OrderAddressModel demoData];
-
-    }
-    return _arr;
-
-}
+//-(NSMutableArray *)arr
+//{
+//    if (!_arr) {
+////        _arr = [[NSMutableArray alloc] init];
+//        _arr = [OrderAddressModel demoData];
+//
+//    }
+//    return _arr;
+//
+//}
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    params[@"zp-browse-id"] = [[SharedInstance sharedInstance]getUserID];
-    [JPNetWork GET:CHECK_ADDRESS_URL parameters:params completionHandler:^(NSDictionary* responseObj, NSError *error) {
-        
-        
-        /**获取到收货地址
-         根据个数然后
-         
-         */
-        [self showSuccessMsg:[NSString stringWithFormat:@"%@",responseObj[@"msg"]]];
-        NSLog(@"CHECK_ADDRESS_responseObj====%@",responseObj);
-        NSLog(@"CHECK_ADDRESS_msg====%@",responseObj[@"msg"]);
-        NSLog(@"CHECK_ADDRESS_data====%@",responseObj[@"data"]);
-    }];
+//    [self.tableView reloadData];
+    [self getNetwork];
+
     
 }
 - (void)viewDidLoad {
@@ -59,10 +51,12 @@
     [self setUpRightBarItem];
     
     [super viewDidLoad];
+    
     self.view.backgroundColor = View_BgColor;
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, JPScreenW, JPScreenH)];
     scrollView.scrollEnabled = YES;
     scrollView.alwaysBounceVertical = YES;
+    _arr = 1;
     
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, JPScreenW, JPScreenH+100)];
@@ -72,7 +66,7 @@
     
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), JPScreenW, 100)];
     [scrollView addSubview:self.tableView];
-//    [scrollView addSubview:footerView];
+    //    [scrollView addSubview:footerView];
     
     self.tableView.tableFooterView = footerView;
     self.view.backgroundColor = View_BgColor;
@@ -88,15 +82,18 @@
     UILabel *bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(addAdddress.frame), JPScreenW, 40)];
     
     self.bottomLabel = bottomLabel;
-    if (self.arr.count==0) {
+    
+    if (self.arr==0) {
         bottomLabel.text = @"您还没有地址";
         
     }else
     {
         bottomLabel.text = @"您最多添加10个有效地址";
         
-        
     }
+    
+    
+    
     bottomLabel.textAlignment = NSTextAlignmentCenter;
     bottomLabel.textColor = [UIColor lightGrayColor];
     bottomLabel.font = AppFont(13);
@@ -110,6 +107,22 @@
     
 }
 
+-(void)getNetwork
+{
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    params[@"zp-browse-id"] = [[SharedInstance sharedInstance]getUserID];
+    
+    [JPNetWork GET:CHECK_ADDRESS_URL parameters:params completionHandler:^(NSDictionary* responseObj, NSError *error) {
+        
+        [self showSuccessMsg:[NSString stringWithFormat:@"%@",responseObj[@"msg"]]];
+        _orderDic = [[NSDictionary alloc]init];
+        _orderDic = responseObj[@"data"];
+        [self.tableView reloadData];
+    }];
+    
+    
+}
 -(void)setUpRightBarItem{
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
     
@@ -126,39 +139,50 @@
 #pragma mark - tableview datasource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
-    return self.arr.count;
+    
+    return _arr;
     
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     
-    OrderAddressModel *order = self.arr[indexPath.row];
-    cell.textLabel.text = order.Name;
+    UITableViewCell *cell  = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    self.orderAddressModel = [OrderAddressModel mj_objectWithKeyValues:_orderDic];
+    
+    cell.textLabel.text = self.orderAddressModel.name;
     cell.textLabel.font = AppFont(13);
     cell.detailTextLabel.font = AppFont(12);
-    cell.detailTextLabel.text = order.Address;
+    cell.detailTextLabel.text = _orderAddressModel.detailed_address;
     UILabel *accessoryL = [[UILabel alloc]initWithFrame:CGRectMake(ApplicationframeValue.width/2+20, 5, 100, 30)];
-    accessoryL.text = order.PhoneNum;
+    accessoryL.text = _orderAddressModel.phone;
     accessoryL.textAlignment = NSTextAlignmentCenter;
-//    cell.textLabel.text = [[SharedInstance sharedInstance] getUserName];
-//    cell.detailTextLabel.text = @"广东省广州市";
-//    UILabel *accessoryL = [[UILabel alloc]initWithFrame:CGRectMake(ApplicationframeValue.width/2+20, 0, 80, 30)];
-//    accessoryL.text = [[SharedInstance sharedInstance] getPhoneNumber];
     accessoryL.font = AppFont(12);
-    //    cell.accessoryView = accessoryL;
     [cell.contentView addSubview:accessoryL];
     cell.backgroundColor = [UIColor whiteColor];
     cell.accessoryType= UITableViewCellAccessoryDisclosureIndicator;
     
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NewAddressController *newAddressVC  = [[NewAddressController alloc] init];
+    newAddressVC.orderName = _orderAddressModel.name;
+    newAddressVC.orderPhone = _orderAddressModel.phone;
+    newAddressVC.orderStreet = _orderAddressModel.detailed_address;
+    
+    [self.navigationController pushViewController:newAddressVC animated:YES];
+    
+    
+    
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -168,7 +192,7 @@
     self.navigationItem.rightBarButtonItem.title = self.tableView.editing?@"编辑":@"完成";
     [UIView animateWithDuration:0.35f animations:^{
         self.tableView.editing = !self.tableView.editing;
-
+        
     }];
     
 }
@@ -189,22 +213,23 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_arr removeObjectAtIndex:indexPath.row];
+        //        [_arr removeObjectAtIndex:indexPath.row];
+        _arr--;
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
+            
         });
     }
-        if (self.arr.count==0) {
-            _bottomLabel.text = @"您还没有地址";
-            
-        }else
-        {
-            _bottomLabel.text = @"您最多添加10个有效地址";
-            
-            
-        }
+    if (self.arr==0) {
+        _bottomLabel.text = @"您还没有地址";
+        
+    }else
+    {
+        _bottomLabel.text = @"您最多添加10个有效地址";
+        
+        
+    }
 }
 
 //修改编辑按钮文字

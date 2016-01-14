@@ -177,7 +177,6 @@
     }
     
     
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     
     
     
@@ -195,7 +194,8 @@
     
     params[@"code"] = str;
     
-    
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+
     [mgr GET:@"http://www.skyhives.com/userbehaviorapi/loginApp?" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
         
         NSNumber *status = responseObject[@"status"];

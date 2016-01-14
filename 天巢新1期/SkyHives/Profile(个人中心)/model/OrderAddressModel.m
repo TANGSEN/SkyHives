@@ -24,19 +24,30 @@ static OrderAddressModel *order = nil;
 +(NSMutableArray *)demoData
 {
     OrderAddressModel *order2 = [[self alloc] init];
-    order2.Name = @"赵贺";
-    order2.PhoneNum = @"13324564356";
-    order2.Address = @"北京朝阳区";
+    order2.name = @"赵贺";
+    order2.phone = @"13324564356";
+    order2.detailed_address = @"北京朝阳区";
     
     OrderAddressModel *order1 = [[self alloc] init];
-    order1.Name = @"苹果";
-    order1.PhoneNum = @"13687654653";
-    order1.Address = @"大连";
+    order1.name = @"苹果";
+    order1.phone = @"13687654653";
+    order1.detailed_address = @"大连";
     
     OrderAddressModel *order3 = [[self alloc] init];
-    order3.Name = @"小唐";
-    order3.PhoneNum = @"13324564356";
-    order3.Address = @"广东省广州市天河区";
+    order3.name = @"小唐";
+    order3.phone = @"13324564356";
+    order3.detailed_address = @"广东省广州市天河区";
     return [NSMutableArray arrayWithObjects:order2,order1,order3,nil];
+}
+
++(id)OrderAddressWithDict:(NSDictionary *)dict
+{
+
+    OrderAddressModel *order = [[OrderAddressModel alloc] init];
+    order.name = dict[@"name"];
+    order.phone = dict[@"phone"];
+    order.detailed_address = dict[@"detailed_address"];
+    
+    return order;
 }
 @end

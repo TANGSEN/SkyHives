@@ -121,6 +121,7 @@
         self.name.delegate = self;
         self.name.font = AppFont(14);
         self.name.keyboardType = UIKeyboardTypeDefault;
+        self.name.text = self.orderName;
         [cell.contentView addSubview:self.name];
         
     }
@@ -130,6 +131,7 @@
         self.PhoneNum.clearButtonMode = UITextFieldViewModeAlways;
         self.PhoneNum.delegate = self;
         self.PhoneNum.keyboardType = UIKeyboardTypeNumberPad;
+        self.PhoneNum.text = self.orderPhone;
         [cell.contentView addSubview:self.PhoneNum];
         
         
@@ -137,7 +139,7 @@
         
         UIButton *CitySelectedBtn = [[UIButton alloc] initWithFrame:CGRectMake(120, 0, JPScreenW-120, 44)];
         [CitySelectedBtn addTarget:self action:@selector(addPickerView) forControlEvents:UIControlEventTouchUpInside];
-        //            [CitySelectedBtn setTitle:self.showMsg forState:UIControlStateNormal];
+        [CitySelectedBtn setTitle:self.orderStreet forState:UIControlStateNormal];
         [CitySelectedBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         CitySelectedBtn.titleLabel.font = AppFont(14);
         CitySelectedBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -152,7 +154,7 @@
         self.Street.delegate = self;
         self.Street.keyboardType = UIKeyboardTypeDefault;
         self.Street.font = AppFont(14);
-        
+        self.Street.text = self.orderStreet;
         [cell.contentView addSubview:self.Street];
         
     }
