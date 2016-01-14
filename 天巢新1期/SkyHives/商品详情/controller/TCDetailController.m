@@ -116,8 +116,6 @@
        self.ggcsView = [[GGCSView alloc]initWithFrame:CGRectMake(0, 0, JPScreenW, [GGCSView Height]) style:UITableViewStylePlain];
        self.ggcsView.hidden = YES;
        self.ggcsView.furniture = model;
-#warning LOG...
-       NSLog(@"%@",model.imgs);
        
        // 刷新table
        [self.tableView reloadData];
@@ -136,21 +134,22 @@
 /**
  *  右侧按钮点击方法
  */
+#warning 添加收藏未完成,查看以收藏商品失败,服务器返回数据为null
 - (void)rightBarButtonClick{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"zp-browse-id"] = @"5C76A6543797577A3F7A5097B18875E55285AD0672A68E004BDE167A0FF08948672AE031A091FC00EECDFDD703738E58";
+    params[@"zp-browse-id"] = kZPBROWSEID;
     params[@"status"] = @1;
     params[@"g_id"] = @(self.furniture.id);
     params[@"is_item"] = @1;
-    [JPNetWork POST:@"http://www.skyhives.com/goods/addcollection" parameters:params completionHandler:^(NSDictionary *responseObj, NSError *error) {
+    [JPNetWork GET:@"http://www.skyhives.com/goods/addcollection" parameters:params completionHandler:^(NSDictionary *responseObj, NSError *error) {
         NSLog(@"添加%@",responseObj);
+        NSLog(@"msg===%@",responseObj[@"msg"]);
+        if ([responseObj[@"status"] isEqualToNumber:@1]) {
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }else{
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }
     }];
-    
-    
-    [JPNetWork POST:@"http://www.skyhives.com/userbehavior/collection" parameters:@{@"zp-browse-id":@"5C76A6543797577A3F7A5097B18875E55285AD0672A68E004BDE167A0FF08948672AE031A091FC00EECDFDD703738E58"} completionHandler:^(id responseObj, NSError *error) {
-        NSLog(@"查询%@",responseObj);
-    }];
-    
 }
 
 - (void)setupPhoneBtnAndGouWuBtn{
@@ -186,8 +185,9 @@
     gouBtn.backgroundColor = [UIColor grayColor];
     [gouBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
     [gouBtn bk_addEventHandler:^(id sender) {
+        
+        [self addFurnitureObjectToShoppingCar];
 
-        [self showSuccessMsg:@"亲~~ 已成功加入购物车"];
         
     } forControlEvents:UIControlEventTouchUpInside];
     [gouBtn setImage:[UIImage imageNamed:@"icon_gouwu"] forState:UIControlStateNormal];
@@ -199,10 +199,43 @@
     [self.view addSubview:ARBtn];
 }
 
+#warning 添加到购物车失败,显示库存不足!
+- (void)addFurnitureObjectToShoppingCar{
+    NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
+    parmas[@"count"] = @1;
+    parmas[@"g_id"] = @(self.furniture.id);
+    NSLog(@"self.furniture.id==%ld",(long)self.furniture.id);
+    parmas[@"i_id"] = @(self.furnture.i_id);
+    NSLog(@"self.furnture.i_id===%ld",(long)self.furnture.i_id);
+    parmas[@"sid"] = @1;
+    parmas[@"is_item"] = @1;
+    parmas[@"zp-browse-id"] = kZPBROWSEID;
+    
+    [JPNetWork POST:@"http://www.skyhives.com/m/add?" parameters:parmas completionHandler:^(NSDictionary *responseObj, NSError *error) {
+        
+//        if (error == nil && [responseObj[@"status"] isEqualToNumber:@1]) {
+//            [self showSuccessMsg:@"亲~~ 已成功加入购物车"];
+//        }
+        
+        if ([responseObj[@"status"] isEqualToNumber:@1]) {
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }else{
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }
+        
+        NSLog(@"msg --- %@",responseObj[@"msg"]);
+        NSLog(@"添加到购物车responseObj%@",responseObj);
+        NSLog(@"添加到购物车error%@",error);
+    }];
+}
+
 /**
  *  加入购物车按钮响应方法
  */
 - (void)gouwu{
+    
+    [self addFurnitureObjectToShoppingCar];
+    
 }
 /**
  *  测试功能

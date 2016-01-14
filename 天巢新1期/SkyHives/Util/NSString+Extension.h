@@ -20,4 +20,13 @@
 
 + (NSData*)dataForHexString:(NSString*)hexString;
 
+/**
+ *  生成随机订单号
+ *
+ *  @param length 长度
+ *
+ *  @return 随机订单号
+ */
++ (NSString *)rand_str:(int) length ;
+
 @end

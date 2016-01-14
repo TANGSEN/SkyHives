@@ -14,6 +14,8 @@
 
 @interface Furniture : NSObject
 
+/** 商品iid */
+@property (nonatomic ,assign) NSInteger i_id;
 /** 商品描述 */
 @property (nonatomic, copy) NSString *descrip;
 
@@ -48,7 +50,7 @@
 @property (nonatomic, assign) NSInteger sold_count;
 
 /** 图片数组 */
-@property (nonatomic, copy) NSString *imgs;
+@property (nonatomic, copy) NSArray *imgs;
 
 /** 内容 */
 @property (nonatomic, copy) NSString *content;

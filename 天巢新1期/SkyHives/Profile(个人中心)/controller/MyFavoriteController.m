@@ -14,6 +14,18 @@
 {
     [super viewDidLoad];
     
+#warning 查询我的收藏失败,服务器返回status code 404
+    [JPNetWork GET:@"http://www.skyhives.com/userbehaviorapi/collection" parameters:@{@"zp-browse-id":kZPBROWSEID} completionHandler:^(id responseObj, NSError *error) {
+        NSLog(@"查询我的收藏responseObj===%@",responseObj);
+        NSLog(@"查询我的收藏error===%@",error);
+        
+        if ([responseObj[@"status"] isEqualToNumber:@1]) {
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }else{
+            [self showSuccessMsg:@"查询失败"];
+        }
+    }];
+    
     self.view.backgroundColor = [UIColor whiteColor];
 
     
@@ -39,6 +51,7 @@
     return 2;
     
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *identifier = @"TCOrderCell";

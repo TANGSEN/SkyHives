@@ -191,7 +191,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     [super viewDidLoad];
     [Pingpp setDebugMode:YES];
     
-    
+    [self checkShoppingCart];
     
     // 添加最底层的scrollView
     [self.view addSubview:self.scrollView];
@@ -210,6 +210,32 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     
 //    [self.scrollView addSubview:self.collectionView];
 }
+
+/**
+ *  查询购物车
+ */
+- (void)checkShoppingCart{
+#warning 查询购物车失败,服务器返回状态码404
+    NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
+    parmas[@"zp-browse-id"] = kZPBROWSEID;
+    
+    [JPNetWork GET:@"http://www.skyhives.com/userbehaviorapi/cart" parameters:parmas completionHandler:^(NSDictionary *responseObj, NSError *error) {
+        NSLog(@"查询购物车responseObj===%@",responseObj);
+        NSLog(@"查询购物车error===%@",error);
+        
+        if ([responseObj[@"status"] isEqualToNumber:@1]) {
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }else{
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }
+        
+    }];
+}
+
+
+
+
+
 /**
  *  配置tableView
  */
@@ -268,10 +294,28 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
  *  @param scheme           URL Scheme，支付宝渠道回调需要，没有支付宝情况下可为 nil
  *  @param completionBlock  支付结果回调 Block
  */
-//- (IBAction)countBtnClick:(UIButton *)sender {
-//    
+- (IBAction)countBtnClick:(UIButton *)sender {
+    NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
+    NSString *orderNo = [MyShoppingController rand_str:12];
+    parmas[@"oid"] = orderNo;
+    parmas[@"channel"] = @"wx";
+    parmas[@"tag"] = @1;
+    parmas[@"zp-browse-id"] = kZPBROWSEID;
+#warning 支付未调通 服务器没有返回数据
+    [JPNetWork GET:@"http://www.skyhives.com/ping/ppay" parameters:parmas completionHandler:^(NSDictionary *responseObj, NSError *error) {
+        NSLog(@"支付responseObj  ==  %@",responseObj);
+        NSLog(@"支付error == %@",error);
+        
+        if ([responseObj[@"status"] isEqualToNumber:@1]) {
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }else{
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }
+        
+    }];
+    
 //    [Pingpp createPayment:<#(NSString *)#> appURLScheme:<#(NSString *)#> withCompletion:<#^(NSString *result, PingppError *error)completion#>];
-//}
+}
 
 /**
  *  结算按钮点击事件
@@ -455,6 +499,24 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
         
         [self.arr removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+#warning 购物车删除,删除成功status返回0 , 多次删除统一商品每次都返回成功
+        NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
+        parmas[@"zp-browse-id"] = kZPBROWSEID;
+        parmas[@"id"] = @51;
+        [JPNetWork GET:@"http://www.skyhives.com/m/del" parameters:parmas completionHandler:^(id responseObj, NSError *error) {
+            NSLog(@"购物车删除responseObj  ==  %@",responseObj);
+            NSLog(@"购物车删除error == %@",error);
+            NSLog(@"msg---%@",responseObj[@"msg"]);
+            
+            if ([responseObj[@"status"] isEqualToNumber:@0]) {
+                [self showSuccessMsg:responseObj[@"msg"]];
+            }else{
+                [self showSuccessMsg:responseObj[@"msg"]];
+            }
+            
+        }];
+        
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             CGRect rect = CGRectMake(0, 0, ApplicationframeValue.width, CELLH * self.arr.count);
             tableView.frame = rect;

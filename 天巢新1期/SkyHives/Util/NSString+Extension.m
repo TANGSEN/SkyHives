@@ -108,4 +108,11 @@
     return data;
 }
 
++ (NSString *)rand_str:(int) l {
+    char pool[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    char data[l];
+    for (int x=0;x<l;data[x++] = (char)(pool[arc4random_uniform(62)]));
+    return [[NSString alloc] initWithBytes:data length:l encoding:NSUTF8StringEncoding];
+}
+
 @end

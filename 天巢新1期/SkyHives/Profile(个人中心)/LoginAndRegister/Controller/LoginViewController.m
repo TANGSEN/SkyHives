@@ -201,7 +201,7 @@
         NSNumber *status = responseObject[@"status"];
         
         
-        NSString *str = responseObject[@"data"];
+//        NSString *str = responseObject[@"data"];
         NSLog(@"%@",responseObject[@"data"]);
         if ([status isEqualToNumber:@1]) {
             [self showSuccessMsg:responseObject[@"msg"]];
@@ -212,7 +212,7 @@
             
             //标记已经登录
             [SharedInstance sharedInstance].alreadyLanded = YES;
-            [[SharedInstance sharedInstance] setUserID:@"A8EE7617146FD3C6A034516C543DC589811825ABB831CA69F78A0EBE4D6992BD7F0B8A0C78D574EF6AFEACB9DDA4890D"];
+            [[SharedInstance sharedInstance] setUserID:kZPBROWSEID];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
