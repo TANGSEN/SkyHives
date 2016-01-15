@@ -26,5 +26,8 @@
 /**数量*/
 @property (weak, nonatomic) IBOutlet UILabel *Count;
 @property (weak, nonatomic) IBOutlet UIButton *CancelButton;
+@property (weak, nonatomic) IBOutlet UIImageView *furniturePic;
+
+@property (nonatomic ,strong) FurnitureModel *furniture;
 
 @end

@@ -17,13 +17,13 @@
 
 
 
--(NSArray *)arr
-{
-    if (!_arr) {
-        _arr = [ShoppingModel demoData];
-    }
-    return _arr;
-}
+//-(NSArray *)arr
+//{
+//    if (!_arr) {
+//        _arr = [ShoppingModel demoData];
+//    }
+//    return _arr;
+//}
 
 -(id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
     self = [super initWithFrame:frame style:style];
@@ -88,9 +88,9 @@
 //            
 //        } forControlEvents:UIControlEventTouchUpInside];
 
-    cell.Count.text = model.Count;
-    cell.PriceLabel.text = model.Price;
-    cell.ProductDetailLabel.text = model.ProductName;
+    cell.Count.text = [NSString stringWithFormat:@"%ld",model.item_count];
+    cell.PriceLabel.text = [NSString stringWithFormat:@"%ld",model.price];
+    cell.ProductDetailLabel.text = model.name;
     ChooseButton.selected = model.Selected;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [self getRoundCorner:cell.StepperView];

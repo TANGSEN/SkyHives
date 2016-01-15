@@ -348,16 +348,20 @@
                             </mask>
                         </variation>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="dachuang" translatesAutoresizingMaskIntoConstraints="NO" id="Ouq-dE-Twv">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="placehyolder" translatesAutoresizingMaskIntoConstraints="NO" id="Ouq-dE-Twv">
                         <rect key="frame" x="48" y="15" width="91" height="70"/>
                         <animations/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="70" id="0Bu-gi-0pU"/>
                             <constraint firstAttribute="height" constant="70" id="5dR-Al-d9W"/>
+                            <constraint firstAttribute="width" constant="85" id="bYa-Rp-gXL"/>
                             <constraint firstAttribute="width" constant="90" id="dny-Vh-PCA"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="0Bu-gi-0pU"/>
                                 <exclude reference="5dR-Al-d9W"/>
+                                <exclude reference="bYa-Rp-gXL"/>
                                 <exclude reference="dny-Vh-PCA"/>
                             </mask>
                         </variation>
@@ -369,7 +373,9 @@
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="constraints">
+                                <include reference="0Bu-gi-0pU"/>
                                 <exclude reference="5dR-Al-d9W"/>
+                                <include reference="bYa-Rp-gXL"/>
                                 <exclude reference="dny-Vh-PCA"/>
                             </mask>
                         </variation>
@@ -510,11 +516,12 @@
                 <outlet property="PriceLabel" destination="6C6-ED-7Sj" id="pgr-OA-Hwe"/>
                 <outlet property="ProductDetailLabel" destination="4dk-WA-P0A" id="Wd9-bi-YlQ"/>
                 <outlet property="StepperView" destination="klP-rN-4sz" id="d2P-wx-hqI"/>
+                <outlet property="furniturePic" destination="Ouq-dE-Twv" id="lWa-1S-HwF"/>
             </connections>
-            <point key="canvasLocation" x="397" y="147"/>
+            <point key="canvasLocation" x="226" y="226"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="dachuang" width="535" height="212"/>
+        <image name="placehyolder" width="147" height="95"/>
     </resources>
 </document>

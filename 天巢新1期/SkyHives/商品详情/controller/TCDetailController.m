@@ -418,7 +418,17 @@
         [GWBtn setTitle:@"加入购物车" forState:UIControlStateNormal];
         [GWBtn setTitleColor:Color(255, 255, 255) forState:UIControlStateNormal];
         [GWBtn addTarget:self action:@selector(gouwu) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+//        [GWBtn setBackgroundImage:[UIImage imageNamed:@"dachuang"] forState:UIControlStateDisabled];
+        
+        
+//        GWBtn.enabled = NO;
+        
+        
         GWBtn.backgroundColor = Color(250, 86, 87);
+        
+        
         [_attributeView addSubview:GWBtn];
         [_attributeView addSubview:self.attributeScrollView];
     }

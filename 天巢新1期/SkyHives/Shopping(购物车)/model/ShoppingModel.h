@@ -9,10 +9,21 @@
 #import <Foundation/Foundation.h>
 
 @interface ShoppingModel : NSObject
-@property (nonatomic,copy)NSString *ProductName;
-@property (nonatomic,copy)NSString *Count;
-@property (nonatomic,copy)NSString *Price;
+
+
+@property (nonatomic ,assign) NSInteger goodsId;
+@property (nonatomic ,assign) NSInteger id;
+
+@property (nonatomic ,assign) NSInteger item_count;
+@property (nonatomic ,assign) NSInteger price;
+@property (nonatomic ,copy) NSString *name;
+@property (nonatomic ,copy) NSString *thumb;
+
+
+//@property (nonatomic,copy)NSString *ProductName;
+//@property (nonatomic,copy)NSString *Count;
+//@property (nonatomic,copy)NSString *Price;
 @property (nonatomic ,assign,getter = isSelected) BOOL Selected;
-+(NSMutableArray *)demoData;
+//+(NSMutableArray *)demoData;
 +(ShoppingModel *)shoppingModel;
 @end

@@ -196,7 +196,7 @@
     
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
 
-    [mgr GET:@"http://www.skyhives.com/userbehaviorapi/loginApp?" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
+    [mgr GET:@"http://192.168.1.156:8080/zp/userbehaviorapi/loginApp?" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
         
         NSNumber *status = responseObject[@"status"];
         

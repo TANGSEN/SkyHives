@@ -71,13 +71,14 @@
                 </constraints>
             </tableViewCellContentView>
             <animations/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="ImageView" destination="RUu-tq-gID" id="zZx-9W-7Rk"/>
-                <outlet property="PriceLabel" destination="mg7-tC-yCX" id="zGi-Se-PF0"/>
-                <outlet property="ProductNameLabel" destination="fpk-si-0JC" id="aZt-Xf-DXX"/>
-                <outlet property="SoldCount" destination="WjP-ZH-2rK" id="2Gs-Ia-rlF"/>
+                <outlet property="imageView" destination="RUu-tq-gID" id="wP6-eM-BMr"/>
+                <outlet property="priceLabel" destination="mg7-tC-yCX" id="7Ib-us-Joi"/>
+                <outlet property="productNameLabel" destination="fpk-si-0JC" id="zz3-I0-XGo"/>
+                <outlet property="soldCount" destination="WjP-ZH-2rK" id="XB4-Nv-DCS"/>
             </connections>
-            <point key="canvasLocation" x="287" y="293"/>
+            <point key="canvasLocation" x="3" y="90"/>
         </tableViewCell>
     </objects>
 </document>

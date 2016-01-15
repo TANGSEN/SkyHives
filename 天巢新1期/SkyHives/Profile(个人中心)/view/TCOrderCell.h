@@ -12,13 +12,13 @@
 
 @interface TCOrderCell : UITableViewCell
 /**图片*/
-@property (strong, nonatomic) IBOutlet UIImageView *ImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 /**产品名称*/
-@property (strong, nonatomic) IBOutlet UILabel *ProductNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *productNameLabel;
 /**价格*/
-@property (strong, nonatomic) IBOutlet UILabel *PriceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *priceLabel;
 /**数量*/
-@property (weak, nonatomic) IBOutlet UILabel *SoldCount;
+@property (weak, nonatomic) IBOutlet UILabel *soldCount;
 
 
 @property (nonatomic ,assign,getter = isPay) BOOL pay;

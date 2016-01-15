@@ -75,18 +75,24 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 @property (nonatomic, retain) NSArray *itemCounts;
 @property (nonatomic,strong)UIButton *BottomButton;
 
+@property (nonatomic ,strong) NSMutableArray *furnitures;
+@property (nonatomic ,strong) ShoppingModel *furniture;
+
+@property (nonatomic ,assign) NSInteger oldFurnituresCount;
+
+
 @end
 
 @implementation MyShoppingController
 
 #pragma mark - lazy loading
--(NSMutableArray *)arr
-{
-    if (!_arr) {
-        _arr = [ShoppingModel demoData];
-    }
-    return _arr;
-}
+//-(NSMutableArray *)arr
+//{
+//    if (!_arr) {
+//        _arr = [ShoppingModel demoData];
+//    }
+//    return _arr;
+//}
 
 - (NSArray *)titles{
     if (!_titles){
@@ -180,18 +186,42 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     
 }
 
-
+- (void)setFurnitures:(NSMutableArray *)furnitures{
+    NSLog(@"oldCount == %ld",_furnitures.count);
+    
+    self.oldFurnituresCount = self.furnitures.count;
+    _furnitures = furnitures;
+    NSLog(@"newCount == %ld",_furnitures.count);
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+#warning 此处不合理,如果购物车的后台数据没有发生改变,不应该进行刷新操作,有了增加或删除才应该进行刷新
+    if (self.furnitures.count == 0) {
+        self.scrollView.y = 0;
+        self.view.y = 0;
+        [self setupDownRefresh];
+        
+    }else if(self.furnitures.count != self.oldFurnituresCount){
+        self.scrollView.y = 0;
+        self.view.y = 0;
+        [self setupDownRefresh];
+    }
     
+    [super viewDidAppear:animated];
+
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     [Pingpp setDebugMode:YES];
     
-    [self checkShoppingCart];
+//    [self checkShoppingCart];
     
     // 添加最底层的scrollView
     [self.view addSubview:self.scrollView];
@@ -202,8 +232,11 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 
     [self setupBottomButton];
     
-    [self setupTableView];
+    self.table.backgroundColor = [UIColor blackColor];
+    self.scrollView.backgroundColor = RandomColor;
     
+    NSLog(@"scrollViewF ----- %@",NSStringFromCGRect(self.scrollView.frame));
+    NSLog(@"viewF ----- %@",NSStringFromCGRect(self.view.frame));
 //    [self countButtonClick];
 
 //    [self.scrollView addSubview:self.topView];
@@ -212,27 +245,29 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 }
 
 /**
- *  查询购物车
+ *  集成下拉刷新控件
+ *  使用了 MJRefresh 第三方框架
  */
-- (void)checkShoppingCart{
-#warning 查询购物车失败,服务器返回状态码404
-    NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
-    parmas[@"zp-browse-id"] = kZPBROWSEID;
-    
-    [JPNetWork GET:@"http://www.skyhives.com/userbehaviorapi/cart" parameters:parmas completionHandler:^(NSDictionary *responseObj, NSError *error) {
-        NSLog(@"查询购物车responseObj===%@",responseObj);
-        NSLog(@"查询购物车error===%@",error);
-        
-        if ([responseObj[@"status"] isEqualToNumber:@1]) {
-            [self showSuccessMsg:responseObj[@"msg"]];
-        }else{
-            [self showSuccessMsg:responseObj[@"msg"]];
-        }
-        
+- (void)setupDownRefresh
+{
+    self.scrollView.mj_header  = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 加载数据
+        [self setupTableView];
     }];
+    
+    [self.scrollView.mj_header beginRefreshing];
 }
 
 
+- (UITableView *)table{
+    if (!_table){
+        _table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ApplicationframeValue.width, CELLH * self.furnitures.count)];
+        self.table.delegate = self;
+        self.table.dataSource = self;
+        [self.scrollView addSubview:self.table];
+    }
+    return _table;
+}
 
 
 
@@ -240,12 +275,33 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
  *  配置tableView
  */
 - (void)setupTableView{
-    self.table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ApplicationframeValue.width, CELLH * self.arr.count)];
-    self.table.delegate = self;
-    self.table.dataSource = self;
-    [self.table selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
-    [self.scrollView addSubview:self.table];
-    _scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.table.frame));
+    
+    
+    NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
+    parmas[@"zp-browse-id"] = kZPBROWSEID;
+    
+    [JPNetWork GET:@"http://192.168.1.156:8080/zp/userbehaviorapi/cart" parameters:parmas completionHandler:^(NSDictionary *responseObj, NSError *error) {
+        NSLog(@"查询购物车responseObj===%@",responseObj);
+        NSLog(@"查询购物车error===%@",error);
+        
+        
+        NSMutableArray *furnitures = [ShoppingModel mj_objectArrayWithKeyValuesArray:responseObj[@"data"]];
+        NSLog(@"%@",furnitures);
+        
+        self.furnitures = furnitures;
+        if ([responseObj[@"status"] isEqualToNumber:@0]) {
+            [self showSuccessMsg:responseObj[@"msg"]];
+        }
+        
+        [self.scrollView.mj_header endRefreshing];
+        self.table.height = CELLH * furnitures.count;
+        
+        self.scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.table.frame));
+        
+        [self.table reloadData];
+        
+    }];
+    
 }
 
 /**
@@ -262,10 +318,10 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
             BottomButton.selected = !BottomButton.selected;
             if (BottomButton.selected == YES) {
                 self.PreSum = 0;
-                self.SelectedNumber = self.arr.count;
-                for (ShoppingModel *model in self.arr) {
+                self.SelectedNumber = self.furnitures.count;
+                for (ShoppingModel *model in self.furnitures) {
                     model.Selected = YES;
-                    self.PreSum += [model.Price integerValue]*[model.Count integerValue];
+                    self.PreSum += model.price *model.item_count;
                     self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
                     NSLog(@"%ld",(long)self.PreSum);
     
@@ -273,7 +329,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
             }else
             {
                 self.SelectedNumber = 0;
-                for (ShoppingModel *model in self.arr) {
+                for (ShoppingModel *model in self.furnitures) {
                     model.Selected = NO;
                     self.PreSum = 0;
                     self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
@@ -295,26 +351,45 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
  *  @param completionBlock  支付结果回调 Block
  */
 - (IBAction)countBtnClick:(UIButton *)sender {
-    NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
-    NSString *orderNo = [MyShoppingController rand_str:12];
-    parmas[@"oid"] = orderNo;
-    parmas[@"channel"] = @"wx";
-    parmas[@"tag"] = @1;
-    parmas[@"zp-browse-id"] = kZPBROWSEID;
-#warning 支付未调通 服务器没有返回数据
-    [JPNetWork GET:@"http://www.skyhives.com/ping/ppay" parameters:parmas completionHandler:^(NSDictionary *responseObj, NSError *error) {
-        NSLog(@"支付responseObj  ==  %@",responseObj);
-        NSLog(@"支付error == %@",error);
+    
+    
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"ids"] = @(145);
+    dic[@"counts"] = @1;
+    dic[@"zp-browse-id"] = kZPBROWSEID;
+    [JPNetWork GET:@"http://192.168.1.156:8080/zp/m/addorder" parameters:dic completionHandler:^(id responseObj, NSError *error) {
+        NSLog(@"%@",responseObj);
         
         if ([responseObj[@"status"] isEqualToNumber:@1]) {
-            [self showSuccessMsg:responseObj[@"msg"]];
-        }else{
-            [self showSuccessMsg:responseObj[@"msg"]];
+            NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
+            NSString *orderNo = responseObj[@"data"];
+            parmas[@"oid"] = orderNo;
+            parmas[@"channel"] = @"wx";
+            parmas[@"tag"] = @1;
+            parmas[@"zp-browse-id"] = kZPBROWSEID;
+#warning 支付未调通 服务器没有返回数据
+            [JPNetWork GET:@"http://192.168.1.156:8080/zp/ping/ppay" parameters:parmas completionHandler:^(NSDictionary *responseObj, NSError *error) {
+                NSLog(@"支付responseObj  ==  %@",responseObj);
+                NSLog(@"支付error == %@",error);
+                
+                if ([responseObj[@"status"] isEqualToNumber:@1]) {
+                    [self showSuccessMsg:responseObj[@"msg"]];
+                    NSData* data = [NSJSONSerialization dataWithJSONObject:responseObj[@"data"] options:NSJSONWritingPrettyPrinted error:nil];
+                    NSString* charge = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    NSLog(@"charge = %@", charge);
+
+                    [Pingpp createPayment:charge appURLScheme:nil withCompletion:^(NSString *result, PingppError *error) {
+                        NSLog(@"result -- - - %@",result);
+                    }];
+                    
+                }else{
+                    [self showSuccessMsg:responseObj[@"msg"]];
+                }
+                
+            }];
         }
         
     }];
-    
-//    [Pingpp createPayment:<#(NSString *)#> appURLScheme:<#(NSString *)#> withCompletion:<#^(NSString *result, PingppError *error)completion#>];
 }
 
 /**
@@ -373,7 +448,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.arr.count;
+    return self.furnitures.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -384,7 +459,8 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ShoppingModel *model = self.arr[indexPath.row];
+    ShoppingModel *model = self.furnitures[indexPath.row];
+    NSLog(@"Selected  **** %d",model.Selected);
     static NSString *ID  = @"cell";
     MyShoppingCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     
@@ -408,7 +484,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
         
         model.Selected = !model.Selected;
         if (model.Selected) {
-            self.PreSum += [model.Price integerValue]*[model.Count integerValue];
+            self.PreSum += model.price * model.item_count ;
             self.SelectedNumber += 1;
             if (self.SelectedNumber==self.arr.count) {
                 self.BottomButton.selected = YES;
@@ -419,7 +495,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
             self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
         }else
         {
-            self.PreSum -= [model.Price integerValue]*[model.Count integerValue];;
+            self.PreSum -= model.price * model.item_count;
             
             self.SelectedNumber -= 1;
             if (self.SelectedNumber!=self.arr.count) {
@@ -432,34 +508,35 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
         [self.table reloadData];
     } forControlEvents:UIControlEventTouchUpInside];
     
-    cell.Count.text = model.Count;
-    cell.PriceLabel.text =[NSString stringWithFormat:@"￥%@",model.Price];
-    cell.ProductDetailLabel.text = model.ProductName;
+    cell.Count.text = [NSString stringWithFormat:@"%ld",model.item_count];
+    cell.PriceLabel.text =[NSString stringWithFormat:@"￥%ld",model.price];
+    cell.ProductDetailLabel.text = model.name;
+    [cell.furniturePic sd_setImageWithURL:[NSURL URLWithString:model.thumb]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [self getRoundCorner:cell.StepperView];
     cell.Imageline1.backgroundColor = [UIColor lightGrayColor];
     cell.Imageline2.backgroundColor = [UIColor lightGrayColor];
     
     [cell.PlusButton bk_addEventHandler:^(id sender) {
-        model.Count = [NSString stringWithFormat:@"%ld",[model.Count integerValue]+1];
+        model.item_count = model.item_count + 1;
         if (model.Selected) {
-            self.PreSum += [model.Price integerValue];
+            self.PreSum += model.price;
             self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
         }
-        cell.Count.text = [NSString stringWithFormat:@"%ld",(long)[model.Count integerValue]];
+        cell.Count.text = [NSString stringWithFormat:@"%ld",(long)model.item_count];
         [self.table reloadData];
     } forControlEvents:UIControlEventTouchUpInside];
     
     [cell.DecreaseButton bk_addEventHandler:^(id sender) {
-        if ([model.Count integerValue]==1) {
+        if (model.item_count ==  1) {
             return ;
         }
-        model.Count = [NSString stringWithFormat:@"%ld",[model.Count integerValue]-1];
+        model.item_count = model.item_count - 1;
         
-        cell.Count.text = [NSString stringWithFormat:@"%ld",(long)[model.Count integerValue]];
+        cell.Count.text = [NSString stringWithFormat:@"%ld",(long)model.item_count];
         if (model.Selected) {
             
-            self.PreSum -= [model.Price integerValue];
+            self.PreSum -= model.price;
             
             self.PreSumLabel.text = [NSString stringWithFormat:@"￥%ld",(long)self.PreSum];
         }
@@ -495,14 +572,18 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
 //进入编辑模式，按下出现的编辑按钮后
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ShoppingModel *model = self.furnitures[indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        [self.arr removeObjectAtIndex:indexPath.row];
+        [self.furnitures removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
 #warning 购物车删除,删除成功status返回0 , 多次删除统一商品每次都返回成功
+        
+        
+        
         NSMutableDictionary *parmas = [NSMutableDictionary dictionary];
         parmas[@"zp-browse-id"] = kZPBROWSEID;
-        parmas[@"id"] = @51;
+        parmas[@"id"] = @(model.id);
         [JPNetWork GET:@"http://www.skyhives.com/m/del" parameters:parmas completionHandler:^(id responseObj, NSError *error) {
             NSLog(@"购物车删除responseObj  ==  %@",responseObj);
             NSLog(@"购物车删除error == %@",error);
@@ -518,10 +599,12 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
         
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            CGRect rect = CGRectMake(0, 0, ApplicationframeValue.width, CELLH * self.arr.count);
-            tableView.frame = rect;
+            CGRect rect = CGRectMake(0, 0, ApplicationframeValue.width, CELLH * self.furnitures.count);
+            self.table.frame = rect;
+//            self.scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.table.frame));
+            NSLog(@"contentSize -- %@",NSStringFromCGSize(self.scrollView.contentSize));
             [UIView animateWithDuration:0.25 animations:^{
-                if (self.arr.count == 0) {
+                if (self.furnitures.count == 0) {
                     return ;
                 }
                 self.topView.y -= CELLH;
@@ -536,7 +619,7 @@ static NSString *kBackendChargeURL = @"www.skyhives.com";
     [label addGestureRecognizer:tap];
     label.userInteractionEnabled = YES;
     [self.scrollView addSubview:label];
-    if (self.arr.count == 0) {
+    if (self.furnitures.count == 0) {
         label.hidden = NO;
         self.BottomView.hidden = YES;
     }else{
